@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="es" data-lang="es">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Yei City Concierge · Private concierge en Barcelona</title>
-<meta name="description" content="Yei City Concierge — concierge privado en Barcelona y República Dominicana. Traslados, reservas, restaurantes, barcos, vuelos privados, eventos y asistencia personal.">
-<meta property="og:title" content="Yei City Concierge — Barcelona, a tu manera">
-<meta property="og:description" content="Concierge privado en Barcelona y República Dominicana. Tú eliges el momento, nosotros lo organizamos.">
-<meta property="og:image" content="assets/img/terraza-barcelona.jpg">
+<title>Yei City Concierge · Private concierge in Barcelona &amp; Dominican Republic</title>
+<meta name="description" content="Yei City Concierge — private concierge in Barcelona and the Dominican Republic. Transfers, reservations, exclusive restaurants, boats, private flights, events and personal assistance.">
+<meta property="og:title" content="Yei City Concierge — Your gateway to Barcelona &amp; the Dominican Republic">
+<meta property="og:description" content="Private concierge in Barcelona and the Dominican Republic. You choose the moment, we take care of the rest.">
+<meta property="og:image" content="assets/video/puerta-poster.jpg">
 <link rel="canonical" href="https://yeicityconcierge.com/">
 <meta property="og:url" content="https://yeicityconcierge.com/">
 <meta name="theme-color" content="#0B1624">
@@ -81,22 +81,40 @@ html[data-lang="es"] .en, html[data-lang="en"] .es{display:none !important}
 body.menu .burger span:first-child{transform:translateY(2.75px) rotate(45deg)}
 body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 
-/* ---------- HERO ---------- */
-.hero{position:relative;min-height:100svh;min-height:680px;height:100svh;color:#fff;overflow:hidden;background:var(--night);display:flex;flex-direction:column}
-.hero-bg{position:absolute;inset:-4% 0 0 0;background:url(assets/img/terraza-barcelona.jpg) center 38%/cover;transform:scale(1.08);transition:transform 2.4s var(--ease);will-change:transform}
-.loaded .hero-bg{transform:scale(1)}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,22,36,.55) 0%,rgba(11,22,36,.05) 30%,rgba(11,22,36,.08) 52%,rgba(11,22,36,.78) 82%,rgba(11,22,36,.95) 100%)}
+/* ---------- HERO (puerta) ---------- */
+.hero{position:relative;min-height:max(100svh,720px);color:#fff;overflow:hidden;background:var(--night);display:flex;flex-direction:column}
+.hero-bg{position:absolute;inset:-6%;background:url(assets/video/puerta-fondo.jpg) center/cover;opacity:.5;will-change:transform}
+.hero::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 80% at 72% 50%,rgba(11,22,36,.1),rgba(11,22,36,.88) 78%),linear-gradient(180deg,rgba(11,22,36,.55),transparent 28%,transparent 70%,rgba(11,22,36,.9))}
 .hero > *:not(.hero-bg){position:relative;z-index:2}
-.giant{margin-top:clamp(96px,13vh,140px);padding:0 var(--gut);text-align:center;font-family:var(--caps);font-weight:500;line-height:.82;font-size:clamp(52px,13.6vw,214px);letter-spacing:-.01em;color:#fff;text-shadow:0 10px 60px rgba(0,0,0,.18);white-space:nowrap}
-.giant span{display:inline-block;transform:translateY(110%);opacity:0;transition:transform 1.3s var(--ease),opacity 1.3s var(--ease)}
-.loaded .giant span{transform:none;opacity:1}
-.tagline{display:block;text-align:right;padding:0 calc(var(--gut) + 2vw);margin-top:-.15em;font-family:var(--serif);font-style:italic;font-size:clamp(30px,5.4vw,84px);color:var(--gold-2);line-height:1;opacity:0;transform:translateY(20px);transition:all 1.2s .7s var(--ease)}
-.loaded .tagline{opacity:1;transform:none}
-.hero-low{margin-top:auto;padding:0 var(--gut) 18px;display:grid;grid-template-columns:minmax(0,640px);gap:40px;align-items:end;max-width:calc(var(--max) + 2*var(--gut));width:100%;margin-left:auto;margin-right:auto}
+.hero-main{flex:1;display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,5vw,80px);align-items:center;max-width:calc(var(--max) + 2*var(--gut));width:100%;margin:0 auto;padding:112px var(--gut) 34px}
+.hero-title{font-family:var(--serif);font-weight:400;font-size:clamp(46px,6vw,94px);line-height:.98;letter-spacing:-.015em;margin:4px 0 26px}
+.hero-title .l{display:block;overflow:hidden;padding-bottom:.06em}
+.hero-title .l > span{display:inline-block;transform:translateY(108%);transition:transform 1.3s var(--ease)}
+.hero-title .l:nth-child(2) > span{transition-delay:.12s}.hero-title .l:nth-child(3) > span{transition-delay:.24s}
+.loaded .hero-title .l > span{transform:none}
+.hero-title .sm{font-family:var(--sans);font-weight:300;font-size:.4em;letter-spacing:.01em;color:rgba(255,255,255,.85)}
+.hero-title .city{font-family:var(--caps);font-weight:500;letter-spacing:.01em}
+.hero-title .it{color:var(--gold-2)}
+.hero-copy .lead{font-size:clamp(16px,1.3vw,18.5px);max-width:470px;color:rgba(255,255,255,.85);margin-bottom:26px}
+.door{justify-self:center;position:relative;height:min(72vh,700px);aspect-ratio:720/1366;max-width:100%}
+.door-frame{position:absolute;inset:-14px;border:1px solid rgba(226,200,142,.6);border-radius:999px 999px 20px 20px;pointer-events:none;opacity:0;transition:opacity 1.2s 1.4s}
+.door-frame::after{content:"";position:absolute;inset:-12px;border:1px solid rgba(226,200,142,.22);border-radius:inherit}
+.loaded .door-frame{opacity:1}
+.door-key{position:absolute;left:50%;top:-58px;width:30px;height:30px;transform:translateX(-50%);color:var(--gold)}
+.door-win{position:absolute;inset:0;border-radius:999px 999px 14px 14px;overflow:hidden;background:#0d0a08 url(assets/video/puerta-poster.jpg) center/cover;clip-path:inset(0 50% 0 50%);transition:clip-path 1.9s .25s cubic-bezier(.7,0,.2,1);box-shadow:0 50px 90px -40px rgba(0,0,0,.75)}
+.loaded .door-win{clip-path:inset(0 0 0 0)}
+.door-win video{width:100%;height:100%;object-fit:cover;display:block}
+.door-cap{position:absolute;left:50%;bottom:-46px;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(226,200,142,.75)}
+/* cinta de destinos */
+.marq{background:var(--night);color:var(--gold-2);border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden;padding:20px 0}
+.marq-t{display:flex;width:max-content;animation:marq 38s linear infinite}
+.marq .grp{display:flex;align-items:center;font-family:var(--serif);font-style:italic;font-size:clamp(22px,2.3vw,32px);white-space:nowrap}
+.marq .grp b{font-weight:400;padding:0 30px}
+.marq .grp i{font-style:normal;font-size:.5em;color:var(--gold)}
+@keyframes marq{to{transform:translateX(-50%)}}
 .eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:16px}
 .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(201,164,92,.7);animation:pulse 2.2s infinite}
 @keyframes pulse{70%{box-shadow:0 0 0 10px rgba(201,164,92,0)}100%{box-shadow:0 0 0 0 rgba(201,164,92,0)}}
-.hero-low p.lead{font-size:clamp(16px,1.35vw,19px);max-width:520px;color:rgba(255,255,255,.88);margin-bottom:24px}
 .ctas{display:flex;gap:10px;flex-wrap:wrap}
 
 
@@ -214,6 +232,23 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .xc .tx h3{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.05;margin:6px 0}
 .xc .tx p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.45}
 
+/* ---------- QUIÉN SOY ---------- */
+.who{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(32px,6vw,100px);align-items:center;margin-top:48px}
+.who-ph{position:relative;max-width:440px;width:100%;justify-self:center}
+.who-img{aspect-ratio:4/5;border-radius:999px 999px var(--r) var(--r);overflow:hidden;background:radial-gradient(90% 70% at 50% 25%,#1d3456,var(--night));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--gold-2);position:relative}
+.who-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.who-img .mono{font-family:var(--caps);font-size:64px;letter-spacing:.06em;line-height:1;color:var(--gold)}
+.who-img::after{content:"";position:absolute;inset:12px;border:1px solid rgba(226,200,142,.4);border-radius:999px 999px 14px 14px;pointer-events:none}
+.who-ph figcaption{display:flex;justify-content:space-between;margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.who-txt .h2{margin-bottom:26px}
+.who-txt .who-lead{color:var(--ink);max-width:600px;font-family:var(--serif);font-style:italic;font-size:clamp(23px,2.1vw,30px);line-height:1.25;margin-bottom:20px}
+.who-txt p{color:#4a4f57;font-size:16px;max-width:560px;margin-bottom:16px}
+.ph-l{display:inline-block;color:#9C7A3A;border:1px dashed rgba(156,122,58,.6);padding:2px 10px;border-radius:8px;font-family:var(--mono);font-size:12.5px;font-style:normal;letter-spacing:0}
+.who-sign{display:flex;align-items:center;gap:18px;margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.who-sign b{font-family:var(--serif);font-style:italic;font-weight:400;font-size:36px;color:#9C7A3A;line-height:1}
+.who-sign small{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.who-txt .who-goal{margin-top:26px;padding:20px 22px;border-radius:16px;background:var(--cream);border:1px solid var(--line);font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.35;color:var(--ink) !important}
+
 /* ---------- CÓMO FUNCIONA ---------- */
 .how{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,60px);margin-top:48px;align-items:stretch}
 .how .h2{margin-bottom:40px}
@@ -326,12 +361,21 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
   .ac-txt{left:20px;right:20px;bottom:22px}
   .ac-flight svg.route{width:86%;right:7%;top:7%;height:24%}
   .how{grid-template-columns:1fr}
+  .who{grid-template-columns:1fr}
+  .who-ph{max-width:360px}
   .arch{justify-self:center;max-width:400px}
 }
 @media (max-width:820px){
-  .hero-low{grid-template-columns:1fr;gap:24px}
-  .giant{margin-top:120px}
-  .tagline{text-align:center;padding:0 var(--gut)}
+  .hero{min-height:100svh}
+  .hero::after{display:none}
+  .hero > .hero-main{position:static;display:flex;flex-direction:column;justify-content:flex-end;padding:120px var(--gut) 26px}
+  .hero-copy{position:relative;z-index:3}
+  .door{position:absolute;inset:0;width:auto;height:auto;aspect-ratio:auto;max-width:none;justify-self:stretch;align-self:stretch;z-index:1}
+  .door-win{border-radius:0;box-shadow:none}
+  .door-win video{filter:brightness(1.25) contrast(1.05)}
+  .door-win::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,22,36,.45) 0%,rgba(11,22,36,0) 18%,rgba(11,22,36,.1) 42%,rgba(11,22,36,.9) 78%)}
+  .door-frame,.door-key,.door-cap,.hero-bg{display:none}
+  .hero-bar{position:relative;z-index:3}
   .sv-head{grid-template-columns:1fr;gap:16px;margin:40px 0 32px}
   .sv-head p{justify-self:start}
   .dest{grid-template-columns:1fr}
@@ -341,8 +385,6 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
 @media (max-width:560px){
   .hdr .btn{display:none}
   .brand small{display:none}
-  .hero{height:auto;min-height:100svh}
-  .hero-bg{background-position:22% 40%}
   .hero-bar .scroll-cue{display:none}
   .hero-bar{font-size:9.5px;letter-spacing:.08em;gap:8px}
   .hero-bar > span{white-space:nowrap}
@@ -358,7 +400,9 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
 }
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
-  .rv,.giant span,.tagline{opacity:1;transform:none}
+  .rv,.hero-title .l > span{opacity:1;transform:none}
+  .door-win{clip-path:none}
+  .door-frame{opacity:1}
   .manifesto .w{opacity:1}
   .day .bar{transform:none}
 }
@@ -373,7 +417,7 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
     <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
     <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor"/></g></symbol>
     <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></symbol>
-    <symbol id="i-bell"viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M5 24h22M4 27h24"/><path d="M7 24a9 9 0 0 1 18 0"/><path d="M16 15v-3M13.5 11h5"/></g></symbol>
+    <symbol id="i-bell" viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M5 24h22M4 27h24"/><path d="M7 24a9 9 0 0 1 18 0"/><path d="M16 15v-3M13.5 11h5"/></g></symbol>
     <symbol id="i-keys" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="5.5"/><path d="M15 15l22 22M31 31l-3.5 3.5M35 35l-3.5 3.5"/><circle cx="37" cy="11" r="5.5"/><path d="M33 15L11 37M17 31l3.5 3.5M13 35l3.5 3.5"/></g></symbol>
   </defs>
 </svg>
@@ -385,8 +429,9 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
     <span><b>YCC</b><small>YEI CITY CONCIERGE</small></span>
   </a>
   <nav class="pill" aria-label="Principal">
+    <a href="#sobre"><span class="es">Qué hacemos</span><span class="en">What we do</span></a>
     <a href="#servicios"><span class="es">Servicios</span><span class="en">Services</span></a>
-    <a href="#experiencias"><span class="es">Experiencias</span><span class="en">Experiences</span></a>
+    <a href="#quien"><span class="es">Quién soy</span><span class="en">About me</span></a>
     <a href="#como"><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
     <a href="#destinos"><span class="es">Destinos</span><span class="en">Destinations</span></a>
     <a href="#reserva"><span class="es">Contacto</span><span class="en">Contact</span></a>
@@ -400,33 +445,40 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
   </div>
 </header>
 <nav class="mnav" id="mnav" aria-label="Móvil">
-  <a href="#servicios"><i>01</i><span class="es">Servicios</span><span class="en">Services</span></a>
-  <a href="#experiencias"><i>02</i><span class="es">Experiencias</span><span class="en">Experiences</span></a>
-  <a href="#como"><i>03</i><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
-  <a href="#destinos"><i>04</i><span class="es">Destinos</span><span class="en">Destinations</span></a>
-  <a href="#reserva"><i>05</i><span class="es">Reservas</span><span class="en">Bookings</span></a>
+  <a href="#sobre"><i>01</i><span class="es">Qué hacemos</span><span class="en">What we do</span></a>
+  <a href="#servicios"><i>02</i><span class="es">Servicios</span><span class="en">Services</span></a>
+  <a href="#quien"><i>03</i><span class="es">Quién soy</span><span class="en">About me</span></a>
+  <a href="#como"><i>04</i><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
+  <a href="#destinos"><i>05</i><span class="es">Destinos</span><span class="en">Destinations</span></a>
   <a href="#reserva"><i>06</i><span class="es">Contacto</span><span class="en">Contact</span></a>
 </nav>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
-  <div class="hero-bg" id="heroBg" role="img" aria-label="Terraza con vistas a Barcelona al atardecer"></div>
-  <h1 class="giant" aria-label="Barcelona, a tu manera">
-    <span style="transition-delay:.05s">B</span><span style="transition-delay:.1s">A</span><span style="transition-delay:.15s">R</span><span style="transition-delay:.2s">C</span><span style="transition-delay:.25s">E</span><span style="transition-delay:.3s">L</span><span style="transition-delay:.35s">O</span><span style="transition-delay:.4s">N</span><span style="transition-delay:.45s">A</span>
-  </h1>
-  <span class="tagline"><span class="es">a tu manera.</span><span class="en">your way.</span></span>
-
-  <div class="hero-low">
-    <div>
-      <div class="eyebrow"><i class="dot"></i><span class="es">Concierge privado para experiencias exclusivas</span><span class="en">Private concierge for exclusive experiences</span></div>
-      <p class="lead">
-        <span class="es">Organizamos tus vuelos privados, reservas de restaurantes y todas tus actividades en Barcelona y República Dominicana. Tú solo disfruta.</span>
-        <span class="en">We organize your private flights, dining reservations and every activity in Barcelona and the Dominican Republic. All you have to do is enjoy.</span>
-      </p>
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-main">
+    <div class="hero-copy">
+      <div class="eyebrow"><i class="dot"></i><span class="es">Concierge privado</span><span class="en">Private concierge</span></div>
+      <h1 class="hero-title">
+        <span class="l"><span class="sm"><span class="es">Tu puerta a</span><span class="en">Your gateway to</span></span></span>
+        <span class="l"><span class="city">Barcelona</span></span>
+        <span class="l"><span class="it"><span class="es">y República Dominicana</span><span class="en">&amp; the Dominican Republic</span></span></span>
+      </h1>
+      <p class="lead"><span class="es">Experiencias exclusivas, reservas, traslados y asistencia personal. Tú eliges el momento, nosotros lo organizamos.</span><span class="en">Exclusive experiences, reservations, transfers and personal assistance. You choose the moment, we take care of the rest.</span></p>
       <div class="ctas">
         <a href="#reserva" class="btn btn-gold"><span class="es">Diseña tu plan</span><span class="en">Plan your stay</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
-        <a href="#servicios" class="btn btn-ghost"><span class="es">Ver servicios</span><span class="en">See services</span></a>
+        <a href="#sobre" class="btn btn-ghost"><span class="es">Qué hacemos</span><span class="en">What we do</span></a>
       </div>
+    </div>
+    <div class="door">
+      <svg class="door-key" aria-hidden="true"><use href="#i-keys"/></svg>
+      <span class="door-frame" aria-hidden="true"></span>
+      <div class="door-win">
+        <video id="doorVideo" autoplay muted loop playsinline preload="auto" poster="assets/video/puerta-poster.jpg" aria-label="A door opening">
+          <source src="assets/video/puerta.mp4" type="video/mp4">
+        </video>
+      </div>
+      <span class="door-cap">Yei City Concierge</span>
     </div>
   </div>
 
@@ -437,13 +489,20 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
   </div>
 </section>
 
+<div class="marq" aria-hidden="true">
+  <div class="marq-t">
+    <div class="grp"><b>Barcelona</b><i>✦</i><b><span class="es">República Dominicana</span><span class="en">Dominican Republic</span></b><i>✦</i><b>Costa Brava</b><i>✦</i><b><span class="es">Caribe</span><span class="en">Caribbean</span></b><i>✦</i><b>Barcelona</b><i>✦</i><b><span class="es">República Dominicana</span><span class="en">Dominican Republic</span></b><i>✦</i><b>Costa Brava</b><i>✦</i><b><span class="es">Caribe</span><span class="en">Caribbean</span></b><i>✦</i></div>
+    <div class="grp"><b>Barcelona</b><i>✦</i><b><span class="es">República Dominicana</span><span class="en">Dominican Republic</span></b><i>✦</i><b>Costa Brava</b><i>✦</i><b><span class="es">Caribe</span><span class="en">Caribbean</span></b><i>✦</i><b>Barcelona</b><i>✦</i><b><span class="es">República Dominicana</span><span class="en">Dominican Republic</span></b><i>✦</i><b>Costa Brava</b><i>✦</i><b><span class="es">Caribe</span><span class="en">Caribbean</span></b><i>✦</i></div>
+  </div>
+</div>
+
 <!-- ============ SOBRE / BENTO ============ -->
 <section class="sec" id="sobre">
   <div class="wrap">
-    <div class="label rv"><span>// <span class="es">Sobre nosotros</span><span class="en">About us</span></span><span>[ 01 ]</span></div>
+    <div class="label rv"><span>// <span class="es">Qué hacemos</span><span class="en">What we do</span></span><span>[ 01 ]</span></div>
 
-    <p class="manifesto es" data-words>¿Quieres vivir Barcelona con total comodidad y sin preocupaciones? Con un servicio <em>discreto, profesional y amable,</em> cuidamos a particulares, empresas y turistas exigentes que quieren aprovechar al máximo su estancia.</p>
-    <p class="manifesto en" data-words>Looking to experience Barcelona in total comfort, luxury and without worries? With <em>discreet, professional and friendly</em> service, we look after individuals, companies and discerning travellers who want to make the most of their stay.</p>
+    <p class="manifesto es" data-words>Organizamos tus vuelos privados, reservas y todas tus actividades en <em>Barcelona y República Dominicana,</em> con un servicio discreto, profesional y amable para particulares, empresas y viajeros exigentes.</p>
+    <p class="manifesto en" data-words>We organize your private flights, reservations and every activity in <em>Barcelona and the Dominican Republic,</em> with discreet, professional and friendly service for individuals, companies and discerning travellers.</p>
 
     <div class="bento">
       <div class="b b-photo b-q rv">
@@ -676,10 +735,35 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
   </div>
 </section>
 
+<!-- ============ QUIÉN SOY ============ -->
+<section class="sec" id="quien">
+  <div class="wrap">
+    <div class="label rv"><span>// <span class="es">Quién soy</span><span class="en">About me</span></span><span>[ 03 ]</span></div>
+    <div class="who">
+      <figure class="who-ph rv">
+        <div class="who-img">
+          <!-- FOTO DE LA FUNDADORA: sustituir este bloque por <img src="assets/img/fundadora.jpg" alt="..."> -->
+          <span class="mono">YCC</span>
+          <span class="ph">[FOTO]</span>
+        </div>
+        <figcaption><span><span class="es">Fundadora</span><span class="en">Founder</span></span><span>Barcelona · <span class="es">Rep. Dominicana</span><span class="en">Dominican Rep.</span></span></figcaption>
+      </figure>
+      <div class="who-txt">
+        <h2 class="h2 rv"><span class="es">Hola, soy <span class="it">[Nombre]</span>.</span><span class="en">Hi, I'm <span class="it">[Name]</span>.</span></h2>
+        <p class="who-lead rv d1"><span class="es">“¿Quieres vivir Barcelona con total comodidad y sin preocupaciones? Estoy aquí para hacerlo posible.”</span><span class="en">“Looking to experience Barcelona in total comfort, luxury and without worries? I'm here to make it possible.”</span></p>
+        <p class="rv d1"><span class="es">Con un servicio discreto, profesional y amable, ofrezco servicios de conserjería personalizados para particulares, empresas y turistas exigentes que quieran aprovechar al máximo su estancia en Barcelona y sus alrededores, y también en República Dominicana.</span><span class="en">With discreet, professional and friendly service, I offer personalised concierge services for individuals, companies and discerning travellers who want to make the most of their stay in Barcelona and its surroundings, and in the Dominican Republic too.</span></p>
+        <p class="rv d2"><span class="ph-l"><span class="es">[Su historia: de dónde es, desde cuándo, por qué creó Yei City Concierge]</span><span class="en">[Her story: where she's from, since when, why she created Yei City Concierge]</span></span></p>
+        <p class="who-goal rv d2"><span class="es">Mi objetivo es que cada cliente se sienta especial y disfrute con total tranquilidad, comodidad y estilo.</span><span class="en">My goal is for every client to feel special and enjoy their stay with complete peace of mind, comfort and style.</span></p>
+        <div class="who-sign rv d3"><b><span class="es">[Nombre]</span><span class="en">[Name]</span></b><small><span class="es">Fundadora · Yei City Concierge</span><span class="en">Founder · Yei City Concierge</span></small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ CÓMO FUNCIONA ============ -->
 <section class="sec" id="como">
   <div class="wrap">
-    <div class="label rv"><span>// <span class="es">Cómo funciona</span><span class="en">How it works</span></span><span>[ 03 ]</span></div>
+    <div class="label rv"><span>// <span class="es">Cómo funciona</span><span class="en">How it works</span></span><span>[ 04 ]</span></div>
     <div class="how">
       <div>
         <h2 class="h2 rv" style="margin-top:48px"><span class="es">¿Plan perfecto?<br>Te lo diseñamos, <span class="it">tú solo disfrutas.</span></span><span class="en">The perfect plan?<br>We design it, <span class="it">you just enjoy.</span></span></h2>
@@ -719,8 +803,8 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
 <!-- ============ DESTINOS ============ -->
 <section class="sec" id="destinos" style="padding-top:0">
   <div class="wrap">
-    <div class="label rv"><span>// <span class="es">Destinos</span><span class="en">Destinations</span></span><span>[ 04 ]</span></div>
-    <h2 class="h2 rv" style="margin-top:48px"><span class="es">Dos destinos,<br><span class="it">el mismo cuidado.</span></span><span class="en">Two destinations,<br><span class="it">the same care.</span></span></h2>
+    <div class="label rv"><span>// <span class="es">Destinos</span><span class="en">Destinations</span></span><span>[ 05 ]</span></div>
+    <h2 class="h2 rv" style="margin-top:48px"><span class="es">Barcelona, y también<br><span class="it">República Dominicana.</span></span><span class="en">Barcelona, and also<br><span class="it">the Dominican Republic.</span></span></h2>
     <div class="dest">
       <article class="dc rv">
         <img src="assets/img/ayuntamiento-noche.jpg" alt="Barcelona de noche" loading="lazy">
@@ -747,7 +831,7 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
 <!-- ============ RESERVA ============ -->
 <section class="sec dark" id="reserva">
   <div class="wrap">
-    <div class="label rv"><span>// <span class="es">Reserva</span><span class="en">Booking</span></span><span>[ 05 ]</span></div>
+    <div class="label rv"><span>// <span class="es">Reserva</span><span class="en">Booking</span></span><span>[ 06 ]</span></div>
     <div class="book">
       <div class="book-info rv">
         <h2 class="h2"><span class="es">Cuéntanos qué<br>te apetece <span class="it">vivir.</span></span><span class="en">Tell us what<br>you'd love to <span class="it">live.</span></span></h2>
@@ -850,14 +934,14 @@ const CONTACT = {
 
   /* --- idioma --- */
   const saved = (()=>{try{return localStorage.getItem('ycc-lang')}catch(e){return null}})();
-  setLang(saved || ((navigator.language||'es').toLowerCase().startsWith('es') ? 'es' : 'en'));
+  setLang(saved || 'en'); // inglés por defecto
   document.querySelectorAll('[data-set]').forEach(b=>b.addEventListener('click',()=>{
     setLang(b.dataset.set); try{localStorage.setItem('ycc-lang',b.dataset.set)}catch(e){}
   }));
   function setLang(l){
     root.dataset.lang = l; root.lang = l;
     document.querySelectorAll('[data-set]').forEach(b=>b.classList.toggle('on',b.dataset.set===l));
-    document.title = l==='es' ? 'Yei City Concierge · Concierge privado en Barcelona' : 'Yei City Concierge · Private concierge in Barcelona';
+    document.title = l==='es' ? 'Yei City Concierge · Concierge privado en Barcelona y República Dominicana' : 'Yei City Concierge · Private concierge in Barcelona & Dominican Republic';
     words();
   }
 
@@ -873,6 +957,15 @@ const CONTACT = {
   document.querySelector('[data-via="mail"]').hidden = !MAIL;
   document.querySelector('[data-via="ig"]').hidden = !!(WA || MAIL);
 
+  /* --- vídeo de la puerta: asegurar reproducción y pausar fuera de pantalla --- */
+  const dv = document.getElementById('doorVideo');
+  if (reduce) { dv.removeAttribute('autoplay'); dv.pause(); }
+  else {
+    const tryPlay = () => dv.play().catch(()=>{});
+    tryPlay();
+    new IntersectionObserver(es=>es.forEach(e=> e.isIntersecting ? tryPlay() : dv.pause())).observe(dv);
+  }
+
   /* --- carga --- */
   requestAnimationFrame(()=>setTimeout(()=>document.body.classList.add('loaded'),60));
 
@@ -883,7 +976,7 @@ const CONTACT = {
   function onScroll(){
     const y = scrollY;
     hdr.classList.toggle('solid', y > 40);
-    if(!reduce && y < innerHeight*1.2) heroBg.style.transform = `translateY(${y*0.22}px) scale(1)`;
+    if(!reduce && y < innerHeight*1.2) heroBg.style.transform = `translateY(${y*0.18}px)`;
     words(); ticking=false;
   }
 
