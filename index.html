@@ -84,7 +84,7 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 /* ---------- HERO (puerta a pantalla completa) ---------- */
 .hero{position:relative;min-height:max(100svh,680px);color:#fff;overflow:hidden;background:#0d0a08;display:flex;flex-direction:column}
 .hero > .hero-main{position:static;flex:1;display:flex;align-items:center;max-width:calc(var(--max) + 2*var(--gut));width:100%;margin:0 auto;padding:112px var(--gut) 34px}
-.hero-copy{position:relative;z-index:3;max-width:min(560px,40vw)}
+.hero-copy{position:relative;z-index:3;max-width:min(540px,38vw)}
 .hero-title{font-family:var(--serif);font-weight:400;font-size:clamp(44px,5.4vw,86px);line-height:.98;letter-spacing:-.015em;margin:4px 0 26px}
 .hero-title .l{display:block;overflow:hidden;padding-bottom:.06em}
 .hero-title .l > span{display:inline-block;transform:translateY(108%);transition:transform 1.3s var(--ease)}
@@ -95,10 +95,10 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .hero-title .it{color:var(--gold-2)}
 .hero-copy .lead{font-size:clamp(16px,1.3vw,18.5px);max-width:470px;color:rgba(255,255,255,.88);margin-bottom:26px}
 .door{position:absolute;inset:0;z-index:1}
-.door-win{position:absolute;inset:0;overflow:hidden;background:#0d0a08 url(assets/video/puerta-h-poster.jpg) center/cover;clip-path:inset(0 50% 0 50%);transition:clip-path 2s .15s cubic-bezier(.7,0,.2,1)}
+.door-win{position:absolute;inset:0;overflow:hidden;background:#0d0a08 url(assets/video/puerta-poster.jpg) center/cover;clip-path:inset(0 50% 0 50%);transition:clip-path 2s .15s cubic-bezier(.7,0,.2,1)}
 .loaded .door-win{clip-path:inset(0 0 0 0)}
 .door-win video{width:100%;height:100%;object-fit:cover;display:block}
-.door-win::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,22,36,.9) 0%,rgba(11,22,36,.62) 26%,rgba(11,22,36,.12) 46%,rgba(11,22,36,0) 60%),linear-gradient(180deg,rgba(11,22,36,.6) 0%,rgba(11,22,36,0) 20%,rgba(11,22,36,0) 74%,rgba(11,22,36,.9) 100%)}
+.door-win::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,22,36,.9) 0%,rgba(11,22,36,.6) 28%,rgba(11,22,36,.1) 44%,rgba(11,22,36,0) 56%),linear-gradient(180deg,rgba(11,22,36,.6) 0%,rgba(11,22,36,0) 20%,rgba(11,22,36,0) 74%,rgba(11,22,36,.9) 100%)}
 .hero-bar{position:relative;z-index:3}
 /* cinta de destinos */
 .marq{background:var(--night);color:var(--gold-2);border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);overflow:hidden;padding:20px 0}
@@ -364,8 +364,7 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
   .hero{min-height:100svh}
   .hero > .hero-main{flex-direction:column;align-items:stretch;justify-content:flex-end;padding:120px var(--gut) 26px}
   .hero-copy{max-width:none}
-  .door-win{background-image:url(assets/video/puerta-poster.jpg)}
-  .door-win video{filter:brightness(1.2) contrast(1.05)}
+  .door-win video{object-position:48% 50%;filter:brightness(1.15) contrast(1.05)}
   .door-win::after{background:linear-gradient(180deg,rgba(11,22,36,.45) 0%,rgba(11,22,36,0) 18%,rgba(11,22,36,.1) 42%,rgba(11,22,36,.9) 78%)}
   .sv-head{grid-template-columns:1fr;gap:16px;margin:40px 0 32px}
   .sv-head p{justify-self:start}
@@ -461,7 +460,7 @@ footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;borde
     </div>
     <div class="door">
       <div class="door-win">
-        <video id="doorVideo" autoplay muted loop playsinline preload="auto" aria-label="A door opening"></video>
+        <video id="doorVideo" autoplay muted loop playsinline preload="auto" poster="assets/video/puerta-poster.jpg" aria-label="A door opening"><source src="assets/video/puerta.mp4" type="video/mp4"></video>
       </div>
     </div>
   </div>
@@ -941,22 +940,11 @@ const CONTACT = {
   document.querySelector('[data-via="mail"]').hidden = !MAIL;
   document.querySelector('[data-via="ig"]').hidden = !!(WA || MAIL);
 
-  /* --- vídeo de la puerta: horizontal en ordenador, vertical en móvil --- */
+  /* --- vídeo de la puerta: asegurar reproducción y pausar fuera de pantalla --- */
   const dv = document.getElementById('doorVideo');
-  const wide = matchMedia('(min-width: 821px)');
   const tryPlay = () => { if(!reduce) dv.play().catch(()=>{}); };
-  function pickVideo(){
-    const v = wide.matches ? 'puerta-h' : 'puerta';
-    if (dv.dataset.v === v) return;
-    dv.dataset.v = v;
-    dv.poster = 'assets/video/' + v + '-poster.jpg';
-    dv.src = 'assets/video/' + v + '.mp4';
-    tryPlay();
-  }
-  pickVideo();
-  wide.addEventListener('change', pickVideo);
-  if (reduce) dv.removeAttribute('autoplay');
-  else new IntersectionObserver(es=>es.forEach(e=> e.isIntersecting ? tryPlay() : dv.pause())).observe(dv);
+  if (reduce) { dv.removeAttribute('autoplay'); dv.pause(); }
+  else { tryPlay(); new IntersectionObserver(es=>es.forEach(e=> e.isIntersecting ? tryPlay() : dv.pause())).observe(dv); }
 
   /* --- carga --- */
   requestAnimationFrame(()=>setTimeout(()=>document.body.classList.add('loaded'),60));
