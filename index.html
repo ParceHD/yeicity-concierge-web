@@ -1,0 +1,1039 @@
+<!doctype html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Yei City Concierge · Private concierge en Barcelona</title>
+<meta name="description" content="Yei City Concierge — concierge privado en Barcelona y República Dominicana. Traslados, reservas, restaurantes, barcos, vuelos privados, eventos y asistencia personal.">
+<meta property="og:title" content="Yei City Concierge — Barcelona, a tu manera">
+<meta property="og:description" content="Concierge privado en Barcelona y República Dominicana. Tú eliges el momento, nosotros lo organizamos.">
+<meta property="og:image" content="assets/img/terraza-barcelona.jpg">
+<link rel="canonical" href="https://yeicityconcierge.com/">
+<meta property="og:url" content="https://yeicityconcierge.com/">
+<meta name="theme-color" content="#0B1624">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B1624'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' fill='%23C9A45C' text-anchor='middle'%3EYCC%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --night:#0B1624; --night-2:#12233A; --night-3:#1A2F4B;
+  --gold:#C9A45C; --gold-2:#E2C88E; --gold-soft:#EFE3C6;
+  --cream:#F5EFE4; --paper:#FBF8F2; --ink:#14202D; --muted:#6E6A61;
+  --line:rgba(20,32,45,.13); --line-l:rgba(255,255,255,.14);
+  --serif:'Cormorant Garamond', Georgia, serif;
+  --caps:'Cinzel', 'Cormorant Garamond', serif;
+  --sans:'Manrope', system-ui, sans-serif;
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+  --r:22px; --gut:clamp(16px,4vw,56px); --max:1320px;
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);background:var(--paper);color:var(--ink);line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit;color:inherit}
+::selection{background:var(--gold);color:var(--night)}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--night)}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:10px;border:2px solid var(--night)}
+
+/* idioma */
+html[data-lang="es"] .en, html[data-lang="en"] .es{display:none !important}
+
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gut)}
+.label{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-top:18px;border-top:1px solid var(--line)}
+.dark .label{color:rgba(255,255,255,.55);border-color:var(--line-l)}
+.it{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold)}
+.btn{display:inline-flex;align-items:center;gap:12px;padding:8px 8px 8px 22px;border-radius:999px;font-weight:600;font-size:14px;letter-spacing:.01em;transition:transform .4s var(--ease),background .3s,color .3s;cursor:pointer;border:0;white-space:nowrap}
+.btn .ar{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;transition:transform .4s var(--ease)}
+.btn:hover .ar{transform:rotate(-45deg)}
+.btn-light{background:var(--paper);color:var(--night)} .btn-light .ar{background:var(--night);color:var(--paper)}
+.btn-gold{background:var(--gold);color:var(--night)} .btn-gold .ar{background:var(--night);color:var(--gold)}
+.btn-dark{background:var(--night);color:var(--paper)} .btn-dark .ar{background:var(--gold);color:var(--night)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35);padding:14px 22px}
+.btn-ghost:hover{background:rgba(255,255,255,.1)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}.rv.d4{transition-delay:.4s}
+
+/* ---------- HEADER ---------- */
+.hdr{position:fixed;inset:0 0 auto 0;z-index:50;padding:18px var(--gut);display:flex;align-items:center;justify-content:space-between;gap:16px;transition:background .4s,padding .4s,box-shadow .4s}
+.hdr.solid{background:rgba(11,22,36,.82);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);padding-top:12px;padding-bottom:12px;box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.brand{display:flex;align-items:center;gap:12px;color:#fff}
+.brand svg{width:34px;height:34px;color:var(--gold)}
+.brand b{font-family:var(--caps);font-weight:500;font-size:22px;letter-spacing:.08em;line-height:1}
+.brand small{display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.28em;color:var(--gold-2);margin-top:3px}
+.pill{display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.pill a{padding:8px 16px;border-radius:999px;font-size:13.5px;color:rgba(255,255,255,.85);transition:background .3s,color .3s}
+.pill a:hover,.pill a.on{background:rgba(255,255,255,.92);color:var(--night)}
+.hdr-r{display:flex;align-items:center;gap:10px}
+.lang{display:flex;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px;font-family:var(--mono);font-size:11px}
+.lang button{background:none;border:0;color:rgba(255,255,255,.7);padding:6px 10px;border-radius:999px;cursor:pointer;letter-spacing:.08em}
+.lang button.on{background:var(--gold);color:var(--night)}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.06);cursor:pointer;place-items:center}
+.burger span{display:block;width:16px;height:1.5px;background:#fff;margin:4px auto;transition:transform .3s}
+.mnav{position:fixed;inset:0;z-index:49;background:var(--night);display:flex;flex-direction:column;justify-content:center;padding:0 var(--gut);gap:6px;opacity:0;pointer-events:none;transition:opacity .4s}
+.mnav.open{opacity:1;pointer-events:auto}
+.mnav a{font-family:var(--serif);font-size:44px;color:#fff;line-height:1.2;border-bottom:1px solid var(--line-l);padding:10px 0}
+.mnav a i{font-family:var(--mono);font-style:normal;font-size:11px;color:var(--gold);margin-right:14px;vertical-align:middle}
+body.menu .burger span:first-child{transform:translateY(2.75px) rotate(45deg)}
+body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;min-height:680px;height:100svh;color:#fff;overflow:hidden;background:var(--night);display:flex;flex-direction:column}
+.hero-bg{position:absolute;inset:-4% 0 0 0;background:url(assets/img/terraza-barcelona.jpg) center 38%/cover;transform:scale(1.08);transition:transform 2.4s var(--ease);will-change:transform}
+.loaded .hero-bg{transform:scale(1)}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,22,36,.55) 0%,rgba(11,22,36,.05) 30%,rgba(11,22,36,.08) 52%,rgba(11,22,36,.78) 82%,rgba(11,22,36,.95) 100%)}
+.hero > *:not(.hero-bg){position:relative;z-index:2}
+.giant{margin-top:clamp(96px,13vh,140px);padding:0 var(--gut);text-align:center;font-family:var(--caps);font-weight:500;line-height:.82;font-size:clamp(52px,13.6vw,214px);letter-spacing:-.01em;color:#fff;text-shadow:0 10px 60px rgba(0,0,0,.18);white-space:nowrap}
+.giant span{display:inline-block;transform:translateY(110%);opacity:0;transition:transform 1.3s var(--ease),opacity 1.3s var(--ease)}
+.loaded .giant span{transform:none;opacity:1}
+.tagline{display:block;text-align:right;padding:0 calc(var(--gut) + 2vw);margin-top:-.15em;font-family:var(--serif);font-style:italic;font-size:clamp(30px,5.4vw,84px);color:var(--gold-2);line-height:1;opacity:0;transform:translateY(20px);transition:all 1.2s .7s var(--ease)}
+.loaded .tagline{opacity:1;transform:none}
+.hero-low{margin-top:auto;padding:0 var(--gut) 18px;display:grid;grid-template-columns:minmax(0,640px);gap:40px;align-items:end;max-width:calc(var(--max) + 2*var(--gut));width:100%;margin-left:auto;margin-right:auto}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:16px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 0 rgba(201,164,92,.7);animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(201,164,92,0)}100%{box-shadow:0 0 0 0 rgba(201,164,92,0)}}
+.hero-low p.lead{font-size:clamp(16px,1.35vw,19px);max-width:520px;color:rgba(255,255,255,.88);margin-bottom:24px}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+
+
+.hero-bar{display:flex;justify-content:space-between;align-items:center;padding:14px var(--gut) 18px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.6);border-top:1px solid rgba(255,255,255,.1);max-width:calc(var(--max) + 2*var(--gut));width:100%;margin:0 auto}
+.hero-bar .clk{color:var(--gold-2)}
+.scroll-cue{display:flex;align-items:center;gap:10px}
+.scroll-cue i{width:1px;height:22px;background:linear-gradient(var(--gold),transparent);animation:cue 2s infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- MANIFIESTO + BENTO ---------- */
+.sec{padding:clamp(80px,11vw,150px) 0}
+.manifesto{font-family:var(--serif);font-weight:400;font-size:clamp(28px,3.7vw,54px);line-height:1.18;text-align:center;max-width:1080px;margin:clamp(48px,6vw,80px) auto clamp(56px,7vw,96px);letter-spacing:-.005em}
+.manifesto .w{opacity:.16;transition:opacity .35s}
+.manifesto .w.on{opacity:1}
+.manifesto em{font-style:italic;color:#9C7A3A}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:auto auto;gap:14px}
+.b{border-radius:var(--r);overflow:hidden;position:relative;min-height:250px}
+.b-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform 1.4s var(--ease)}
+.b:hover img{transform:scale(1.05)}
+.b-q{grid-row:span 2;color:#fff;min-height:520px}
+.b-q::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(11,22,36,.85))}
+.b-q blockquote{position:absolute;left:22px;right:22px;bottom:22px;z-index:2;font-family:var(--serif);font-size:23px;line-height:1.25;font-style:italic}
+.b-q blockquote small{display:block;font-family:var(--mono);font-style:normal;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2);margin-top:12px}
+.b-num{background:var(--gold-soft);padding:24px;display:flex;flex-direction:column;justify-content:space-between}
+.b-num .n{font-family:var(--serif);font-size:84px;line-height:.9;font-weight:400}
+.b-num .n sup{font-size:.35em;vertical-align:top;color:#9C7A3A;margin-left:4px}
+.b-num p{font-size:14px;color:#5b5444;max-width:240px}
+.b-num .bell{position:absolute;right:20px;top:22px;width:30px;color:#9C7A3A}
+.b-dest{background:var(--cream);padding:24px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line)}
+.b-dest h4{font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.05}
+.b-dest .row{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin-top:8px}
+.b-week{grid-column:span 3;background:var(--night);color:#fff;padding:24px;display:flex;flex-direction:column;gap:18px}
+.b-week .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.b-week .hd span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.b-week h4{font-family:var(--serif);font-weight:400;font-size:clamp(26px,2.4vw,34px);line-height:1.05}
+.week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;align-items:end;flex:1;min-height:150px}
+.day{display:flex;flex-direction:column;align-items:center;gap:8px;height:100%;justify-content:flex-end}
+.day .bar{width:100%;border-radius:10px;background:linear-gradient(180deg,var(--gold-2),var(--gold));transform-origin:bottom;transform:scaleY(0);transition:transform 1.1s var(--ease);display:flex;align-items:flex-start;justify-content:center;padding-top:8px;color:var(--night)}
+.day .bar svg{width:16px;height:16px}
+.in .day .bar{transform:scaleY(1)}
+.day small{font-family:var(--mono);font-size:10px;color:rgba(255,255,255,.55)}
+.b-week .foot{font-size:12.5px;color:rgba(255,255,255,.6);display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+
+/* ---------- SERVICIOS (acordeón) ---------- */
+.sv-scroll{position:relative;height:calc(100vh + 7 * 48vh)}
+.sv-sticky{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;justify-content:center;padding-top:76px}
+.sv-sticky > .wrap{width:100%}
+.sv-head{display:grid;grid-template-columns:1.2fr .8fr;gap:40px;align-items:end;margin:26px 0 26px}
+.sv-head .h2{font-size:clamp(36px,4.2vw,64px)}
+.h2{font-family:var(--serif);font-weight:400;font-size:clamp(38px,5vw,74px);line-height:1;letter-spacing:-.01em}
+.sv-head p{color:var(--muted);max-width:380px;justify-self:end;font-size:15px}
+.sv-meta{display:flex;align-items:center;gap:14px;justify-self:end;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted);margin-top:14px}
+.sv-meta b{font-weight:500;color:var(--ink)}
+.sv-meta i{display:block;width:120px;height:1px;background:var(--line);position:relative;overflow:hidden}
+.sv-meta i::after{content:"";position:absolute;inset:0;background:var(--gold);transform-origin:left;transform:scaleX(var(--sv,0))}
+.acc{display:flex;gap:8px;height:clamp(380px,calc(100vh - 330px),640px)}
+.ac{position:relative;flex:1;min-width:0;border-radius:18px;overflow:hidden;cursor:pointer;background:var(--night);color:#fff;transition:flex 1.2s var(--ease)}
+.ac.on{flex:6;cursor:default}
+.ac-body{position:absolute;inset:0}
+.ac-body > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.85) brightness(.42) contrast(1.05);transform:scale(1.18);transition:filter 1.2s var(--ease),transform 2.2s var(--ease)}
+.ac:not(.on):hover .ac-body > img{filter:grayscale(.5) brightness(.6)}
+.ac.on .ac-body > img{filter:none;transform:scale(1)}
+.ac-body::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,22,36,.35),rgba(11,22,36,.6));transition:opacity 1s var(--ease)}
+.ac-body::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(11,22,36,.9) 0%,rgba(11,22,36,.55) 40%,rgba(11,22,36,0) 72%);opacity:0;transition:opacity 1s var(--ease)}
+.ac.on .ac-body::after{opacity:0}
+.ac.on .ac-body::before{opacity:1}
+.ac .num{position:absolute;z-index:3;top:20px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--gold-2);transition:left .8s var(--ease),transform .8s var(--ease)}
+.ac .num::after{content:"";display:block;width:1px;height:28px;margin:10px auto 0;background:linear-gradient(var(--gold),transparent);transition:opacity .5s}
+.ac.on .num{left:32px;transform:none}
+.ac.on .num::after{opacity:0}
+.ac .vt{position:absolute;z-index:3;left:50%;bottom:28px;transform:translateX(-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--serif);font-size:25px;letter-spacing:.01em;white-space:nowrap;color:var(--cream);transition:opacity .5s var(--ease)}
+.ac.on .vt{opacity:0;pointer-events:none}
+.ac .plus{display:none}
+.ac-prog{position:absolute;z-index:3;left:32px;right:32px;bottom:22px;height:1px;background:rgba(255,255,255,.18);opacity:0;transition:opacity .6s}
+.ac-prog::after{content:"";position:absolute;inset:0;background:var(--gold);transform-origin:left;transform:scaleX(var(--p,0))}
+.ac.on .ac-prog{opacity:1}
+.ac-txt{position:absolute;z-index:2;left:32px;bottom:48px;right:32px;max-width:470px;opacity:0;transform:translateY(24px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.ac.on .ac-txt{opacity:1;transform:none;transition:opacity 1s .45s var(--ease),transform 1s .45s var(--ease)}
+.ac-txt .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2);margin-bottom:10px}
+.ac-txt h3{font-family:var(--serif);font-weight:400;font-size:clamp(32px,3.2vw,46px);line-height:1.02;margin-bottom:16px}
+.ac-txt ul{list-style:none;margin-bottom:22px}
+.ac-txt li{display:flex;gap:12px;align-items:baseline;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.14);font-size:15px;color:rgba(255,255,255,.9)}
+.ac-txt li::before{content:"";width:6px;height:6px;flex:none;border:1px solid var(--gold);transform:rotate(45deg) translateY(-2px)}
+.ac-flight{background:radial-gradient(120% 90% at 85% 15%,#24406a 0%,var(--night) 60%)}
+.ac-flight::after{background:none !important}
+.ac-flight::before{background:linear-gradient(90deg,rgba(11,22,36,.6),transparent 60%) !important}
+.ac:not(.on) .ac-flight .route{opacity:.25;transition:opacity .8s}
+.ac-flight svg.route{position:absolute;right:4%;top:8%;width:62%;height:70%;opacity:.95}
+.route .path{stroke-dasharray:4 7;animation:dash 30s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-600}}
+
+/* ---------- EXPERIENCIAS (noche) ---------- */
+.dark{background:var(--night);color:#fff}
+.exp{position:relative;overflow:hidden;padding-top:clamp(90px,11vw,150px)}
+.stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 12% 22%,rgba(255,255,255,.55) 50%,transparent 51%),radial-gradient(1px 1px at 72% 12%,rgba(255,255,255,.45) 50%,transparent 51%),radial-gradient(1.5px 1.5px at 38% 35%,rgba(226,200,142,.7) 50%,transparent 51%),radial-gradient(1px 1px at 88% 40%,rgba(255,255,255,.4) 50%,transparent 51%),radial-gradient(1px 1px at 22% 60%,rgba(255,255,255,.3) 50%,transparent 51%),radial-gradient(1px 1px at 58% 8%,rgba(255,255,255,.5) 50%,transparent 51%),radial-gradient(1px 1px at 92% 70%,rgba(255,255,255,.3) 50%,transparent 51%),radial-gradient(1px 1px at 6% 82%,rgba(255,255,255,.35) 50%,transparent 51%);opacity:.9}
+.beam{position:absolute;left:50%;top:-10%;width:60%;height:70%;transform:translateX(-50%);background:radial-gradient(50% 60% at 50% 0%,rgba(201,164,92,.28),transparent 70%);pointer-events:none}
+.exp-c{position:relative;text-align:center;max-width:980px;margin:0 auto;padding:0 var(--gut)}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:5px 14px 5px 5px;border-radius:999px;border:1px solid var(--line-l);background:rgba(255,255,255,.04);font-size:13.5px;color:rgba(255,255,255,.85);margin-bottom:28px}
+.badge b{background:var(--gold);color:var(--night);font-family:var(--mono);font-weight:500;font-size:11px;padding:4px 10px;border-radius:999px;letter-spacing:.06em}
+.exp h2{font-family:var(--sans);font-weight:400;font-size:clamp(38px,5.6vw,82px);line-height:1.02;letter-spacing:-.025em}
+.exp h2 .it{display:block;font-size:1.12em;letter-spacing:-.01em;color:var(--gold-2)}
+.exp-c p{max-width:560px;margin:24px auto 0;color:rgba(255,255,255,.7);font-size:16.5px}
+.horizon{position:relative;height:clamp(150px,18vw,240px);margin-top:20px}
+.horizon::before{content:"";position:absolute;left:50%;top:40%;width:170%;aspect-ratio:1;transform:translateX(-50%);border-radius:50%;border-top:1.5px solid rgba(240,214,160,.95);box-shadow:0 -6px 40px rgba(226,200,142,.45),0 -30px 120px rgba(201,164,92,.35),inset 0 30px 80px rgba(201,164,92,.12);background:var(--night)}
+.horizon::after{content:"";position:absolute;left:50%;top:calc(40% - 50px);width:46%;height:100px;transform:translateX(-50%);background:radial-gradient(50% 50% at 50% 50%,rgba(255,236,190,.55),transparent 70%);filter:blur(8px)}
+.rail-wrap{position:relative;margin-top:calc(-1 * clamp(90px,11vw,150px));padding-bottom:clamp(80px,10vw,130px);z-index:2}
+.rail-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;gap:16px}
+.rail-top .label{border:0;padding:0;flex:1}
+.arrows{display:flex;gap:8px}
+.arrows button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line-l);background:rgba(255,255,255,.04);color:#fff;cursor:pointer;display:grid;place-items:center;transition:background .3s,color .3s}
+.arrows button:hover{background:var(--gold);color:var(--night);border-color:var(--gold)}
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);padding:4px var(--gut) 10px;scrollbar-width:none;cursor:grab}
+.rail::-webkit-scrollbar{display:none}
+.rail.drag{cursor:grabbing;scroll-snap-type:none}
+.xc{flex:none;width:clamp(260px,24vw,330px);scroll-snap-align:start;border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:3/4;background:var(--night-2);border:1px solid rgba(255,255,255,.08);user-select:none}
+.xc img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease);pointer-events:none}
+.xc:hover img{transform:scale(1.06)}
+.xc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,22,36,0) 40%,rgba(11,22,36,.92))}
+.xc .tx{position:absolute;z-index:2;left:18px;right:18px;bottom:18px}
+.xc .tx span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2)}
+.xc .tx h3{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.05;margin:6px 0}
+.xc .tx p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.45}
+
+/* ---------- CÓMO FUNCIONA ---------- */
+.how{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,60px);margin-top:48px;align-items:stretch}
+.how .h2{margin-bottom:40px}
+.steps{display:grid;gap:12px}
+.st{display:grid;grid-template-columns:70px 1fr auto;gap:20px;align-items:center;padding:24px 26px;border-radius:var(--r);background:var(--cream);border:1px solid var(--line);transition:background .4s,transform .4s var(--ease)}
+.st:hover{background:var(--gold-soft);transform:translateX(6px)}
+.st .n{font-family:var(--serif);font-size:48px;line-height:1;color:#9C7A3A}
+.st h3{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.1}
+.st p{font-size:14.5px;color:var(--muted);margin-top:4px}
+.st svg{width:26px;height:26px;color:var(--ink);opacity:.7}
+.arch{position:relative;border-radius:999px 999px var(--r) var(--r);background:url(assets/img/ayuntamiento-noche.jpg) center/cover;padding:14px;display:flex;min-height:560px}
+.arch-in{flex:1;border-radius:999px 999px 16px 16px;background:rgba(251,248,242,.94);border:1px solid rgba(201,164,92,.6);outline:1px solid rgba(201,164,92,.35);outline-offset:-8px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:70px 28px 34px;color:var(--ink)}
+.arch-in svg{width:34px;color:var(--gold);margin-bottom:16px}
+.arch-in .a1{font-family:var(--serif);font-style:italic;font-size:22px}
+.arch-in .a2{font-family:var(--serif);font-size:40px;line-height:1;color:#9C7A3A;font-style:italic;margin:6px 0 14px}
+.arch-in .a3{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--muted);max-width:240px}
+.arch-in .orn{display:flex;align-items:center;gap:10px;color:var(--gold);margin:18px 0 8px;font-size:12px}
+.arch-in .orn::before,.arch-in .orn::after{content:"";width:40px;height:1px;background:currentColor}
+.arch-in .ycc{font-family:var(--caps);font-size:26px;color:var(--gold);letter-spacing:.06em;margin-top:auto;line-height:1}
+.arch-in .ycc small{display:block;font-size:8px;letter-spacing:.3em;margin-top:4px}
+
+/* ---------- DESTINOS ---------- */
+.dest{display:grid;grid-template-columns:1.25fr 1fr;gap:14px;margin-top:48px}
+.dc{position:relative;border-radius:var(--r);overflow:hidden;min-height:520px;color:#fff;display:flex;flex-direction:column;justify-content:space-between;padding:26px}
+.dc > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.dc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,22,36,.45),rgba(11,22,36,0) 35%,rgba(11,22,36,.85));z-index:1}
+.dc > *:not(img):not(.sun):not(.sea):not(.palm){position:relative;z-index:2}
+.dc-top{display:flex;justify-content:space-between;align-items:flex-start;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.dc-clock{text-align:right}
+.dc-clock b{display:block;font-family:var(--sans);font-weight:300;font-size:44px;letter-spacing:-.02em;line-height:1;color:#fff}
+.dc h3{font-family:var(--serif);font-weight:400;font-size:clamp(40px,4.6vw,66px);line-height:.95}
+.dc p{max-width:420px;color:rgba(255,255,255,.8);margin-top:12px;font-size:15px}
+.dc-rd{background:linear-gradient(180deg,#0E2340 0%,#183a63 55%,#c58a4a 92%,#e8b878 100%)}
+.dc-rd::after{background:linear-gradient(180deg,rgba(11,22,36,.25),transparent 40%,rgba(11,22,36,.55))}
+.sun{position:absolute;left:50%;bottom:22%;width:180px;height:180px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,#ffe3a6 0%,#f0b766 55%,rgba(240,183,102,0) 72%);z-index:1;filter:blur(1px)}
+.sea{position:absolute;left:0;right:0;bottom:0;height:24%;background:repeating-linear-gradient(180deg,rgba(11,22,36,.35) 0 2px,rgba(11,22,36,.15) 2px 9px),linear-gradient(180deg,#14304f,#0B1624);z-index:1}
+.palm{position:absolute;right:-10px;bottom:18%;width:44%;max-width:240px;color:#0B1624;z-index:1;opacity:.92}
+
+
+/* ---------- RESERVA ---------- */
+.book{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,80px);margin-top:48px}
+.book .h2{color:#fff}
+.book-info p{color:rgba(255,255,255,.7);margin:22px 0 34px;max-width:420px}
+.ci{display:grid;gap:0;border-top:1px solid var(--line-l)}
+.ci a,.ci div{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--line-l);font-size:15px;gap:16px}
+.ci .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.ci a:hover{color:var(--gold-2)}
+.ph{color:var(--gold-2);border:1px dashed rgba(226,200,142,.5);padding:2px 10px;border-radius:8px;font-family:var(--mono);font-size:12px}
+.form{background:var(--paper);color:var(--ink);border-radius:28px;padding:clamp(22px,3vw,36px);display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .full{grid-column:1/-1}
+.form h3{font-family:var(--serif);font-weight:400;font-size:32px;line-height:1}
+.form .sub{font-size:13.5px;color:var(--muted);margin-top:6px}
+.f{display:flex;flex-direction:column;gap:6px}
+.f > label{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.f input,.f select,.f textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:14px;padding:13px 14px;font-size:15px;outline:none;transition:border .3s,box-shadow .3s}
+.f textarea{min-height:110px;resize:vertical}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,164,92,.18)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chips label{position:relative}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label > span{display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid var(--line);font-size:14px;cursor:pointer;transition:all .3s;background:#fff}
+.chips input:checked + span{background:var(--night);color:#fff;border-color:var(--night)}
+.chips input:focus-visible + span{outline:2px solid var(--gold);outline-offset:2px}
+.form{position:relative}
+.send{display:flex;gap:10px;flex-wrap:wrap}
+.btn-line{background:transparent;color:var(--night);border:1px solid var(--night)} .btn-line .ar{background:var(--night);color:var(--paper)}
+.btn-line:hover{background:var(--night);color:var(--paper)} .btn-line:hover .ar{background:var(--gold);color:var(--night)}
+.btn.busy{pointer-events:none;opacity:.75}
+.btn.busy .ar svg{display:none}
+.btn.busy .ar::after{content:"";width:14px;height:14px;border-radius:50%;border:2px solid currentColor;border-right-color:transparent;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.form-ok{position:absolute;inset:0;border-radius:28px;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px;padding:32px;opacity:0;visibility:hidden;transition:opacity .6s var(--ease),visibility 0s .6s}
+.form-ok svg{color:var(--gold)}
+.form-ok h3{font-size:40px}
+.form-ok p{color:var(--muted);max-width:320px;margin-bottom:8px}
+.form.sent .form-ok{opacity:1;visibility:visible;transition-delay:0s}
+.wa-float{position:fixed;right:20px;bottom:20px;z-index:60;width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--night);box-shadow:0 14px 34px rgba(11,22,36,.35),0 0 0 6px rgba(201,164,92,.18);transition:transform .4s var(--ease)}
+.wa-float:hover{transform:translateY(-3px) scale(1.04)}
+.wa-float[hidden],.btn[hidden]{display:none}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);background:var(--night);color:#fff;padding:14px 20px;border-radius:14px;border:1px solid rgba(201,164,92,.5);font-size:14px;z-index:80;transition:transform .5s var(--ease),visibility 0s .5s;visibility:hidden;max-width:calc(100% - 32px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.toast.show{transform:translate(-50%,0);visibility:visible;transition-delay:0s}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--night);color:#fff;padding:0 0 28px;overflow:hidden;border-top:1px solid rgba(255,255,255,.06)}
+.big-ycc{font-family:var(--caps);font-size:clamp(90px,26vw,400px);line-height:.8;text-align:center;letter-spacing:.02em;background:linear-gradient(180deg,rgba(226,200,142,.55),rgba(201,164,92,.04) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-top:60px;user-select:none}
+.f-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line-l);padding-top:22px;margin-top:10px;font-size:13px;color:rgba(255,255,255,.6)}
+.f-row nav{display:flex;gap:20px;flex-wrap:wrap}
+.f-row a:hover{color:#fff}
+.tessen-credit{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.55);font-size:.8rem;letter-spacing:.3px;transition:color .3s}
+.tessen-credit:hover{color:#fff}
+.tessen-credit img{width:20px;height:20px;object-fit:contain}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1080px){
+  .pill{display:none}
+  .burger{display:grid}
+  .bento{grid-template-columns:1fr 1fr}
+  .b-q{grid-row:span 1;min-height:420px}
+  .b-week{grid-column:1/-1}
+  .sv-scroll{height:auto}
+  .sv-sticky{position:static;height:auto;padding-top:0;display:block}
+  .sv-meta{display:none}
+  .acc{flex-direction:column;height:auto;gap:12px}
+  .ac,.ac.on{flex:none;min-height:540px;cursor:default}
+  .ac .ac-body > img{filter:none;transform:none}
+  .ac .ac-body::after{opacity:0}
+  .ac .ac-body::before{opacity:1;background:linear-gradient(180deg,rgba(11,22,36,.1) 0%,rgba(11,22,36,.6) 45%,rgba(11,22,36,.95) 100%)}
+  .ac .num{left:20px;transform:none}
+  .ac .num::after,.ac .vt,.ac-prog{display:none}
+  .ac .ac-txt{opacity:1;transform:none;left:20px;right:20px;bottom:22px}
+  .ac-flight svg.route{width:86%;right:7%;top:7%;height:24%}
+  .ac:not(.on) .ac-flight .route{opacity:1}
+  .how{grid-template-columns:1fr}
+  .arch{min-height:520px;max-width:440px;width:100%;justify-self:center}
+}
+@media (max-width:820px){
+  .hero-low{grid-template-columns:1fr;gap:24px}
+  .giant{margin-top:120px}
+  .tagline{text-align:center;padding:0 var(--gut)}
+  .sv-head{grid-template-columns:1fr;gap:16px;margin:40px 0 32px}
+  .sv-head p{justify-self:start}
+  .dest{grid-template-columns:1fr}
+  .dc{min-height:440px}
+  .book{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .hdr .btn{display:none}
+  .brand small{display:none}
+  .hero{height:auto;min-height:100svh}
+  .hero-bg{background-position:22% 40%}
+  .hero-bar .scroll-cue{display:none}
+  .hero-bar{font-size:9.5px;letter-spacing:.08em;gap:8px}
+  .hero-bar > span{white-space:nowrap}
+  .bento{grid-template-columns:1fr}
+  .b-q{min-height:440px}
+  .b{min-height:220px}
+  .week{gap:5px}
+  .st{grid-template-columns:52px 1fr;padding:20px}
+  .st svg{display:none}
+  .st .n{font-size:38px}
+  .form{grid-template-columns:1fr}
+  .f-row{flex-direction:column;align-items:flex-start}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .rv,.giant span,.tagline{opacity:1;transform:none}
+  .manifesto .w{opacity:1}
+  .day .bar{transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- Iconos reutilizables -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-ar" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></symbol>
+    <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".7" fill="currentColor"/></g></symbol>
+    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.8-1.4a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.2 2.2 2.2 0 0 0 .1-1.3c0-.1-.2-.2-.4-.3z"/></symbol>
+    <symbol id="i-bell"viewBox="0 0 32 32"><g fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M5 24h22M4 27h24"/><path d="M7 24a9 9 0 0 1 18 0"/><path d="M16 15v-3M13.5 11h5"/></g></symbol>
+    <symbol id="i-keys" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="5.5"/><path d="M15 15l22 22M31 31l-3.5 3.5M35 35l-3.5 3.5"/><circle cx="37" cy="11" r="5.5"/><path d="M33 15L11 37M17 31l3.5 3.5M13 35l3.5 3.5"/></g></symbol>
+  </defs>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr" id="hdr">
+  <a href="#top" class="brand" aria-label="Yei City Concierge">
+    <svg><use href="#i-keys"/></svg>
+    <span><b>YCC</b><small>YEI CITY CONCIERGE</small></span>
+  </a>
+  <nav class="pill" aria-label="Principal">
+    <a href="#servicios"><span class="es">Servicios</span><span class="en">Services</span></a>
+    <a href="#experiencias"><span class="es">Experiencias</span><span class="en">Experiences</span></a>
+    <a href="#como"><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
+    <a href="#destinos"><span class="es">Destinos</span><span class="en">Destinations</span></a>
+    <a href="#reserva"><span class="es">Contacto</span><span class="en">Contact</span></a>
+  </nav>
+  <div class="hdr-r">
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button data-set="es">ES</button><button data-set="en">EN</button>
+    </div>
+    <a href="#reserva" class="btn btn-light"><span class="es">Reservar</span><span class="en">Book now</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+    <button class="burger" id="burger" aria-label="Menú"><span></span><span></span></button>
+  </div>
+</header>
+<nav class="mnav" id="mnav" aria-label="Móvil">
+  <a href="#servicios"><i>01</i><span class="es">Servicios</span><span class="en">Services</span></a>
+  <a href="#experiencias"><i>02</i><span class="es">Experiencias</span><span class="en">Experiences</span></a>
+  <a href="#como"><i>03</i><span class="es">Cómo funciona</span><span class="en">How it works</span></a>
+  <a href="#destinos"><i>04</i><span class="es">Destinos</span><span class="en">Destinations</span></a>
+  <a href="#reserva"><i>05</i><span class="es">Reservas</span><span class="en">Bookings</span></a>
+  <a href="#reserva"><i>06</i><span class="es">Contacto</span><span class="en">Contact</span></a>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-bg" id="heroBg" role="img" aria-label="Terraza con vistas a Barcelona al atardecer"></div>
+  <h1 class="giant" aria-label="Barcelona, a tu manera">
+    <span style="transition-delay:.05s">B</span><span style="transition-delay:.1s">A</span><span style="transition-delay:.15s">R</span><span style="transition-delay:.2s">C</span><span style="transition-delay:.25s">E</span><span style="transition-delay:.3s">L</span><span style="transition-delay:.35s">O</span><span style="transition-delay:.4s">N</span><span style="transition-delay:.45s">A</span>
+  </h1>
+  <span class="tagline"><span class="es">a tu manera.</span><span class="en">your way.</span></span>
+
+  <div class="hero-low">
+    <div>
+      <div class="eyebrow"><i class="dot"></i><span class="es">Concierge privado para experiencias exclusivas</span><span class="en">Private concierge for exclusive experiences</span></div>
+      <p class="lead">
+        <span class="es">Organizamos tus vuelos privados, reservas de restaurantes y todas tus actividades en Barcelona y República Dominicana. Tú solo disfruta.</span>
+        <span class="en">We organize your private flights, dining reservations and every activity in Barcelona and the Dominican Republic. All you have to do is enjoy.</span>
+      </p>
+      <div class="ctas">
+        <a href="#reserva" class="btn btn-gold"><span class="es">Diseña tu plan</span><span class="en">Plan your stay</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+        <a href="#servicios" class="btn btn-ghost"><span class="es">Ver servicios</span><span class="en">See services</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-bar">
+    <span>[ Barcelona · <span class="clk" data-tz="Europe/Madrid">--:--</span> ]</span>
+    <span class="scroll-cue"><i></i><span class="es">Desliza</span><span class="en">Scroll</span></span>
+    <span>[ <span class="es">Rep. Dominicana</span><span class="en">Dominican Rep.</span> · <span class="clk" data-tz="America/Santo_Domingo">--:--</span> ]</span>
+  </div>
+</section>
+
+<!-- ============ SOBRE / BENTO ============ -->
+<section class="sec" id="sobre">
+  <div class="wrap">
+    <div class="label rv"><span>// <span class="es">Sobre nosotros</span><span class="en">About us</span></span><span>[ 01 ]</span></div>
+
+    <p class="manifesto es" data-words>¿Quieres vivir Barcelona con total comodidad y sin preocupaciones? Con un servicio <em>discreto, profesional y amable,</em> cuidamos a particulares, empresas y turistas exigentes que quieren aprovechar al máximo su estancia.</p>
+    <p class="manifesto en" data-words>Looking to experience Barcelona in total comfort, luxury and without worries? With <em>discreet, professional and friendly</em> service, we look after individuals, companies and discerning travellers who want to make the most of their stay.</p>
+
+    <div class="bento">
+      <div class="b b-photo b-q rv">
+        <img src="assets/img/chofer.jpg" alt="Chófer junto a coche de lujo" loading="lazy">
+        <blockquote>
+          <span class="es">“La tranquilidad de delegar en manos expertas y disfrutar de lo que realmente importa.”</span>
+          <span class="en">“The peace of mind of delegating to expert hands, so you can enjoy what truly matters.”</span>
+          <small>— Yei City Concierge</small>
+        </blockquote>
+      </div>
+
+      <div class="b b-num rv d1">
+        <svg class="bell"><use href="#i-bell"/></svg>
+        <div class="n" data-count="14">0<sup>+</sup></div>
+        <p><span class="es">servicios a tu disposición: del traslado desde el aeropuerto a la última copa de la noche.</span><span class="en">services at your disposal: from the airport transfer to the last drink of the night.</span></p>
+      </div>
+
+      <div class="b b-photo rv d2"><img src="assets/img/vip-pass.jpg" alt="Pase VIP" loading="lazy"></div>
+
+      <div class="b b-dest rv d3">
+        <span class="label" style="border:0;padding:0"><span>// <span class="es">Destinos</span><span class="en">Destinations</span></span><span>02</span></span>
+        <div>
+          <h4>Barcelona<br><span class="it">&amp; República Dominicana</span></h4>
+          <div class="row"><span>BCN · GMT+1</span><span>RD · GMT−4</span></div>
+        </div>
+      </div>
+
+      <div class="b b-week rv d2" id="week">
+        <div class="hd">
+          <h4><span class="es">Organizamos tu semana.<br><span class="it">Tú solo descansas.</span></span><span class="en">We organize your week.<br><span class="it">You just relax.</span></span></h4>
+          <span><span class="es">Ejemplo de plan</span><span class="en">Sample plan</span></span>
+        </div>
+        <div class="week">
+          <div class="day"><div class="bar" style="height:46%;transition-delay:.05s" title="Llegada"><svg viewBox="0 0 24 24"><path d="M2 16h20M5 13l4 1 5-7 2 .5-2.5 7 4 1 1.5-2 1.5.4-1 3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div><small><span class="es">L</span><span class="en">M</span></small></div>
+          <div class="day"><div class="bar" style="height:72%;transition-delay:.12s" title="Cena"><svg viewBox="0 0 24 24"><path d="M7 3v8a2 2 0 0 0 2 2v8M7 3v6M11 3v6M17 3c-2 2-2 6 0 8v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><small><span class="es">M</span><span class="en">T</span></small></div>
+          <div class="day"><div class="bar" style="height:58%;transition-delay:.19s" title="Spa"><svg viewBox="0 0 24 24"><path d="M12 21c-5 0-8-3-8-7 3 0 6 1 8 4 2-3 5-4 8-4 0 4-3 7-8 7zM12 18c-2-3-2-8 0-12 2 4 2 9 0 12z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><small><span class="es">X</span><span class="en">W</span></small></div>
+          <div class="day"><div class="bar" style="height:84%;transition-delay:.26s" title="Velero"><svg viewBox="0 0 24 24"><path d="M11 3v13H4zM13 6l6 10h-6zM3 19c2 1.5 4 1.5 6 0 2 1.5 4 1.5 6 0 2 1.5 4 1.5 6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><small><span class="es">J</span><span class="en">T</span></small></div>
+          <div class="day"><div class="bar" style="height:66%;transition-delay:.33s" title="Rooftop"><svg viewBox="0 0 24 24"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0zM12 13v7M8 21h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><small><span class="es">V</span><span class="en">F</span></small></div>
+          <div class="day"><div class="bar" style="height:96%;transition-delay:.4s" title="Noche"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><small><span class="es">S</span><span class="en">S</span></small></div>
+          <div class="day"><div class="bar" style="height:38%;transition-delay:.47s" title="Relax"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><small><span class="es">D</span><span class="en">S</span></small></div>
+        </div>
+        <div class="foot"><span class="es">Llegada · cena · spa · velero · rooftop · noche · relax</span><span class="en">Arrival · dinner · spa · sailing · rooftop · nightlife · relax</span><span>YCC</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICIOS ============ -->
+<section class="sec" id="servicios" style="padding-top:0">
+  <div class="sv-scroll" id="svScroll"><div class="sv-sticky"><div class="wrap">
+    <div class="label rv"><span>// <span class="es">Servicios</span><span class="en">Services</span></span><span>[ 02 ]</span></div>
+    <div class="sv-head">
+      <h2 class="h2 rv"><span class="es">Todo lo que necesites,<br><span class="it">quieras o desees.</span></span><span class="en">Everything you need,<br><span class="it">want or desire.</span></span></h2>
+      <div class="rv d1" style="justify-self:end">
+        <p><span class="es">Servicios de conserjería personalizados en Barcelona y sus alrededores, organizados a tu medida.</span><span class="en">Personalised concierge services in Barcelona and its surroundings, tailored to you.</span></p>
+        <div class="sv-meta"><b id="svNum">01</b><i id="svBar"></i><span>07</span></div>
+      </div>
+    </div>
+
+    <div class="acc rv" id="acc">
+      <!-- 01 -->
+      <article class="ac on" data-svc="traslados">
+        <span class="num">01</span>
+        <span class="vt"><span class="es">Traslados</span><span class="en">Transfers</span></span>
+        <span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        <span class="ac-prog"></span>
+        <div class="ac-body">
+          <img src="assets/img/llegadas.jpg" alt="Bienvenida en la llegada al aeropuerto" loading="lazy" style="object-position:70% 30%">
+          <div class="ac-txt">
+            <div class="k"><span class="es">Movilidad privada</span><span class="en">Private mobility</span></div>
+            <h3><span class="es">Traslados y transporte</span><span class="en">Transfers &amp; transport</span></h3>
+            <ul>
+              <li><span class="es">Traslados privados y transporte</span><span class="en">Private transfers and transportation</span></li>
+              <li><span class="es">Alquiler de coches</span><span class="en">Car rental</span></li>
+              <li><span class="es">Limusinas, coches de lujo y furgonetas VIP</span><span class="en">Limousine, luxury car and VIP van rentals</span></li>
+            </ul>
+            <a href="#reserva" class="btn btn-gold" data-pick="traslados"><span class="es">Reservar</span><span class="en">Book</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+          </div>
+        </div>
+      </article>
+      <!-- 02 -->
+      <article class="ac" data-svc="vuelos">
+        <span class="num">02</span>
+        <span class="vt"><span class="es">Vuelos privados</span><span class="en">Private flights</span></span>
+        <span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        <span class="ac-prog"></span>
+        <div class="ac-body ac-flight">
+          <svg class="route" viewBox="0 0 400 260" aria-hidden="true">
+            <path class="path" d="M20 230 C 120 40, 280 30, 380 120" fill="none" stroke="#E2C88E" stroke-width="1.6"/>
+            <circle cx="20" cy="230" r="5" fill="#C9A45C"/><circle cx="20" cy="230" r="12" fill="none" stroke="#C9A45C" opacity=".4"/>
+            <circle cx="380" cy="120" r="5" fill="#C9A45C"/><circle cx="380" cy="120" r="12" fill="none" stroke="#C9A45C" opacity=".4"/>
+            <text x="20" y="255" fill="#E2C88E" font-family="JetBrains Mono" font-size="11" letter-spacing="2">BARCELONA</text>
+            <text x="300" y="150" fill="#E2C88E" font-family="JetBrains Mono" font-size="11" letter-spacing="2">REP. DOM.</text>
+            <g transform="translate(205 62) rotate(8)"><path d="M-14 0h28M2 0l-8-12h4l12 12-12 12h-4z" fill="#F5EFE4" stroke="#F5EFE4" stroke-width="1.2" stroke-linejoin="round"/></g>
+          </svg>
+          <div class="ac-txt">
+            <div class="k"><span class="es">Por aire</span><span class="en">By air</span></div>
+            <h3><span class="es">Vuelos privados y helicópteros</span><span class="en">Private planes &amp; helicopters</span></h3>
+            <ul>
+              <li><span class="es">Organización de vuelos privados</span><span class="en">Private flight arrangements</span></li>
+              <li><span class="es">Experiencias en helicóptero</span><span class="en">Helicopter experiences</span></li>
+              <li><span class="es">Viajes entre Barcelona y República Dominicana</span><span class="en">Travel between Barcelona and the Dominican Republic</span></li>
+            </ul>
+            <a href="#reserva" class="btn btn-gold" data-pick="vuelos"><span class="es">Consultar</span><span class="en">Enquire</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+          </div>
+        </div>
+      </article>
+      <!-- 03 -->
+      <article class="ac" data-svc="mesa">
+        <span class="num">03</span>
+        <span class="vt"><span class="es">Restaurantes</span><span class="en">Dining</span></span>
+        <span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        <span class="ac-prog"></span>
+        <div class="ac-body">
+          <img src="assets/img/cena-vino.jpg" alt="Cena en restaurante exclusivo" loading="lazy">
+          <div class="ac-txt">
+            <div class="k"><span class="es">Mesa reservada</span><span class="en">Table reserved</span></div>
+            <h3><span class="es">Reservas y restaurantes exclusivos</span><span class="en">Reservations &amp; exclusive restaurants</span></h3>
+            <ul>
+              <li><span class="es">Reservas</span><span class="en">Reservations</span></li>
+              <li><span class="es">Restaurantes exclusivos y rincones secretos</span><span class="en">Exclusive restaurants and hidden gems</span></li>
+              <li><span class="es">Beach clubs y rooftops</span><span class="en">Beach clubs and rooftops</span></li>
+            </ul>
+            <a href="#reserva" class="btn btn-gold" data-pick="mesa"><span class="es">Reservar</span><span class="en">Book</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+          </div>
+        </div>
+      </article>
+      <!-- 04 -->
+      <article class="ac" data-svc="mar">
+        <span class="num">04</span>
+        <span class="vt"><span class="es">En el mar</span><span class="en">On the water</span></span>
+        <span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        <span class="ac-prog"></span>
+        <div class="ac-body">
+          <img src="assets/img/velero.jpg" alt="Velero navegando frente a Barcelona" loading="lazy" style="object-position:70% 50%">
+          <div class="ac-txt">
+            <div class="k"><span class="es">Costa de Barcelona</span><span class="en">Barcelona coast</span></div>
+            <h3><span class="es">Barcos y actividades acuáticas</span><span class="en">Boats &amp; water activities</span></h3>
+            <ul>
+              <li><span class="es">Yates, veleros y catamaranes</span><span class="en">Yachts, sailboats and catamarans</span></li>
+              <li><span class="es">Catamarán compartido</span><span class="en">Shared catamaran</span></li>
+              <li><span class="es">Motos de agua</span><span class="en">Jet skis</span></li>
+            </ul>
+            <a href="#reserva" class="btn btn-gold" data-pick="mar"><span class="es">Reservar</span><span class="en">Book</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+          </div>
+        </div>
+      </article>
+      <!-- 05 -->
+      <article class="ac" data-svc="noche">
+        <span class="num">05</span>
+        <span class="vt"><span class="es">Noche y eventos</span><span class="en">Nights &amp; events</span></span>
+        <span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        <span class="ac-prog"></span>
+        <div class="ac-body">
+          <img src="assets/img/vida-nocturna.jpg" alt="Evento privado de noche" loading="lazy">
+          <div class="ac-txt">
+            <div class="k"><span class="es">Eventos especiales</span><span class="en">Special events</span></div>
+            <h3><span class="es">Noche, fiestas y eventos privados</span><span class="en">Nightlife, parties &amp; private events</span></h3>
+            <ul>
+              <li><span class="es">Discotecas, pubs y coctelerías</span><span class="en">Clubs, pubs and cocktail bars</span></li>
+              <li><span class="es">Despedidas de soltero y soltera</span><span class="en">Stag and hen party planning</span></li>
+              <li><span class="es">Organización de eventos privados</span><span class="en">Private event management</span></li>
+            </ul>
+            <a href="#reserva" class="btn btn-gold" data-pick="noche"><span class="es">Organizar</span><span class="en">Plan it</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+          </div>
+        </div>
+      </article>
+      <!-- 06 -->
+      <article class="ac" data-svc="ciudad">
+        <span class="num">06</span>
+        <span class="vt"><span class="es">Ciudad y rutas</span><span class="en">City &amp; routes</span></span>
+        <span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        <span class="ac-prog"></span>
+        <div class="ac-body">
+          <img src="assets/img/moto.jpg" alt="Pareja en moto por la costa" loading="lazy">
+          <div class="ac-txt">
+            <div class="k"><span class="es">Barcelona y Costa Brava</span><span class="en">Barcelona &amp; Costa Brava</span></div>
+            <h3><span class="es">Tours, rutas y escapadas</span><span class="en">Tours, rides &amp; getaways</span></h3>
+            <ul>
+              <li><span class="es">Tours por la ciudad y bus turístico</span><span class="en">City tours and hop-on hop-off buses</span></li>
+              <li><span class="es">Alquiler de motos, bicis y skates</span><span class="en">Motorbike, bicycle and skateboard rentals</span></li>
+              <li><span class="es">Shopping y escapadas a la Costa Brava</span><span class="en">Shopping and Costa Brava getaways</span></li>
+            </ul>
+            <a href="#reserva" class="btn btn-gold" data-pick="ciudad"><span class="es">Reservar</span><span class="en">Book</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+          </div>
+        </div>
+      </article>
+      <!-- 07 -->
+      <article class="ac" data-svc="asistencia">
+        <span class="num">07</span>
+        <span class="vt"><span class="es">Asistencia</span><span class="en">Assistance</span></span>
+        <span class="plus"><svg width="14" height="14"><use href="#i-plus"/></svg></span>
+        <span class="ac-prog"></span>
+        <div class="ac-body">
+          <img src="assets/img/salon.jpg" alt="Salón con cojín de Yei City Concierge" loading="lazy" style="object-position:60% 60%">
+          <div class="ac-txt">
+            <div class="k"><span class="es">Tu asistente personal</span><span class="en">Your personal assistant</span></div>
+            <h3><span class="es">Asistencia personal y familia</span><span class="en">Personal &amp; family assistance</span></h3>
+            <ul>
+              <li><span class="es">Asistencia personal</span><span class="en">Personal assistance</span></li>
+              <li><span class="es">Canguros y niñeras de confianza, cualificadas y bilingües</span><span class="en">Reliable, qualified and bilingual babysitters &amp; nannies</span></li>
+              <li><span class="es">Trámites administrativos y traducción en España</span><span class="en">Administrative procedures and translation in Spain</span></li>
+            </ul>
+            <a href="#reserva" class="btn btn-gold" data-pick="asistencia"><span class="es">Consultar</span><span class="en">Enquire</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div></div></div>
+</section>
+
+<!-- ============ EXPERIENCIAS ============ -->
+<section class="dark exp" id="experiencias">
+  <div class="stars"></div><div class="beam"></div>
+  <div class="exp-c">
+    <span class="badge rv"><b><span class="es">Experiencias</span><span class="en">Experiences</span></b> <span class="es">Barcelona se disfruta mejor así</span><span class="en">Barcelona, best enjoyed this way</span></span>
+    <h2 class="rv d1"><span class="es">Tú eliges el momento,<span class="it">nosotros lo organizamos.</span></span><span class="en">You choose the moment,<span class="it">we take care of the rest.</span></span></h2>
+    <p class="rv d2"><span class="es">Barcelona se disfruta mejor cuando cada momento se convierte en una experiencia.</span><span class="en">Barcelona is best enjoyed when every moment becomes an experience.</span></p>
+  </div>
+  <div class="horizon" aria-hidden="true"></div>
+
+  <div class="rail-wrap">
+    <div class="wrap rail-top">
+      <span class="label"><span>// <span class="es">Planes exclusivos</span><span class="en">Exclusive plans</span></span></span>
+      <div class="arrows"><button id="prev" aria-label="Anterior"><svg width="16" height="16" style="transform:rotate(180deg)"><use href="#i-ar"/></svg></button><button id="next" aria-label="Siguiente"><svg width="16" height="16"><use href="#i-ar"/></svg></button></div>
+    </div>
+    <div class="rail" id="rail">
+      <article class="xc"><img src="assets/img/atardecer-barco.jpg" alt="Atardecer desde un velero" loading="lazy"><div class="tx"><span class="es">Al atardecer</span><span class="en">At sunset</span><h3><span class="es">Paseo en velero</span><span class="en">Sunset sail</span></h3><p><span class="es">La brisa del mar, una copa en la mano y el sol escondiéndose en el horizonte.</span><span class="en">Sea breeze, a drink in hand and the sun dipping below the horizon.</span></p></div></article>
+      <article class="xc"><img src="assets/img/brunch-terraza.jpg" alt="Brunch en terraza con vistas" loading="lazy"><div class="tx"><span class="es">Con vistas</span><span class="en">With a view</span><h3><span class="es">Cenas especiales</span><span class="en">Special dinners</span></h3><p><span class="es">Terrazas y mesas con Barcelona a tus pies.</span><span class="en">Terraces and tables with Barcelona at your feet.</span></p></div></article>
+      <article class="xc"><img src="assets/img/spa.jpg" alt="Spa con velas" loading="lazy"><div class="tx"><span>Wellness</span><h3><span class="es">Spa y bienestar</span><span class="en">Spa &amp; wellness</span></h3><p><span class="es">Una pausa para ti, reservada a tu medida.</span><span class="en">A pause just for you, booked your way.</span></p></div></article>
+      <article class="xc"><img src="assets/img/jardin-secreto.jpg" alt="Restaurante con jardín secreto en Barcelona" loading="lazy"><div class="tx"><span class="es">Rincón secreto</span><span class="en">Hidden gem</span><h3><span class="es">Un jardín en plena ciudad</span><span class="en">A secret garden</span></h3><p><span class="es">Perfecto para una celebración, una cita especial o desconectar.</span><span class="en">Perfect for a celebration, a special date or to disconnect.</span></p></div></article>
+      <article class="xc"><img src="assets/img/moto.jpg" alt="Ruta en moto por la costa" loading="lazy"><div class="tx"><span class="es">En ruta</span><span class="en">On the road</span><h3><span class="es">Motos y rutas</span><span class="en">Motorbike rides</span></h3><p><span class="es">Experiencias sobre dos ruedas por la costa.</span><span class="en">On-the-road experiences along the coast.</span></p></div></article>
+      <article class="xc"><img src="assets/img/barco-lounge.jpg" alt="Barco preparado para una celebración" loading="lazy"><div class="tx"><span class="es">A bordo</span><span class="en">On board</span><h3><span class="es">Celebraciones en el mar</span><span class="en">Celebrations at sea</span></h3><p><span class="es">Un barco preparado al detalle para tu ocasión.</span><span class="en">A boat set up in every detail for your occasion.</span></p></div></article>
+      <article class="xc"><img src="assets/img/flamenco.jpg" alt="Espectáculo de flamenco" loading="lazy"><div class="tx"><span class="es">Cultura</span><span class="en">Culture</span><h3>Flamenco</h3><p><span class="es">Noches con alma en el corazón de la ciudad.</span><span class="en">Soulful nights in the heart of the city.</span></p></div></article>
+      <article class="xc"><img src="assets/img/atardecer-yate.jpg" alt="Planes exclusivos al atardecer" loading="lazy"><div class="tx"><span>VIP</span><h3><span class="es">Planes exclusivos</span><span class="en">Exclusive plans</span></h3><p><span class="es">Y mucho más. Pídenos lo que imagines.</span><span class="en">And much more. Ask us for anything you can imagine.</span></p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CÓMO FUNCIONA ============ -->
+<section class="sec" id="como">
+  <div class="wrap">
+    <div class="label rv"><span>// <span class="es">Cómo funciona</span><span class="en">How it works</span></span><span>[ 03 ]</span></div>
+    <div class="how">
+      <div>
+        <h2 class="h2 rv" style="margin-top:48px"><span class="es">¿Plan perfecto?<br>Te lo diseñamos, <span class="it">tú solo disfrutas.</span></span><span class="en">The perfect plan?<br>We design it, <span class="it">you just enjoy.</span></span></h2>
+        <div class="steps">
+          <div class="st rv">
+            <span class="n">01</span>
+            <div><h3><span class="es">Cuéntanos tu plan</span><span class="en">Tell us your plan</span></h3><p><span class="es">Fechas, número de personas y lo que te apetece vivir.</span><span class="en">Dates, number of guests and what you'd love to do.</span></p></div>
+            <svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="st rv d1">
+            <span class="n">02</span>
+            <div><h3><span class="es">Lo diseñamos a medida</span><span class="en">We tailor every detail</span></h3><p><span class="es">Reservas, transporte y cada detalle, coordinado por nosotros.</span><span class="en">Bookings, transport and every detail, coordinated by us.</span></p></div>
+            <svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="st rv d2">
+            <span class="n">03</span>
+            <div><h3><span class="es">Tú solo disfrutas</span><span class="en">You just enjoy</span></h3><p><span class="es">Cero preocupaciones: nosotros nos ocupamos del resto.</span><span class="en">Zero worries: we take care of everything else.</span></p></div>
+            <svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+      </div>
+
+      <aside class="arch rv d2" aria-label="Aviso de antelación">
+        <div class="arch-in">
+          <svg viewBox="0 0 32 32"><use href="#i-bell"/></svg>
+          <span class="a1"><span class="es">Recuerda que cada servicio necesita</span><span class="en">Remember that every service requires</span></span>
+          <span class="a2"><span class="es">un tiempo de antelación</span><span class="en">advance notice</span></span>
+          <span class="a3"><span class="es">según la demanda, ya que estamos en temporada alta.</span><span class="en">depending on demand, as it is high season.</span></span>
+          <span class="orn">◆</span>
+          <span class="ycc">YCC<small>YEI CITY CONCIERGE</small></span>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DESTINOS ============ -->
+<section class="sec" id="destinos" style="padding-top:0">
+  <div class="wrap">
+    <div class="label rv"><span>// <span class="es">Destinos</span><span class="en">Destinations</span></span><span>[ 04 ]</span></div>
+    <h2 class="h2 rv" style="margin-top:48px"><span class="es">Dos destinos,<br><span class="it">el mismo cuidado.</span></span><span class="en">Two destinations,<br><span class="it">the same care.</span></span></h2>
+    <div class="dest">
+      <article class="dc rv">
+        <img src="assets/img/ayuntamiento-noche.jpg" alt="Barcelona de noche" loading="lazy">
+        <div class="dc-top"><span>01 · España</span><div class="dc-clock"><b class="clk" data-tz="Europe/Madrid">--:--</b><span class="es">hora local</span><span class="en">local time</span></div></div>
+        <div>
+          <h3>Barcelona</h3>
+          <p><span class="es">Tu puerta a Barcelona y sus alrededores: la ciudad, la costa y la Costa Brava, con todo organizado.</span><span class="en">Your gateway to Barcelona and its surroundings: the city, the coast and the Costa Brava, all arranged for you.</span></p>
+        </div>
+      </article>
+      <article class="dc dc-rd rv d1">
+        <div class="sun"></div>
+        <svg class="palm" viewBox="0 0 200 240" aria-hidden="true"><path fill="currentColor" d="M118 240c-6-60-2-110 14-150l6 2c-15 40-18 88-12 148zM135 92c-30-22-70-24-104-8 32-4 64 2 92 22zM135 92c-8-34-36-58-72-64 30 12 52 34 62 66zM135 92c18-30 50-44 84-40-30 4-56 18-74 46zM135 92c34-8 62 6 78 32-22-18-48-26-76-22zM135 92c-24 4-50 22-60 50 16-22 38-38 64-44z"/></svg>
+        <div class="sea"></div>
+        <div class="dc-top"><span>02 · Caribe</span><div class="dc-clock"><b class="clk" data-tz="America/Santo_Domingo">--:--</b><span class="es">hora local</span><span class="en">local time</span></div></div>
+        <div>
+          <h3><span class="es">República<br>Dominicana</span><span class="en">Dominican<br>Republic</span></h3>
+          <p><span class="es">El mismo servicio de conserjería privada, también al otro lado del Atlántico.</span><span class="en">The same private concierge service, across the Atlantic too.</span></p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RESERVA ============ -->
+<section class="sec dark" id="reserva">
+  <div class="wrap">
+    <div class="label rv"><span>// <span class="es">Reserva</span><span class="en">Booking</span></span><span>[ 05 ]</span></div>
+    <div class="book">
+      <div class="book-info rv">
+        <h2 class="h2"><span class="es">Cuéntanos qué<br>te apetece <span class="it">vivir.</span></span><span class="en">Tell us what<br>you'd love to <span class="it">live.</span></span></h2>
+        <p><span class="es">Rellena el formulario y te respondemos para diseñar tu plan. Cuanto antes nos escribas, mejor: en temporada alta los servicios necesitan antelación.</span><span class="en">Fill in the form and we'll get back to you to design your plan. The sooner the better: in high season services need advance notice.</span></p>
+        <div class="ci">
+          <a href="https://www.instagram.com/yeicityconcierge/" target="_blank" rel="noopener"><span class="k">Instagram</span>@yeicityconcierge</a>
+          <div id="ciWa"><span class="k">WhatsApp</span><b class="ph">[WHATSAPP]</b></div>
+          <div id="ciMail"><span class="k">Email</span><b class="ph">[EMAIL]</b></div>
+          <div><span class="k"><span class="es">Dónde</span><span class="en">Where</span></span><span>Barcelona · <span class="es">Rep. Dominicana</span><span class="en">Dominican Rep.</span></span></div>
+        </div>
+      </div>
+
+      <form class="form rv d1" id="form" novalidate>
+        <div class="full"><h3><span class="es">Diseña tu plan</span><span class="en">Plan your stay</span></h3><p class="sub"><span class="es">Sin compromiso. Te respondemos personalmente.</span><span class="en">No commitment. We'll reply personally.</span></p></div>
+        <div class="f"><label for="fName"><span class="es">Nombre</span><span class="en">Name</span></label><input id="fName" name="name" required autocomplete="name"></div>
+        <div class="f"><label for="fEmail">Email</label><input id="fEmail" name="email" type="email" autocomplete="email" inputmode="email"></div>
+        <div class="f"><label for="fTel"><span class="es">Teléfono</span><span class="en">Phone</span></label><input id="fTel" name="tel" type="tel" autocomplete="tel" inputmode="tel"></div>
+        <div class="f"><label for="fPax"><span class="es">Personas</span><span class="en">Guests</span></label><input id="fPax" name="pax" type="number" min="1" value="2"></div>
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="f"><label for="fFrom"><span class="es">Llegada</span><span class="en">Arrival</span></label><input id="fFrom" name="from" type="date"></div>
+        <div class="f"><label for="fTo"><span class="es">Salida</span><span class="en">Departure</span></label><input id="fTo" name="to" type="date"></div>
+        <div class="f full">
+          <label><span class="es">Destino</span><span class="en">Destination</span></label>
+          <div class="chips">
+            <label><input type="radio" name="dest" value="Barcelona" checked><span>Barcelona</span></label>
+            <label><input type="radio" name="dest" value="República Dominicana"><span><span class="es">República Dominicana</span><span class="en">Dominican Republic</span></span></label>
+          </div>
+        </div>
+        <div class="f full">
+          <label><span class="es">¿Qué necesitas?</span><span class="en">What do you need?</span></label>
+          <div class="chips" id="svcChips">
+            <label><input type="checkbox" name="svc" value="traslados"><span><span class="es">Traslados</span><span class="en">Transfers</span></span></label>
+            <label><input type="checkbox" name="svc" value="vuelos"><span><span class="es">Vuelos privados</span><span class="en">Private flights</span></span></label>
+            <label><input type="checkbox" name="svc" value="mesa"><span><span class="es">Restaurantes</span><span class="en">Dining</span></span></label>
+            <label><input type="checkbox" name="svc" value="mar"><span><span class="es">Barcos</span><span class="en">Boats</span></span></label>
+            <label><input type="checkbox" name="svc" value="noche"><span><span class="es">Noche y eventos</span><span class="en">Nights &amp; events</span></span></label>
+            <label><input type="checkbox" name="svc" value="ciudad"><span><span class="es">Tours y rutas</span><span class="en">Tours &amp; rides</span></span></label>
+            <label><input type="checkbox" name="svc" value="asistencia"><span><span class="es">Asistencia</span><span class="en">Assistance</span></span></label>
+          </div>
+        </div>
+        <div class="f full"><label for="fMsg"><span class="es">Cuéntanos más</span><span class="en">Tell us more</span></label><textarea id="fMsg" name="msg"></textarea></div>
+        <div class="send full">
+          <button class="btn btn-dark" type="submit" data-via="wa" hidden><span class="es">Enviar por WhatsApp</span><span class="en">Send via WhatsApp</span><span class="ar"><svg width="16" height="16"><use href="#i-wa"/></svg></span></button>
+          <button class="btn btn-line" type="submit" data-via="mail" hidden><span class="es">Enviar por email</span><span class="en">Send by email</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></button>
+          <button class="btn btn-dark" type="submit" data-via="ig" hidden><span class="es">Enviar solicitud</span><span class="en">Send request</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></button>
+        </div>
+        <div class="form-ok" id="formOk" role="status" aria-live="polite">
+          <svg width="44" height="44"><use href="#i-bell"/></svg>
+          <h3><span class="es">Solicitud enviada</span><span class="en">Request sent</span></h3>
+          <p><span class="es">Gracias. Te responderemos personalmente lo antes posible.</span><span class="en">Thank you. We'll get back to you personally as soon as possible.</span></p>
+          <button type="button" class="btn btn-line" id="formAgain"><span class="es">Enviar otra</span><span class="en">Send another</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="big-ycc" aria-hidden="true">YCC</div>
+  <div class="wrap">
+    <div class="f-row">
+      <span>© 2026 Yei City Concierge · <a href="https://www.instagram.com/yeicityconcierge/" target="_blank" rel="noopener">@yeicityconcierge</a></span>
+      <nav>
+        <a href="#servicios"><span class="es">Servicios</span><span class="en">Services</span></a>
+        <a href="#experiencias"><span class="es">Experiencias</span><span class="en">Experiences</span></a>
+        <a href="#reserva"><span class="es">Reservar</span><span class="en">Book</span></a>
+      </nav>
+      <a class="tessen-credit" href="https://www.tessenconsulting.com" target="_blank" rel="noopener">
+        <img src="assets/img/tessen-icon.png" alt="Tessen">
+        <span class="es">Hecho por Tessen</span><span class="en">Made by Tessen</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<a class="wa-float" id="waFloat" href="#" target="_blank" rel="noopener" aria-label="WhatsApp" hidden><svg width="26" height="26"><use href="#i-wa"/></svg></a>
+
+<script>
+/* =====================================================================
+   DATOS DE CONTACTO — rellenar cuando el cliente los facilite.
+   Con solo poner aquí el número y el correo, la web se configura sola:
+   - whatsapp → botón "Enviar por WhatsApp", botón flotante y enlace en Contacto
+   - email    → botón "Enviar por email" (llega directo al correo, vía FormSubmit)
+                y enlace en Contacto. La PRIMERA solicitud manda al cliente un
+                correo de FormSubmit para activar el formulario: debe pulsar
+                "Activate Form" una sola vez.
+   Si los dos están vacíos, el formulario copia el mensaje y abre el DM de Instagram.
+   ===================================================================== */
+const CONTACT = {
+  whatsapp: '',   // solo dígitos con prefijo de país, sin + ni espacios. Ej.: '34612345678'
+  email: '',      // ej.: 'info@yeicityconcierge.com'
+  instagram: 'yeicityconcierge'
+};
+
+(function(){
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* --- idioma --- */
+  const saved = (()=>{try{return localStorage.getItem('ycc-lang')}catch(e){return null}})();
+  setLang(saved || ((navigator.language||'es').toLowerCase().startsWith('es') ? 'es' : 'en'));
+  document.querySelectorAll('[data-set]').forEach(b=>b.addEventListener('click',()=>{
+    setLang(b.dataset.set); try{localStorage.setItem('ycc-lang',b.dataset.set)}catch(e){}
+  }));
+  function setLang(l){
+    root.dataset.lang = l; root.lang = l;
+    document.querySelectorAll('[data-set]').forEach(b=>b.classList.toggle('on',b.dataset.set===l));
+    document.title = l==='es' ? 'Yei City Concierge · Concierge privado en Barcelona' : 'Yei City Concierge · Private concierge in Barcelona';
+    words();
+  }
+
+  /* --- contacto: se activa solo según lo que haya en CONTACT --- */
+  const WA = String(CONTACT.whatsapp||'').replace(/\D/g,''), MAIL = String(CONTACT.email||'').trim();
+  const prettyTel = n => '+' + n.replace(/^(34)(\d{3})(\d{2})(\d{2})(\d{2})$/,'$1 $2 $3 $4 $5').replace(/^(1)(809|829|849)(\d{3})(\d{4})$/,'$1 $2 $3 $4');
+  if (WA){
+    document.getElementById('ciWa').outerHTML = `<a href="https://wa.me/${WA}" target="_blank" rel="noopener"><span class="k">WhatsApp</span>${prettyTel(WA)}</a>`;
+    const f = document.getElementById('waFloat'); f.href = `https://wa.me/${WA}`; f.hidden = false;
+  }
+  if (MAIL) document.getElementById('ciMail').outerHTML = `<a href="mailto:${MAIL}"><span class="k">Email</span>${MAIL}</a>`;
+  document.querySelector('[data-via="wa"]').hidden = !WA;
+  document.querySelector('[data-via="mail"]').hidden = !MAIL;
+  document.querySelector('[data-via="ig"]').hidden = !!(WA || MAIL);
+
+  /* --- carga --- */
+  requestAnimationFrame(()=>setTimeout(()=>document.body.classList.add('loaded'),60));
+
+  /* --- header + parallax --- */
+  const hdr = document.getElementById('hdr'), heroBg = document.getElementById('heroBg');
+  let ticking = false;
+  addEventListener('scroll',()=>{ if(!ticking){ requestAnimationFrame(onScroll); ticking=true; } },{passive:true});
+  function onScroll(){
+    const y = scrollY;
+    hdr.classList.toggle('solid', y > 40);
+    if(!reduce && y < innerHeight*1.2) heroBg.style.transform = `translateY(${y*0.22}px) scale(1)`;
+    words(); services(); ticking=false;
+  }
+
+  /* --- menú móvil --- */
+  const mnav = document.getElementById('mnav');
+  document.getElementById('burger').addEventListener('click',()=>{ document.body.classList.toggle('menu'); mnav.classList.toggle('open'); });
+  mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{ document.body.classList.remove('menu'); mnav.classList.remove('open'); }));
+
+  /* --- relojes --- */
+  function clocks(){
+    document.querySelectorAll('.clk').forEach(el=>{
+      try{ el.textContent = new Intl.DateTimeFormat('es-ES',{hour:'2-digit',minute:'2-digit',timeZone:el.dataset.tz}).format(new Date()); }catch(e){}
+    });
+  }
+  clocks(); setInterval(clocks, 15000);
+
+  /* --- reveal --- */
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.14, rootMargin:'0px 0px -6% 0px'});
+  document.querySelectorAll('.rv, #week').forEach(el=>io.observe(el));
+
+  /* --- contador --- */
+  const cnt = document.querySelector('[data-count]');
+  new IntersectionObserver((es,o)=>es.forEach(e=>{ if(!e.isIntersecting) return; o.disconnect();
+    const end=+cnt.dataset.count, t0=performance.now();
+    (function step(t){ const p=Math.min(1,(t-t0)/1400); cnt.firstChild.nodeValue = Math.round(end*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); })(t0);
+  }),{threshold:.5}).observe(cnt);
+
+  /* --- manifiesto palabra a palabra --- */
+  document.querySelectorAll('[data-words]').forEach(p=>{
+    const walk = n => [...n.childNodes].forEach(c=>{
+      if(c.nodeType===3){ const f=document.createDocumentFragment();
+        c.textContent.split(/(\s+)/).forEach(w=>{ if(/^\s+$/.test(w)||!w) f.append(w); else { const s=document.createElement('span'); s.className='w'; s.textContent=w; f.append(s);} });
+        c.replaceWith(f);
+      } else walk(c);
+    });
+    walk(p);
+  });
+  function words(){
+    const p = document.querySelector(`.manifesto.${root.dataset.lang}`); if(!p) return;
+    const ws = p.querySelectorAll('.w'); if(reduce){ ws.forEach(w=>w.classList.add('on')); return; }
+    const r = p.getBoundingClientRect(), vh = innerHeight;
+    const prog = Math.min(1, Math.max(0, (vh*0.88 - r.top) / (r.height + vh*0.4)));
+    const n = Math.round(prog * ws.length * 1.15);
+    ws.forEach((w,i)=>w.classList.toggle('on', i < n));
+  }
+  words();
+
+  /* --- acordeón servicios: avanza con el scroll --- */
+  const acs = [...document.querySelectorAll('.ac')], svScroll = document.getElementById('svScroll');
+  const svNum = document.getElementById('svNum'), svBar = document.getElementById('svBar');
+  const desk = () => innerWidth > 1080;
+  let svIdx = 0;
+  function services(){
+    if(!desk()) return;
+    const total = svScroll.offsetHeight - innerHeight;
+    const p = Math.min(.9999, Math.max(0, -svScroll.getBoundingClientRect().top / total));
+    const f = p * acs.length, i = Math.floor(f);
+    if(i !== svIdx){ acs[svIdx].classList.remove('on'); acs[i].classList.add('on'); svIdx = i; svNum.textContent = String(i+1).padStart(2,'0'); }
+    acs[i].style.setProperty('--p', (f - i).toFixed(3));
+    svBar.style.setProperty('--sv', p.toFixed(3));
+  }
+  acs.forEach((ac,i)=>ac.addEventListener('click',e=>{
+    if(!desk() || ac.classList.contains('on') || e.target.closest('a')) return;
+    const total = svScroll.offsetHeight - innerHeight;
+    scrollTo({top: svScroll.offsetTop + (i + .08) / acs.length * total, behavior: 'smooth'});
+  }));
+  addEventListener('resize', services);
+  services();
+  /* preseleccionar servicio en el formulario */
+  document.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click',()=>{
+    const cb = document.querySelector(`#svcChips input[value="${b.dataset.pick}"]`); if(cb) cb.checked = true;
+  }));
+
+  /* --- carrusel de experiencias --- */
+  const rail = document.getElementById('rail');
+  const stepW = ()=> rail.querySelector('.xc').getBoundingClientRect().width + 16;
+  document.getElementById('next').onclick = ()=> rail.scrollBy({left: stepW(), behavior:'smooth'});
+  document.getElementById('prev').onclick = ()=> rail.scrollBy({left:-stepW(), behavior:'smooth'});
+  let down=false, sx=0, sl=0, moved=false;
+  rail.addEventListener('pointerdown',e=>{ if(e.pointerType!=='mouse') return; down=true; moved=false; sx=e.clientX; sl=rail.scrollLeft; rail.classList.add('drag'); });
+  addEventListener('pointermove',e=>{ if(!down) return; const dx=e.clientX-sx; if(Math.abs(dx)>4) moved=true; rail.scrollLeft = sl - dx; });
+  addEventListener('pointerup',()=>{ if(!down) return; down=false; rail.classList.remove('drag'); });
+
+  /* --- formulario → WhatsApp / email / DM de Instagram --- */
+  const form = document.getElementById('form'), toast = document.getElementById('toast');
+  const showToast = (m)=>{ toast.textContent=m; toast.classList.add('show'); clearTimeout(showToast.t); showToast.t=setTimeout(()=>toast.classList.remove('show'),5200); };
+  form.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const es = root.dataset.lang==='es', d = new FormData(form);
+    if(!d.get('name').trim()){ form.fName.focus(); showToast(es?'Escribe tu nombre para continuar.':'Please add your name.'); return; }
+    const svcs = [...form.querySelectorAll('#svcChips input:checked')].map(i=>i.nextElementSibling.querySelector(es?'.es':'.en').textContent);
+    const fmt = v => v ? new Date(v+'T12:00').toLocaleDateString(es?'es-ES':'en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—';
+    const msg = (es
+      ? `Hola Yei City Concierge 👋\nSoy ${d.get('name')}.\n\n📍 Destino: ${d.get('dest')}\n📅 Fechas: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Personas: ${d.get('pax')||'—'}\n🛎 Me interesa: ${svcs.join(', ')||'—'}`
+      : `Hi Yei City Concierge 👋\nI'm ${d.get('name')}.\n\n📍 Destination: ${d.get('dest')}\n📅 Dates: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Guests: ${d.get('pax')||'—'}\n🛎 Interested in: ${svcs.join(', ')||'—'}`)
+      + (d.get('msg').trim() ? `\n\n${d.get('msg').trim()}` : '');
+    const via = (e.submitter && e.submitter.dataset.via) || (WA ? 'wa' : MAIL ? 'mail' : 'ig');
+    if(d.get('_honey')) return; // bot
+
+    if(via === 'wa'){ open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank'); return; }
+
+    if(via === 'mail'){
+      const mail = d.get('email').trim();
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){ form.fEmail.focus(); showToast(es?'Escribe un email válido para que podamos responderte.':'Please add a valid email so we can reply.'); return; }
+      const btn = e.submitter; btn.classList.add('busy'); btn.disabled = true;
+      // el correo al negocio siempre en español
+      const svcsEs = [...form.querySelectorAll('#svcChips input:checked')].map(i=>i.nextElementSibling.querySelector('.es').textContent);
+      const fmtEs = v => v ? new Date(v+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'}) : '—';
+      try{
+        const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(MAIL)}`,{
+          method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+          body: JSON.stringify({
+            _subject: `Nueva solicitud web — ${d.get('name').trim()}`,
+            _template: 'table', _captcha: 'false', _replyto: mail,
+            'Nombre': d.get('name').trim(), 'Email': mail, 'Teléfono': d.get('tel').trim() || '—',
+            'Destino': d.get('dest'), 'Llegada': fmtEs(d.get('from')), 'Salida': fmtEs(d.get('to')),
+            'Personas': d.get('pax') || '—', 'Servicios': svcsEs.join(', ') || '—',
+            'Mensaje': d.get('msg').trim() || '—', 'Idioma del cliente': es ? 'Español' : 'Inglés'
+          })
+        });
+        const out = await res.json().catch(()=>({}));
+        if(!res.ok || String(out.success) !== 'true') throw new Error(out.message || res.status);
+        form.classList.add('sent'); form.scrollIntoView({behavior:'smooth', block:'center'});
+      }catch(err){
+        showToast(es?'No se ha podido enviar. Inténtalo de nuevo o escríbenos por WhatsApp.':'Could not send. Please try again or message us on WhatsApp.');
+      }finally{ btn.classList.remove('busy'); btn.disabled = false; }
+      return;
+    }
+
+    try{ await navigator.clipboard.writeText(msg); }catch(err){}
+    showToast(es?'Mensaje copiado ✓ Pégalo en el chat de Instagram que se abre ahora.':'Message copied ✓ Paste it into the Instagram chat that opens now.');
+    setTimeout(()=>open(`https://ig.me/m/${CONTACT.instagram}`,'_blank'),900);
+  });
+  document.getElementById('formAgain').addEventListener('click',()=>{ form.reset(); form.classList.remove('sent'); });
+})();
+</script>
+</body>
+</html>
