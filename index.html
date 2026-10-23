@@ -358,6 +358,7 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .book .h2{color:var(--ink)}
 .book-info .h2{margin-bottom:34px}
 .ci{display:grid;gap:0;border-top:1px solid var(--line)}
+.ci a[hidden]{display:none}
 .ci a,.ci div{display:flex;justify-content:space-between;align-items:center;padding:18px 0;border-bottom:1px solid var(--line);font-size:15px;gap:16px}
 .ci .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
 .ci a:hover{color:var(--gold-deep)}
@@ -976,9 +977,11 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
       <div class="book-info rv">
         <h2 class="h2"><span class="es">Cuéntanos<br>tus <span class="it">deseos...</span></span><span class="en">Tell us<br>your <span class="it">wishes...</span></span></h2>
                 <div class="ci">
-          <a href="https://www.instagram.com/yeicityconcierge/" target="_blank" rel="noopener"><span class="k">Instagram</span>@yeicityconcierge</a>
           <div id="ciWa"><span class="k">WhatsApp</span><b class="ph">[WHATSAPP]</b></div>
           <div id="ciMail"><span class="k">Email</span><b class="ph">[EMAIL]</b></div>
+          <a href="https://www.instagram.com/yeicityconcierge/" target="_blank" rel="noopener"><span class="k">Instagram</span>@yeicityconcierge</a>
+          <a id="ciLi" target="_blank" rel="noopener" hidden><span class="k">LinkedIn</span><span>Yei City Concierge</span></a>
+          <a id="ciTt" target="_blank" rel="noopener" hidden><span class="k">TikTok</span><span></span></a>
           <div><span class="k"><span class="es">Dónde</span><span class="en">Where</span></span><span>Barcelona · <span class="es">Rep. Dominicana</span><span class="en">Dominican Rep.</span></span></div>
         </div>
       </div>
@@ -1064,8 +1067,10 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
    ===================================================================== */
 const CONTACT = {
   whatsapp: '',   // solo dígitos con prefijo de país, sin + ni espacios. Ej.: '34612345678'
-  email: '',      // ej.: 'info@yeicityconcierge.com'
-  instagram: 'yeicityconcierge'
+  email: 'yeicityconcierge@gmail.com',
+  instagram: 'yeicityconcierge',
+  linkedin: '',   // enlace completo al perfil, p. ej. 'https://www.linkedin.com/in/...'
+  tiktok: ''      // enlace completo, p. ej. 'https://www.tiktok.com/@...'
 };
 
 (function(){
@@ -1091,6 +1096,8 @@ const CONTACT = {
     document.getElementById('ciWa').outerHTML = `<a href="https://wa.me/${WA}" target="_blank" rel="noopener"><span class="k">WhatsApp</span>${prettyTel(WA)}</a>`;
     const f = document.getElementById('waFloat'); f.href = `https://wa.me/${WA}`; f.hidden = false;
   }
+  [['ciLi',CONTACT.linkedin],['ciTt',CONTACT.tiktok]].forEach(([id,url])=>{ if(!url) return; const a=document.getElementById(id); a.href=url; a.hidden=false;
+    if(id==='ciTt'){ const m=url.match(/@[^/?#]+/); a.lastElementChild.textContent = m ? m[0] : 'TikTok'; } });
   if (MAIL) document.getElementById('ciMail').outerHTML = `<a href="mailto:${MAIL}"><span class="k">Email</span>${MAIL}</a>`;
   document.querySelector('[data-via="wa"]').hidden = !WA;
   document.querySelector('[data-via="mail"]').hidden = !MAIL;
