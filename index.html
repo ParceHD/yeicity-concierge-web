@@ -15,7 +15,7 @@
 <link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon-96.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Yei City Concierge","url":"https://yeicityconcierge.com/","logo":"https://yeicityconcierge.com/assets/img/favicon-192.png","sameAs":["https://www.instagram.com/yeicityconcierge/"],"areaServed":["Barcelona","Costa Brava","República Dominicana"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Yei City Concierge","url":"https://yeicityconcierge.com/","logo":"https://yeicityconcierge.com/assets/img/favicon-512.png","sameAs":["https://www.instagram.com/yeicityconcierge/"],"areaServed":["Barcelona","Costa Brava","República Dominicana"]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
@@ -234,15 +234,15 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:var(--gut);padding:4px var(--gut) 10px;scrollbar-width:none;cursor:grab}
 .rail::-webkit-scrollbar{display:none}
 .rail.drag{cursor:grabbing;scroll-snap-type:none}
-.xc{flex:none;width:clamp(260px,24vw,330px);scroll-snap-align:start;border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:3/4;background:var(--sand);border:1px solid var(--line);user-select:none}
+.xc{flex:none;width:clamp(280px,26vw,360px);scroll-snap-align:start;border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:3/4;background:var(--sand);border:1px solid var(--line);user-select:none}
 .xc img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease);pointer-events:none}
 .xc:hover img{transform:scale(1.06)}
-.xc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,36,30,0) 45%,rgba(46,36,30,.82))}
+.xc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,36,30,0) 30%,rgba(46,36,30,.55) 55%,rgba(46,36,30,.9) 100%)}
 .xc .tx{color:#fff}
-.xc .tx{position:absolute;z-index:2;left:18px;right:18px;bottom:18px}
-.xc .tx span{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2)}
-.xc .tx h3{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.05;margin:6px 0}
-.xc .tx p{font-size:13px;color:rgba(255,255,255,.75);line-height:1.45}
+.xc .tx{position:absolute;z-index:2;left:22px;right:22px;bottom:22px;text-shadow:0 1px 12px rgba(0,0,0,.35)}
+.xc .tx > span{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2)}
+.xc .tx h3{font-family:var(--serif);font-weight:500;font-size:clamp(30px,2.4vw,36px);line-height:1.05;margin:8px 0 10px}
+.xc .tx p{font-size:16.5px;color:rgba(255,255,255,.95);line-height:1.5}
 
 /* ---------- QUIÉNES SOMOS ---------- */
 .about-head{margin:48px 0 clamp(36px,5vw,64px);max-width:1040px}
@@ -253,7 +253,7 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .about-body .about-strong{font-family:var(--serif);font-size:clamp(25px,2.4vw,34px);line-height:1.25;color:var(--gold-deep);margin-top:14px}
 .about-body p{font-size:16.5px;color:#5b524b}
 .about-body .about-goal{margin-top:22px;padding:22px 24px;border-radius:18px;background:var(--blush);border:1px solid var(--line);font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.4;color:var(--ink)}
-.me{display:grid;grid-template-columns:.75fr 1.25fr;gap:clamp(30px,5vw,80px);align-items:center;margin:clamp(56px,7vw,96px) 0 clamp(56px,7vw,96px)}
+.me{max-width:860px;margin:clamp(56px,7vw,96px) auto}
 .me-ph{position:relative;max-width:400px;width:100%;justify-self:center}
 .me-img{aspect-ratio:4/5;border-radius:999px 999px var(--r) var(--r);overflow:hidden;background:linear-gradient(165deg,#F6EBE2 0%,#EBD5C6 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:var(--gold-deep);position:relative;box-shadow:0 40px 70px -45px rgba(46,36,30,.5)}
 .me-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
@@ -289,7 +289,7 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .sp svg{width:38px;height:38px;color:var(--gold-deep)}
 .sp .n{position:absolute;top:24px;right:24px;font-family:var(--mono);font-size:11px;color:var(--muted)}
 .sp h3{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.1;color:var(--ink)}
-.sp-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px dashed rgba(156,122,58,.4)}
+.sp-foot{display:flex;justify-content:flex-end;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
 
 /* ---------- CÓMO FUNCIONA ---------- */
 .how{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,60px);margin-top:48px;align-items:stretch}
@@ -473,8 +473,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 <!-- ============ HEADER ============ -->
 <header class="hdr" id="hdr">
   <a href="#top" class="brand" aria-label="Yei City Concierge">
-    <!-- LOGO: campana de su Instagram (150 px). Si llega el archivo original, sustituir assets/img/logo-campana.jpg -->
-    <img src="assets/img/logo-campana.jpg" alt="" width="42" height="42">
+    <img src="assets/img/favicon-192.png" alt="" width="42" height="42">
     <span><b>YCC</b><small>YEI CITY CONCIERGE</small></span>
   </a>
   <nav class="pill" aria-label="Principal">
@@ -558,14 +557,6 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
     </div>
 
     <div class="me">
-      <figure class="me-ph rv">
-        <div class="me-img">
-          <!-- FOTO DE YEILA: cuando llegue, sustituir el contenido de este bloque por <img src="assets/img/yeila.jpg" alt="Yeila Castillo Castillo"> -->
-          <svg aria-hidden="true"><use href="#i-bell"/></svg>
-          <span class="ph"><span class="es">[FOTO DE YEILA]</span><span class="en">[YEILA’S PHOTO]</span></span>
-        </div>
-        <figcaption><span>Yeila Castillo Castillo</span><span>Concierge</span></figcaption>
-      </figure>
       <div class="note rv d1">
         <p><span class="es">Soy Yeila Castillo Castillo, concierge y asistente personal en Barcelona. Tengo 20 años de experiencia en hospitalidad y atención personalizada, y ayudo a clientes exigentes a disfrutar de la ciudad con comodidad, exclusividad y cero preocupaciones.</span><span class="en">I’m Yeila Castillo Castillo, concierge and personal assistant in Barcelona. I have 20 years of experience in hospitality and personalised service, and I help discerning clients enjoy the city with comfort, exclusivity and zero worries.</span></p>
         <p><span class="es">Me defino como una persona resolutiva, eficiente y proactiva. Me encargo de todo: desde reservas y transporte privado, hasta asistencia diaria y experiencias a medida.</span><span class="en">I’d describe myself as resourceful, efficient and proactive. I take care of everything: from reservations and private transport to daily assistance and tailor-made experiences.</span></p>
@@ -912,7 +903,6 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
       <h2 class="h2 rv"><span class="es">Servicios <span class="it">especiales</span></span><span class="en">Special <span class="it">services</span></span></h2>
       <p class="rv d1"><span class="es">Limpieza y organización</span><span class="en">Cleaning &amp; organisation</span></p>
     </div>
-    <!-- Para añadir servicios cuando la clienta envíe el listado definitivo: duplicar un <article class="sp"> -->
     <div class="sp-grid">
       <article class="sp rv"><span class="n">01</span><svg aria-hidden="true"><use href="#i-home"/></svg><h3><span class="es">Limpieza de hogares</span><span class="en">Home cleaning</span></h3></article>
       <article class="sp rv d1"><span class="n">02</span><svg aria-hidden="true"><use href="#i-boxes"/></svg><h3><span class="es">Organización del hogar</span><span class="en">Home organisation</span></h3></article>
@@ -920,7 +910,6 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
       <article class="sp rv d3"><span class="n">04</span><svg aria-hidden="true"><use href="#i-office"/></svg><h3><span class="es">Limpieza de oficinas</span><span class="en">Office cleaning</span></h3></article>
     </div>
     <div class="sp-foot rv">
-      <span class="ph-l"><span class="es">[Pendiente: listado definitivo de servicios especiales]</span><span class="en">[Pending: final list of special services]</span></span>
       <a href="#reserva" class="btn btn-dark"><span class="es">Contacto</span><span class="en">Contact</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
     </div>
   </div>
