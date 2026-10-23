@@ -80,7 +80,7 @@ html[data-lang="es"] .en, html[data-lang="en"] .es{display:none !important}
 .hdr.solid .burger span,body.menu .hdr .burger span{background:var(--ink)}
 .brand{display:flex;align-items:center;gap:12px;color:#fff}
 .brand svg{width:36px;height:36px;color:var(--gold)}
-.brand img{width:42px;height:42px;border-radius:50%;object-fit:cover;border:1px solid rgba(226,200,142,.7);box-shadow:0 0 0 3px rgba(226,200,142,.18)}
+.brand img{width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px rgba(226,200,142,.18)}
 .brand b{font-family:var(--caps);font-weight:500;font-size:22px;letter-spacing:.08em;line-height:1}
 .brand small{display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.28em;color:var(--gold-2);margin-top:3px}
 .pill{display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
@@ -377,7 +377,8 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 
 /* ---------- FOOTER ---------- */
 footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;border-top:1px solid var(--line)}
-.big-ycc{font-family:var(--caps);font-size:clamp(90px,26vw,400px);line-height:.8;text-align:center;letter-spacing:.02em;background:linear-gradient(180deg,rgba(193,160,106,.6),rgba(193,160,106,.05) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;padding-top:60px;user-select:none}
+.big-logo{width:min(980px,100% - 2*var(--gut));margin:0 auto;padding:clamp(56px,8vw,96px) 0 clamp(28px,4vw,48px)}
+.big-logo img{width:100%;height:auto}
 .f-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;margin-top:10px;font-size:13px;color:var(--muted)}
 .f-row nav{display:flex;gap:20px;flex-wrap:wrap}
 .f-row a:hover{color:var(--ink)}
@@ -978,7 +979,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 
 <!-- ============ FOOTER ============ -->
 <footer>
-  <div class="big-ycc" aria-hidden="true">YCC</div>
+  <div class="big-logo rv"><img src="assets/img/logo-llave.png" alt="Yei City Concierge" width="1280" height="208" loading="lazy"></div>
   <div class="wrap">
     <div class="f-row">
       <span>© 2026 Yei City Concierge · <a href="https://www.instagram.com/yeicityconcierge/" target="_blank" rel="noopener">@yeicityconcierge</a></span>
