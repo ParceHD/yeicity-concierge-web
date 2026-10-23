@@ -103,8 +103,8 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .hero{position:relative;min-height:max(100svh,680px);color:#fff;overflow:hidden;background:#2E2520;display:flex;flex-direction:column}
 .hero > .hero-main{position:static;flex:1;display:flex;align-items:center;justify-content:center;text-align:center;max-width:calc(var(--max) + 2*var(--gut));width:100%;margin:0 auto;padding:112px var(--gut) 34px}
 .hero-copy{position:relative;z-index:3;max-width:1000px;display:flex;flex-direction:column;align-items:center}
-.hero-title{font-family:var(--serif);font-weight:400;font-size:clamp(46px,7vw,112px);line-height:.95;letter-spacing:-.015em;margin:8px 0 26px;text-shadow:0 6px 40px rgba(0,0,0,.35)}
-.hero-title .l{display:block;overflow:hidden;padding-bottom:.06em}
+.hero-title{font-family:var(--serif);font-weight:400;font-size:clamp(44px,6.6vw,106px);line-height:1.08;letter-spacing:-.015em;margin:8px 0 26px;text-shadow:0 6px 40px rgba(0,0,0,.35)}
+.hero-title .l{display:block;overflow:hidden;padding:.02em 0 .16em;margin-bottom:-.1em}
 .hero-title .l > span{display:inline-block;transform:translateY(108%);transition:transform 1.3s var(--ease)}
 .hero-title .l:nth-child(2) > span{transition-delay:.12s}.hero-title .l:nth-child(3) > span{transition-delay:.24s}
 .loaded .hero-title .l > span{transform:none}
@@ -283,23 +283,45 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .sp-head{display:grid;grid-template-columns:1.2fr .8fr;gap:30px;align-items:end;margin:48px 0 34px}
 .sp-head p{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-deep);justify-self:end}
 .sp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.sp{position:relative;border-radius:var(--r);padding:28px 26px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);background:var(--blush);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
+.sp{position:relative;color:inherit;border-radius:var(--r);padding:28px 26px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid var(--line);background:var(--blush);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
 .sp:nth-child(2){background:var(--cream)}.sp:nth-child(3){background:var(--gold-soft)}.sp:nth-child(4){background:var(--nude)}
 .sp:hover{transform:translateY(-6px);box-shadow:0 30px 50px -35px rgba(46,36,30,.45)}
 .sp svg{width:38px;height:38px;color:var(--gold-deep)}
 .sp .n{position:absolute;top:24px;right:24px;font-family:var(--mono);font-size:11px;color:var(--muted)}
 .sp h3{font-family:var(--serif);font-weight:500;font-size:27px;line-height:1.1;color:var(--ink)}
+.sp .more{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font-size:13.5px;font-weight:600;color:var(--gold-deep)}
+.sp .more svg{width:14px;height:14px;transition:transform .4s var(--ease)}
+.sp:hover .more svg{transform:translateX(4px)}
 .sp-foot{display:flex;justify-content:flex-end;align-items:center;gap:16px;flex-wrap:wrap;margin-top:22px;padding-top:20px;border-top:1px solid var(--line)}
 
 /* ---------- CÓMO FUNCIONA ---------- */
 .how{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(24px,4vw,60px);margin-top:48px;align-items:stretch}
 .how .h2{margin-bottom:40px}
 .steps{display:grid;gap:12px}
-.st{display:grid;grid-template-columns:70px 1fr auto;gap:20px;align-items:center;padding:24px 26px;border-radius:var(--r);background:var(--cream);border:1px solid var(--line);transition:background .4s,transform .4s var(--ease)}
-.st:hover{background:var(--gold-soft);transform:translateX(6px)}
+.st{border-radius:var(--r);background:var(--cream);border:1px solid var(--line);transition:background .4s,box-shadow .4s}
+.st:hover,.st.open{background:var(--gold-soft)}
+.st.open{box-shadow:0 26px 50px -38px rgba(46,36,30,.5)}
+.st-head{width:100%;display:grid;grid-template-columns:70px 1fr auto;gap:20px;align-items:center;padding:24px 26px;background:none;border:0;text-align:left;cursor:pointer;color:inherit}
+.st-head:focus-visible{outline:2px solid var(--gold);outline-offset:-4px;border-radius:var(--r)}
 .st .n{font-family:var(--serif);font-size:48px;line-height:1;color:#9C7A3A}
 .st h3{font-family:var(--serif);font-weight:500;font-size:26px;line-height:1.1}
-.st p{font-size:14.5px;color:var(--muted);margin-top:4px}
+.st-head p{font-size:14.5px;color:var(--muted);margin-top:4px}
+.st-ic{display:flex;align-items:center;gap:14px}
+.st-tg{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .5s var(--ease),background .3s}
+.st-tg svg{width:14px !important;height:14px !important;opacity:1 !important;color:inherit !important}
+.st.open .st-tg{transform:rotate(45deg);background:var(--cocoa);color:var(--paper);border-color:var(--cocoa)}
+.st-body{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.st.open .st-body{grid-template-rows:1fr}
+.st-in{overflow:hidden}
+.st-pad{padding:0 26px 26px 116px;font-size:15.5px;color:#5b524b}
+.st-pad h4{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep);margin:4px 0 10px}
+.st-pad ul{list-style:none;margin-bottom:18px}
+.st-pad li{position:relative;padding:6px 0 6px 20px;border-bottom:1px solid var(--line)}
+.st-pad li::before{content:"";position:absolute;left:2px;top:15px;width:6px;height:6px;border:1px solid var(--gold);transform:rotate(45deg)}
+.st-pad p{margin-bottom:12px}
+.st-tip{display:flex;gap:12px;align-items:flex-start;background:rgba(255,255,255,.6);border:1px dashed rgba(156,122,58,.45);border-radius:14px;padding:14px 16px;font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.35;color:var(--ink)}
+.st-tip svg{flex:none;width:22px !important;height:22px !important;color:var(--gold-deep);opacity:1 !important;margin-top:2px}
+.st-pad .btn{margin-top:4px}
 .st svg{width:26px;height:26px;color:var(--ink);opacity:.7}
 .arch{position:relative;align-self:center;justify-self:end;width:100%;max-width:420px;border-radius:var(--r);background:url(assets/img/terraza-barcelona.jpg) center 70%/cover;padding:26px;display:flex;box-shadow:0 40px 70px -40px rgba(46,36,30,.55)}
 .arch-in{flex:1;min-height:500px;border-radius:999px 999px 14px 14px;background:rgba(251,248,242,.96);border:1px solid rgba(201,164,92,.7);outline:1px solid rgba(201,164,92,.35);outline-offset:-8px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:92px 34px 30px;color:var(--ink)}
@@ -436,9 +458,11 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
   .b-q{min-height:440px}
   .b{min-height:220px}
   .week{gap:5px}
-  .st{grid-template-columns:52px 1fr;padding:20px}
-  .st svg{display:none}
-  .st .n{font-size:38px}
+  .st-head{grid-template-columns:44px 1fr auto;gap:14px;padding:20px}
+  .st-ic > svg{display:none}
+  .st .n{font-size:36px}
+  .st h3{font-size:23px}
+  .st-pad{padding:0 20px 22px}
   .form{grid-template-columns:1fr}
   .note{font-size:23px;line-height:34px;background-image:repeating-linear-gradient(180deg,transparent 0 33px,rgba(193,160,106,.2) 33px 34px);background-position:0 34px;padding:40px 22px 32px;transform:none}
   .note p{margin-bottom:34px}
@@ -836,20 +860,50 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
       <div>
         <h2 class="h2 rv" style="margin-top:48px"><span class="es">¿Plan perfecto?<br>Te lo diseñamos, <span class="it">tú solo disfrutas.</span></span><span class="en">The perfect plan?<br>We design it, <span class="it">you just enjoy.</span></span></h2>
         <div class="steps">
-          <div class="st rv">
-            <span class="n">01</span>
-            <div><h3><span class="es">Cuéntanos tu plan</span><span class="en">Tell us your plan</span></h3><p><span class="es">Fechas, número de personas y lo que te apetece vivir.</span><span class="en">Dates, number of guests and what you'd love to do.</span></p></div>
-            <svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <div class="st rv open">
+            <button class="st-head" type="button" aria-expanded="true" aria-controls="st1">
+              <span class="n">01</span>
+              <span><h3><span class="es">Cuéntanos tu plan</span><span class="en">Tell us your plan</span></h3><p><span class="es">Fechas, número de personas y lo que te apetece vivir.</span><span class="en">Dates, number of guests and what you'd love to do.</span></p></span>
+              <span class="st-ic"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="st-tg"><svg><use href="#i-plus"/></svg></span></span>
+            </button>
+            <div class="st-body" id="st1"><div class="st-in"><div class="st-pad">
+              <h4><span class="es">Qué contarnos</span><span class="en">What to tell us</span></h4>
+              <ul>
+                <li><span class="es">Fechas de llegada y salida, y horarios si ya los tienes.</span><span class="en">Arrival and departure dates, and times if you have them.</span></li>
+                <li><span class="es">Cuántas personas sois y si viajáis con niños.</span><span class="en">How many of you there are and whether you travel with children.</span></li>
+                <li><span class="es">Destino: Barcelona o República Dominicana.</span><span class="en">Destination: Barcelona or the Dominican Republic.</span></li>
+                <li><span class="es">Qué te apetece: traslados, cenas, barco, noche, actividades…</span><span class="en">What you fancy: transfers, dinners, boats, nightlife, activities…</span></li>
+                <li><span class="es">Si hay una ocasión especial: aniversario, cumpleaños, despedida…</span><span class="en">Any special occasion: anniversary, birthday, stag or hen party…</span></li>
+                <li><span class="es">Tus gustos, preferencias y presupuesto orientativo.</span><span class="en">Your tastes, preferences and an approximate budget.</span></li>
+              </ul>
+              <h4><span class="es">Cómo hacerlo</span><span class="en">How to do it</span></h4>
+              <p><span class="es">Rellena el formulario de contacto o escríbenos por Instagram. Te respondemos personalmente.</span><span class="en">Fill in the contact form or message us on Instagram. We reply personally.</span></p>
+              <p class="st-tip"><svg aria-hidden="true"><use href="#i-bell"/></svg><span class="es">Cuanto más detalle nos des, mejor: así podemos diseñar un plan que encaje contigo desde el primer momento.</span><span class="en">The more detail you give us, the better: it lets us design a plan that fits you from the very first moment.</span></p>
+            </div></div></div>
           </div>
           <div class="st rv d1">
-            <span class="n">02</span>
-            <div><h3><span class="es">Lo diseñamos a medida</span><span class="en">We tailor every detail</span></h3><p><span class="es">Reservas, transporte y cada detalle, coordinado por nosotros.</span><span class="en">Bookings, transport and every detail, coordinated by us.</span></p></div>
-            <svg viewBox="0 0 24 24"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <button class="st-head" type="button" aria-expanded="false" aria-controls="st2">
+              <span class="n">02</span>
+              <span><h3><span class="es">Lo diseñamos a medida</span><span class="en">We tailor every detail</span></h3><p><span class="es">Reservas, transporte y cada detalle, coordinado por nosotros.</span><span class="en">Bookings, transport and every detail, coordinated by us.</span></p></span>
+              <span class="st-ic"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 20l4-1 11-11-3-3L5 16zM14 7l3 3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="st-tg"><svg><use href="#i-plus"/></svg></span></span>
+            </button>
+            <div class="st-body" id="st2"><div class="st-in"><div class="st-pad">
+              <p><span class="es">Revisamos tu petición y te respondemos con una propuesta a tu medida: opciones, disponibilidad y lo necesario para reservar.</span><span class="en">We review your request and reply with a tailor-made proposal: options, availability and everything needed to book.</span></p>
+              <p><span class="es">Si algo no encaja, lo ajustamos contigo hasta que el plan sea exactamente lo que buscas.</span><span class="en">If something doesn't fit, we adjust it with you until the plan is exactly what you're looking for.</span></p>
+              <p class="st-tip"><svg aria-hidden="true"><use href="#i-bell"/></svg><span class="es">Cada servicio necesita un tiempo de antelación según la demanda: cuanto antes nos escribas, más opciones tendrás.</span><span class="en">Every service needs advance notice depending on demand: the sooner you write, the more options you’ll have.</span></p>
+            </div></div></div>
           </div>
           <div class="st rv d2">
-            <span class="n">03</span>
-            <div><h3><span class="es">Tú solo disfrutas</span><span class="en">You just enjoy</span></h3><p><span class="es">Cero preocupaciones: nosotros nos ocupamos del resto.</span><span class="en">Zero worries: we take care of everything else.</span></p></div>
-            <svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+            <button class="st-head" type="button" aria-expanded="false" aria-controls="st3">
+              <span class="n">03</span>
+              <span><h3><span class="es">Tú solo disfrutas</span><span class="en">You just enjoy</span></h3><p><span class="es">Cero preocupaciones: nosotros nos ocupamos del resto.</span><span class="en">Zero worries: we take care of everything else.</span></p></span>
+              <span class="st-ic"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="st-tg"><svg><use href="#i-plus"/></svg></span></span>
+            </button>
+            <div class="st-body" id="st3"><div class="st-in"><div class="st-pad">
+              <p><span class="es">Con el plan confirmado, coordinamos reservas, traslados y cada detalle, y te enviamos lo que necesitas saber: horarios, direcciones y contactos.</span><span class="en">Once the plan is confirmed, we coordinate bookings, transfers and every detail, and send you what you need to know: times, addresses and contacts.</span></p>
+              <p><span class="es">Tú solo disfrutas, nosotros nos ocupamos del resto.</span><span class="en">You just enjoy, we take care of the rest.</span></p>
+              <a href="#reserva" class="btn btn-dark"><span class="es">Cuéntanos tus deseos</span><span class="en">Tell us your wishes</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+            </div></div></div>
           </div>
         </div>
       </div>
@@ -903,10 +957,10 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
       <p class="rv d1"><span class="es">Limpieza y organización</span><span class="en">Cleaning &amp; organisation</span></p>
     </div>
     <div class="sp-grid">
-      <article class="sp rv"><span class="n">01</span><svg aria-hidden="true"><use href="#i-home"/></svg><h3><span class="es">Limpieza de hogares</span><span class="en">Home cleaning</span></h3></article>
-      <article class="sp rv d1"><span class="n">02</span><svg aria-hidden="true"><use href="#i-boxes"/></svg><h3><span class="es">Organización del hogar</span><span class="en">Home organisation</span></h3></article>
-      <article class="sp rv d2"><span class="n">03</span><svg aria-hidden="true"><use href="#i-suitcase"/></svg><h3><span class="es">Limpieza de lugares turísticos</span><span class="en">Cleaning of tourist places</span></h3></article>
-      <article class="sp rv d3"><span class="n">04</span><svg aria-hidden="true"><use href="#i-office"/></svg><h3><span class="es">Limpieza de oficinas</span><span class="en">Office cleaning</span></h3></article>
+      <a class="sp rv" href="servicios-especiales/hogares/"><span class="n">01</span><svg aria-hidden="true"><use href="#i-home"/></svg><span><h3><span class="es">Limpieza de hogares</span><span class="en">Home cleaning</span></h3><span class="more"><span class="es">Ver servicio</span><span class="en">View service</span><svg><use href="#i-ar"/></svg></span></span></a>
+      <a class="sp rv d1" href="servicios-especiales/organizacion/"><span class="n">02</span><svg aria-hidden="true"><use href="#i-boxes"/></svg><span><h3><span class="es">Organización del hogar</span><span class="en">Home organisation</span></h3><span class="more"><span class="es">Ver servicio</span><span class="en">View service</span><svg><use href="#i-ar"/></svg></span></span></a>
+      <a class="sp rv d2" href="servicios-especiales/turisticos/"><span class="n">03</span><svg aria-hidden="true"><use href="#i-suitcase"/></svg><span><h3><span class="es">Limpieza de lugares turísticos</span><span class="en">Cleaning of tourist places</span></h3><span class="more"><span class="es">Ver servicio</span><span class="en">View service</span><svg><use href="#i-ar"/></svg></span></span></a>
+      <a class="sp rv d3" href="servicios-especiales/oficinas/"><span class="n">04</span><svg aria-hidden="true"><use href="#i-office"/></svg><span><h3><span class="es">Limpieza de oficinas</span><span class="en">Office cleaning</span></h3><span class="more"><span class="es">Ver servicio</span><span class="en">View service</span><svg><use href="#i-ar"/></svg></span></span></a>
     </div>
     <div class="sp-foot rv">
       <a href="#reserva" class="btn btn-dark"><span class="es">Contacto</span><span class="en">Contact</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
@@ -1161,6 +1215,21 @@ const CONTACT = {
     setTimeout(()=>open(`https://ig.me/m/${CONTACT.instagram}`,'_blank'),900);
   });
   document.getElementById('formAgain').addEventListener('click',()=>{ form.reset(); form.classList.remove('sent'); });
+
+  /* --- venir desde la página de un servicio especial: rellenar el mensaje --- */
+  const ESP = { hogares:['Limpieza de hogares','Home cleaning'], organizacion:['Organización del hogar','Home organisation'], turisticos:['Limpieza de lugares turísticos','Cleaning of tourist places'], oficinas:['Limpieza de oficinas','Office cleaning'] };
+  const pedido = ESP[new URLSearchParams(location.search).get('servicio')];
+  if (pedido){
+    const es = root.dataset.lang==='es';
+    form.fMsg.value = (es ? 'Me interesa el servicio: ' : 'I am interested in: ') + pedido[es?0:1] + (es ? '.\nTipo de espacio y tamaño aproximado: \nZona o dirección: \nFechas y frecuencia: \n' : '.\nType of space and approximate size: \nArea or address: \nDates and frequency: \n');
+  }
+
+  /* --- cómo funciona: desplegables --- */
+  document.querySelectorAll('.st-head').forEach(btn=>btn.addEventListener('click',()=>{
+    const st = btn.closest('.st'), open = !st.classList.contains('open');
+    document.querySelectorAll('.st').forEach(s=>{ s.classList.remove('open'); s.querySelector('.st-head').setAttribute('aria-expanded','false'); });
+    if (open){ st.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+  }));
 })();
 </script>
 </body>
