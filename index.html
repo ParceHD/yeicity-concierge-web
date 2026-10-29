@@ -1091,10 +1091,10 @@ const CONTACT = {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* --- idioma --- */
-  const saved = (()=>{try{return localStorage.getItem('ycc-lang')}catch(e){return null}})();
+  const saved = (()=>{try{return sessionStorage.getItem('ycc-lang')}catch(e){return null}})();
   setLang(saved || 'en'); // inglés por defecto
   document.querySelectorAll('[data-set]').forEach(b=>b.addEventListener('click',()=>{
-    setLang(b.dataset.set); try{localStorage.setItem('ycc-lang',b.dataset.set)}catch(e){}
+    setLang(b.dataset.set); try{sessionStorage.setItem('ycc-lang',b.dataset.set)}catch(e){}
   }));
   function setLang(l){
     root.dataset.lang = l; root.lang = l;

@@ -393,6 +393,8 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .wa-float:hover{transform:translateY(-3px) scale(1.04)}
 .wa-float[hidden],.btn[hidden]{display:none}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);background:var(--cocoa);color:var(--paper);padding:14px 20px;border-radius:14px;border:1px solid rgba(201,164,92,.5);font-size:14px;z-index:80;transition:transform .5s var(--ease),visibility 0s .5s;visibility:hidden;max-width:calc(100% - 32px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.toast a{color:var(--gold-2);text-decoration:underline;text-underline-offset:2px}
+.toast .t-btn{display:inline-block;background:var(--gold);color:var(--cocoa);text-decoration:none;font-weight:600;padding:6px 12px;border-radius:999px;margin-right:4px}
 .toast.show{transform:translate(-50%,0);visibility:visible;transition-delay:0s}
 
 /* ---------- FOOTER ---------- */
@@ -614,12 +616,12 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 <script>
 (function(){
   const root = document.documentElement;
-  const saved = (()=>{try{return localStorage.getItem('ycc-lang')}catch(e){return null}})();
+  const saved = (()=>{try{return sessionStorage.getItem('ycc-lang')}catch(e){return null}})();
   const titles = { es: "Un jardín en plena ciudad · Yei City Concierge", en: "A secret garden · Yei City Concierge" };
   function setLang(l){ root.dataset.lang = l; root.lang = l; document.title = titles[l];
     document.querySelectorAll('[data-set]').forEach(b=>b.classList.toggle('on', b.dataset.set===l)); }
   setLang(saved || 'en');
-  document.querySelectorAll('[data-set]').forEach(b=>b.addEventListener('click',()=>{ setLang(b.dataset.set); try{localStorage.setItem('ycc-lang',b.dataset.set)}catch(e){} }));
+  document.querySelectorAll('[data-set]').forEach(b=>b.addEventListener('click',()=>{ setLang(b.dataset.set); try{sessionStorage.setItem('ycc-lang',b.dataset.set)}catch(e){} }));
 })();
 </script>
 </body>

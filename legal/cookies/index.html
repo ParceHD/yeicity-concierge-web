@@ -552,10 +552,10 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 <p><span class="es">Las cookies y tecnologías similares (como el almacenamiento local del navegador) son pequeños archivos que una web guarda en tu dispositivo. El artículo 22.2 de la LSSI obliga a informar sobre ellas y, salvo que sean técnicas o necesarias, a pedir tu consentimiento.</span><span class="en">Cookies and similar technologies (such as the browser’s local storage) are small files that a website stores on your device. Article 22.2 of the Spanish LSSI requires websites to inform you about them and, unless they are technical or strictly necessary, to ask for your consent.</span></p>
 <h2><span class="es">2. Qué usa esta web</span><span class="en">2. What this website uses</span></h2>
 <p><span class="es"><b>Esta web no utiliza cookies.</b> No usamos herramientas de analítica, publicidad ni seguimiento.</span><span class="en"><b>This website does not use cookies.</b> We do not use analytics, advertising or tracking tools.</span></p>
-<p><span class="es">Solo guarda una preferencia en el almacenamiento local de tu navegador:</span><span class="en">It only stores one preference in your browser’s local storage:</span></p>
+<p><span class="es">Solo guarda una preferencia en el almacenamiento de sesión de tu navegador:</span><span class="en">It only stores one preference in your browser’s session storage:</span></p>
 <div class="lg-table"><table>
 <thead><tr><th><span class="es">Nombre</span><span class="en">Name</span></th><th><span class="es">Tipo</span><span class="en">Type</span></th><th><span class="es">Finalidad</span><span class="en">Purpose</span></th><th><span class="es">Duración</span><span class="en">Duration</span></th></tr></thead>
-<tbody><tr><td><code>ycc-lang</code></td><td><span class="es">Técnica / preferencia (almacenamiento local)</span><span class="en">Technical / preference (local storage)</span></td><td><span class="es">Recordar el idioma (español o inglés) que eliges</span><span class="en">Remember the language (Spanish or English) you choose</span></td><td><span class="es">Hasta que la borres desde tu navegador</span><span class="en">Until you delete it from your browser</span></td></tr></tbody>
+<tbody><tr><td><code>ycc-lang</code></td><td><span class="es">Técnica / preferencia (almacenamiento de sesión)</span><span class="en">Technical / preference (session storage)</span></td><td><span class="es">Mantener el idioma que eliges mientras navegas por la web</span><span class="en">Keep the language you choose while you browse the website</span></td><td><span class="es">Se borra al cerrar la pestaña</span><span class="en">Deleted when you close the tab</span></td></tr></tbody>
 </table></div>
 <p><span class="es">Al ser necesaria para una función que tú mismo solicitas (cambiar el idioma), está exenta de consentimiento y por eso la web no muestra un aviso de cookies.</span><span class="en">As it is necessary for a feature you request yourself (changing the language), it is exempt from consent, which is why the website does not show a cookie banner.</span></p>
 <h2><span class="es">3. Recursos externos</span><span class="en">3. External resources</span></h2>
@@ -579,12 +579,12 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 <script>
 (function(){
   const root = document.documentElement;
-  const saved = (()=>{try{return localStorage.getItem('ycc-lang')}catch(e){return null}})();
+  const saved = (()=>{try{return sessionStorage.getItem('ycc-lang')}catch(e){return null}})();
   const titles = { es: "Política de cookies · Yei City Concierge", en: "Cookie policy · Yei City Concierge" };
   function setLang(l){ root.dataset.lang = l; root.lang = l; document.title = titles[l];
     document.querySelectorAll('[data-set]').forEach(b=>b.classList.toggle('on', b.dataset.set===l)); }
   setLang(saved || 'en');
-  document.querySelectorAll('[data-set]').forEach(b=>b.addEventListener('click',()=>{ setLang(b.dataset.set); try{localStorage.setItem('ycc-lang',b.dataset.set)}catch(e){} }));
+  document.querySelectorAll('[data-set]').forEach(b=>b.addEventListener('click',()=>{ setLang(b.dataset.set); try{sessionStorage.setItem('ycc-lang',b.dataset.set)}catch(e){} }));
 })();
 </script>
 </body>
