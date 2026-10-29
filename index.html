@@ -16,9 +16,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
 <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Yei City Concierge","url":"https://yeicityconcierge.com/","logo":"https://yeicityconcierge.com/assets/img/favicon-512.png","sameAs":["https://www.instagram.com/yeicityconcierge/","https://www.tiktok.com/@yccmultiservice","https://www.linkedin.com/in/yeila-castillo-castillo-a05629356/"],"areaServed":["Barcelona","Costa Brava","República Dominicana"]}</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Caveat:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <style>
 :root{
   /* paleta beige · nude · pastel (el "night" es ahora un cacao cálido, solo para texto y botones) */
@@ -409,6 +407,14 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 .f-row{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:22px;margin-top:10px;font-size:13px;color:var(--muted)}
 .f-row nav{display:flex;gap:20px;flex-wrap:wrap}
 .f-row a:hover{color:var(--ink)}
+.f-legal{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px}
+.f-legal a{color:var(--muted)} .f-legal a:hover{color:var(--ink)}
+.privacy .check{display:flex;gap:12px;align-items:flex-start;cursor:pointer;font-family:var(--sans);font-size:14.5px;letter-spacing:0;text-transform:none;color:var(--ink)}
+.privacy .check input{flex:none;width:20px;height:20px;margin-top:1px;accent-color:var(--cocoa);cursor:pointer}
+.privacy a{color:var(--gold-deep);text-decoration:underline;text-underline-offset:2px}
+.privacy.warn .check{color:#9b3d2e}
+.info-basica{font-size:12px;line-height:1.55;color:var(--muted);margin-top:4px}
+.info-basica b{font-weight:600;color:#5b524b}
 .tessen-credit{display:inline-flex;align-items:center;gap:8px;color:var(--muted);font-size:.8rem;letter-spacing:.3px;transition:color .3s}
 .tessen-credit:hover{color:var(--ink)}
 .tessen-credit img{width:20px;height:20px;object-fit:contain}
@@ -1020,6 +1026,10 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
           </div>
         </div>
         <div class="f full"><label for="fMsg"><span class="es">Cuéntanos más</span><span class="en">Tell us more</span></label><textarea id="fMsg" name="msg"></textarea></div>
+        <div class="f full privacy">
+          <label class="check"><input type="checkbox" id="fPriv" name="privacidad" required><span><span class="es">He leído y acepto la <a href="legal/privacidad/" target="_blank">política de privacidad</a>.</span><span class="en">I have read and accept the <a href="legal/privacidad/" target="_blank">privacy policy</a>.</span></span></label>
+          <p class="info-basica"><span class="es"><b>Responsable:</b> Yeila Castillo Castillo (Yei City Concierge). <b>Finalidad:</b> atender tu solicitud y preparar tu propuesta. <b>Derechos:</b> acceso, rectificación, supresión y demás, escribiendo a yeicityconcierge@gmail.com. Más información en la <a href="legal/privacidad/" target="_blank">política de privacidad</a>.</span><span class="en"><b>Controller:</b> Yeila Castillo Castillo (Yei City Concierge). <b>Purpose:</b> to handle your request and prepare your proposal. <b>Rights:</b> access, rectification, erasure and others, by writing to yeicityconcierge@gmail.com. More information in the <a href="legal/privacidad/" target="_blank">privacy policy</a>.</span></p>
+        </div>
         <div class="send full">
           <button class="btn btn-dark" type="submit" data-via="wa" hidden><span class="es">Enviar por WhatsApp</span><span class="en">Send via WhatsApp</span><span class="ar"><svg width="16" height="16"><use href="#i-wa"/></svg></span></button>
           <button class="btn btn-line" type="submit" data-via="mail" hidden><span class="es">Enviar por email</span><span class="en">Send by email</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></button>
@@ -1048,6 +1058,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
         <a href="#especiales"><span class="es">Servicios especiales</span><span class="en">Special services</span></a>
         <a href="#reserva"><span class="es">Contacto</span><span class="en">Contact</span></a>
       </nav>
+      <nav class="f-legal"><a href="legal/aviso-legal/"><span class="es">Aviso legal</span><span class="en">Legal notice</span></a><a href="legal/privacidad/"><span class="es">Privacidad</span><span class="en">Privacy</span></a><a href="legal/cookies/">Cookies</a></nav>
       <a class="tessen-credit" href="https://www.tessenconsulting.com" target="_blank" rel="noopener">
         <img src="assets/img/tessen-icon.png" alt="Tessen">
         <span class="es">Hecho por Tessen</span><span class="en">Made by Tessen</span>
@@ -1194,6 +1205,7 @@ const CONTACT = {
       + (d.get('msg').trim() ? `\n\n${d.get('msg').trim()}` : '');
     const via = (e.submitter && e.submitter.dataset.via) || (WA ? 'wa' : MAIL ? 'mail' : 'ig');
     if(d.get('_honey')) return; // bot
+    if(!form.fPriv.checked){ form.fPriv.focus(); form.fPriv.closest('.privacy').classList.add('warn'); showToast(es?'Para enviar, acepta la política de privacidad.':'To send, please accept the privacy policy.'); return; }
     limitarFechas();
     if((fFrom.value && fFrom.value < fFrom.min) || (fTo.value && fTo.value < fTo.min)){ showToast(es?'Revisa las fechas: no pueden ser anteriores a hoy ni la salida antes de la llegada.':'Please check the dates: they cannot be in the past, and departure cannot be before arrival.'); return; }
 
@@ -1242,6 +1254,8 @@ const CONTACT = {
     setTimeout(()=>open(`https://ig.me/m/${CONTACT.instagram}`,'_blank'),900);
   });
   document.getElementById('formAgain').addEventListener('click',()=>{ form.reset(); form.classList.remove('sent'); });
+
+  form.fPriv.addEventListener('change',()=>form.fPriv.closest('.privacy').classList.remove('warn'));
 
   /* --- calendarios: sin días pasados y salida no anterior a llegada --- */
   const fFrom = form.fFrom, fTo = form.fTo;
