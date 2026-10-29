@@ -23,3 +23,5 @@ flamenco-3.jpg  https://www.pexels.com/photo/woman-in-red-lace-dress-against-cle
 vip-1.jpg  https://www.pexels.com/photo/man-opening-car-door-for-woman-15774577/
 vip-2.jpg  https://www.pexels.com/photo/professional-chauffeur-standing-beside-luxury-suv-36377051/
 vip-3.jpg  https://www.pexels.com/photo/a-person-s-hand-opening-a-car-door-14541142/
+../viajera-beige.jpg  https://www.pexels.com/photo/a-woman-in-beige-jacket-and-black-pants-walking-while-carrying-her-luggage-11045296/
+../copas-beige.jpg  https://www.pexels.com/photo/glasses-on-paper-background-16295526/
