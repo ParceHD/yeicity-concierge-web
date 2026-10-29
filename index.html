@@ -398,6 +398,8 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .wa-float:hover{transform:translateY(-3px) scale(1.04)}
 .wa-float[hidden],.btn[hidden]{display:none}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);background:var(--cocoa);color:var(--paper);padding:14px 20px;border-radius:14px;border:1px solid rgba(201,164,92,.5);font-size:14px;z-index:80;transition:transform .5s var(--ease),visibility 0s .5s;visibility:hidden;max-width:calc(100% - 32px);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+.toast a{color:var(--gold-2);text-decoration:underline;text-underline-offset:2px}
+.toast .t-btn{display:inline-block;background:var(--gold);color:var(--cocoa);text-decoration:none;font-weight:600;padding:6px 12px;border-radius:999px;margin-right:4px}
 .toast.show{transform:translate(-50%,0);visibility:visible;transition-delay:0s}
 
 /* ---------- FOOTER ---------- */
@@ -1192,7 +1194,7 @@ const CONTACT = {
 
   /* --- formulario → WhatsApp / email / DM de Instagram --- */
   const form = document.getElementById('form'), toast = document.getElementById('toast');
-  const showToast = (m)=>{ toast.textContent=m; toast.classList.add('show'); clearTimeout(showToast.t); showToast.t=setTimeout(()=>toast.classList.remove('show'),5200); };
+  const showToast = (m, html)=>{ if(html) toast.innerHTML=m; else toast.textContent=m; toast.classList.add('show'); clearTimeout(showToast.t); showToast.t=setTimeout(()=>toast.classList.remove('show'), html ? 14000 : 5200); };
   form.addEventListener('submit',async e=>{
     e.preventDefault();
     const es = root.dataset.lang==='es', d = new FormData(form);
@@ -1243,9 +1245,17 @@ const CONTACT = {
       }
       btn.classList.remove('busy'); btn.disabled = false;
       if (enviado){ form.classList.add('sent'); form.scrollIntoView({behavior:'smooth', block:'center'}); return; }
+      // envío automático no disponible → abrir Gmail con el mensaje redactado (si el navegador lo bloquea, se ofrece el botón)
       const cuerpo = Object.entries(datos).map(([k,v])=>`${k}: ${v}`).join('\n');
-      location.href = `mailto:${MAIL}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
-      showToast(es?'Te abrimos tu correo con el mensaje listo: solo tienes que pulsar Enviar.':'We opened your email app with the message ready: just press Send.');
+      const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(MAIL)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+      const mailto = `mailto:${MAIL}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+      const otro = `<a href="${mailto}">${es?'otro programa de correo':'another email app'}</a>`;
+      const win = open(gmail, '_blank');
+      if (!win){
+        showToast(es?`<a class="t-btn" href="${gmail}" target="_blank" rel="noopener">Abrir en Gmail</a> para enviar tu solicitud (o usa ${otro}).`:`<a class="t-btn" href="${gmail}" target="_blank" rel="noopener">Open in Gmail</a> to send your request (or use ${otro}).`, true);
+      } else {
+        showToast(es?`Te abrimos Gmail con el mensaje listo: solo tienes que pulsar Enviar. ¿No usas Gmail? Usa ${otro}.`:`We opened Gmail with the message ready: just press Send. Not using Gmail? Use ${otro}.`, true);
+      }
       return;
     }
 
