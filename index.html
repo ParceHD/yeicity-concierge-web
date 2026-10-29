@@ -1000,12 +1000,13 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
         <div class="f"><label for="fFrom"><span class="es">Llegada</span><span class="en">Arrival</span></label><input id="fFrom" name="from" type="date"></div>
         <div class="f"><label for="fTo"><span class="es">Salida</span><span class="en">Departure</span></label><input id="fTo" name="to" type="date"></div>
         <div class="f full">
-          <label><span class="es">Destino</span><span class="en">Destination</span></label>
+          <label><span class="es">Oficina</span><span class="en">Office</span></label>
           <div class="chips">
             <label><input type="radio" name="dest" value="Barcelona" checked><span>Barcelona</span></label>
             <label><input type="radio" name="dest" value="República Dominicana"><span><span class="es">República Dominicana</span><span class="en">Dominican Republic</span></span></label>
           </div>
         </div>
+        <div class="f full"><label for="fDest"><span class="es">Destino</span><span class="en">Destination</span></label><input id="fDest" name="destino" autocomplete="off" placeholder="" data-ph-es="¿A dónde quieres ir? Ciudad, zona, hotel…" data-ph-en="Where would you like to go? City, area, hotel…"></div>
         <div class="f full">
           <label><span class="es">¿Qué necesitas?</span><span class="en">What do you need?</span></label>
           <div class="chips" id="svcChips">
@@ -1074,7 +1075,8 @@ const CONTACT = {
   email: 'yeicityconcierge@gmail.com',
   instagram: 'yeicityconcierge',
   linkedin: 'https://www.linkedin.com/in/yeila-castillo-castillo-a05629356/',   // enlace completo al perfil, p. ej. 'https://www.linkedin.com/in/...'
-  tiktok: 'https://www.tiktok.com/@yccmultiservice'      // enlace completo, p. ej. 'https://www.tiktok.com/@...'
+  tiktok: 'https://www.tiktok.com/@yccmultiservice',
+  web3forms: ''   // clave de acceso de web3forms.com (opcional; si se rellena, el email se envía por ahí primero)      // enlace completo, p. ej. 'https://www.tiktok.com/@...'
 };
 
 (function(){
@@ -1090,6 +1092,7 @@ const CONTACT = {
   function setLang(l){
     root.dataset.lang = l; root.lang = l;
     document.querySelectorAll('[data-set]').forEach(b=>b.classList.toggle('on',b.dataset.set===l));
+    document.querySelectorAll('[data-ph-es]').forEach(i=>i.placeholder=i.dataset[l==='es'?'phEs':'phEn']);
     document.title = l==='es' ? 'Yei City Concierge · Concierge privado en Barcelona y República Dominicana' : 'Yei City Concierge · Private concierge in Barcelona & Dominican Republic';
   }
 
@@ -1186,8 +1189,8 @@ const CONTACT = {
     const svcs = [...form.querySelectorAll('#svcChips input:checked')].map(i=>i.nextElementSibling.querySelector(es?'.es':'.en').textContent);
     const fmt = v => v ? new Date(v+'T12:00').toLocaleDateString(es?'es-ES':'en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—';
     const msg = (es
-      ? `Hola Yei City Concierge 👋\nSoy ${d.get('name')}.\n\n📍 Destino: ${d.get('dest')}\n📅 Fechas: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Personas: ${d.get('pax')||'—'}\n🛎 Me interesa: ${svcs.join(', ')||'—'}`
-      : `Hi Yei City Concierge 👋\nI'm ${d.get('name')}.\n\n📍 Destination: ${d.get('dest')}\n📅 Dates: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Guests: ${d.get('pax')||'—'}\n🛎 Interested in: ${svcs.join(', ')||'—'}`)
+      ? `Hola Yei City Concierge 👋\nSoy ${d.get('name')}.\n\n🏢 Oficina: ${d.get('dest')}\n📍 Destino: ${d.get('destino').trim()||'—'}\n📅 Fechas: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Personas: ${d.get('pax')||'—'}\n🛎 Me interesa: ${svcs.join(', ')||'—'}`
+      : `Hi Yei City Concierge 👋\nI'm ${d.get('name')}.\n\n🏢 Office: ${d.get('dest')}\n📍 Destination: ${d.get('destino').trim()||'—'}\n📅 Dates: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Guests: ${d.get('pax')||'—'}\n🛎 Interested in: ${svcs.join(', ')||'—'}`)
       + (d.get('msg').trim() ? `\n\n${d.get('msg').trim()}` : '');
     const via = (e.submitter && e.submitter.dataset.via) || (WA ? 'wa' : MAIL ? 'mail' : 'ig');
     if(d.get('_honey')) return; // bot
@@ -1203,24 +1206,34 @@ const CONTACT = {
       // el correo al negocio siempre en español
       const svcsEs = [...form.querySelectorAll('#svcChips input:checked')].map(i=>i.nextElementSibling.querySelector('.es').textContent);
       const fmtEs = v => v ? new Date(v+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'}) : '—';
-      try{
-        const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(MAIL)}`,{
-          method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-          body: JSON.stringify({
-            _subject: `Nueva solicitud web — ${d.get('name').trim()}`,
-            _template: 'table', _captcha: 'false', _replyto: mail,
-            'Nombre': d.get('name').trim(), 'Email': mail, 'Teléfono': d.get('tel').trim() || '—',
-            'Destino': d.get('dest'), 'Llegada': fmtEs(d.get('from')), 'Salida': fmtEs(d.get('to')),
-            'Personas': d.get('pax') || '—', 'Servicios': svcsEs.join(', ') || '—',
-            'Mensaje': d.get('msg').trim() || '—', 'Idioma del cliente': es ? 'Español' : 'Inglés'
-          })
-        });
-        const out = await res.json().catch(()=>({}));
-        if(!res.ok || String(out.success) !== 'true') throw new Error(out.message || res.status);
-        form.classList.add('sent'); form.scrollIntoView({behavior:'smooth', block:'center'});
-      }catch(err){
-        showToast(es?'No se ha podido enviar. Inténtalo de nuevo o escríbenos por WhatsApp.':'Could not send. Please try again or message us on WhatsApp.');
-      }finally{ btn.classList.remove('busy'); btn.disabled = false; }
+      const datos = {
+        'Nombre': d.get('name').trim(), 'Email': mail, 'Teléfono': d.get('tel').trim() || '—',
+        'Oficina': d.get('dest'), 'Destino': d.get('destino').trim() || '—',
+        'Llegada': fmtEs(d.get('from')), 'Salida': fmtEs(d.get('to')),
+        'Personas': d.get('pax') || '—', 'Servicios': svcsEs.join(', ') || '—',
+        'Mensaje': d.get('msg').trim() || '—', 'Idioma del cliente': es ? 'Español' : 'Inglés'
+      };
+      const asunto = `Nueva solicitud web — ${datos.Nombre}`;
+      // 1º Web3Forms (si hay clave) · 2º FormSubmit · 3º si todo falla, abrir el correo del visitante con el mensaje redactado
+      const envios = [];
+      if (CONTACT.web3forms) envios.push(() => fetch('https://api.web3forms.com/submit',{ method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify({ access_key: CONTACT.web3forms, subject: asunto, from_name: 'Web Yei City Concierge', replyto: mail, ...datos }) }));
+      envios.push(() => fetch(`https://formsubmit.co/ajax/${encodeURIComponent(MAIL)}`,{ method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body: JSON.stringify({ _subject: asunto, _template: 'table', _captcha: 'false', _replyto: mail, ...datos }) }));
+      let enviado = false;
+      for (const enviar of envios){
+        try{
+          const ctl = new AbortController(); const t = setTimeout(()=>ctl.abort(), 12000);
+          const res = await enviar(); clearTimeout(t);
+          const out = await res.json().catch(()=>({}));
+          if (res.ok && String(out.success) === 'true'){ enviado = true; break; }
+        }catch(err){}
+      }
+      btn.classList.remove('busy'); btn.disabled = false;
+      if (enviado){ form.classList.add('sent'); form.scrollIntoView({behavior:'smooth', block:'center'}); return; }
+      const cuerpo = Object.entries(datos).map(([k,v])=>`${k}: ${v}`).join('\n');
+      location.href = `mailto:${MAIL}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+      showToast(es?'Te abrimos tu correo con el mensaje listo: solo tienes que pulsar Enviar.':'We opened your email app with the message ready: just press Send.');
       return;
     }
 
