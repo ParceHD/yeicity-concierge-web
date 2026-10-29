@@ -1197,7 +1197,7 @@ const CONTACT = {
     const fmt = v => v ? new Date(v+'T12:00').toLocaleDateString(es?'es-ES':'en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—';
     const msg = (es
       ? `Hola Yei City Concierge 👋\nSoy ${d.get('name')}.\n\n🏢 Oficina: ${d.get('dest')}\n📍 Destino: ${d.get('destino').trim()||'—'}\n📅 Fechas: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Personas: ${d.get('pax')||'—'}\n🛎 Me interesa: ${svcs.join(', ')||'—'}`
-      : `Hi Yei City Concierge 👋\nI'm ${d.get('name')}.\n\n🏢 Office: ${d.get('dest')}\n📍 Destination: ${d.get('destino').trim()||'—'}\n📅 Dates: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Guests: ${d.get('pax')||'—'}\n🛎 Interested in: ${svcs.join(', ')||'—'}`)
+      : `Hi Yei City Concierge 👋\nI'm ${d.get('name')}.\n\n🏢 Office: ${d.get('dest')==='Barcelona'?'Barcelona':'Dominican Republic'}\n📍 Destination: ${d.get('destino').trim()||'—'}\n📅 Dates: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Guests: ${d.get('pax')||'—'}\n🛎 Interested in: ${svcs.join(', ')||'—'}`)
       + (d.get('msg').trim() ? `\n\n${d.get('msg').trim()}` : '');
     const via = (e.submitter && e.submitter.dataset.via) || (WA ? 'wa' : MAIL ? 'mail' : 'ig');
     if(d.get('_honey')) return; // bot
@@ -1211,17 +1211,24 @@ const CONTACT = {
       const mail = d.get('email').trim();
       if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){ form.fEmail.focus(); showToast(es?'Escribe un email válido para que podamos responderte.':'Please add a valid email so we can reply.'); return; }
       const btn = e.submitter; btn.classList.add('busy'); btn.disabled = true;
-      // el correo al negocio siempre en español
-      const svcsEs = [...form.querySelectorAll('#svcChips input:checked')].map(i=>i.nextElementSibling.querySelector('.es').textContent);
-      const fmtEs = v => v ? new Date(v+'T12:00').toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'}) : '—';
-      const datos = {
-        'Nombre': d.get('name').trim(), 'Email': mail, 'Teléfono': d.get('tel').trim() || '—',
-        'Oficina': d.get('dest'), 'Destino': d.get('destino').trim() || '—',
-        'Llegada': fmtEs(d.get('from')), 'Salida': fmtEs(d.get('to')),
-        'Personas': d.get('pax') || '—', 'Servicios': svcsEs.join(', ') || '—',
-        'Mensaje': d.get('msg').trim() || '—', 'Idioma del cliente': es ? 'Español' : 'Inglés'
+      // el correo va en el idioma en que se ha rellenado el formulario
+      const fmtL = v => v ? new Date(v+'T12:00').toLocaleDateString(es?'es-ES':'en-GB',{day:'numeric',month:'long',year:'numeric'}) : '—';
+      const oficina = d.get('dest') === 'Barcelona' ? 'Barcelona' : (es ? 'República Dominicana' : 'Dominican Republic');
+      const nombre = d.get('name').trim();
+      const datos = es ? {
+        'Nombre': nombre, 'Email': mail, 'Teléfono': d.get('tel').trim() || '—',
+        'Oficina': oficina, 'Destino': d.get('destino').trim() || '—',
+        'Llegada': fmtL(d.get('from')), 'Salida': fmtL(d.get('to')),
+        'Personas': d.get('pax') || '—', 'Servicios': svcs.join(', ') || '—',
+        'Mensaje': d.get('msg').trim() || '—', 'Idioma': 'Español'
+      } : {
+        'Name': nombre, 'Email': mail, 'Phone': d.get('tel').trim() || '—',
+        'Office': oficina, 'Destination': d.get('destino').trim() || '—',
+        'Arrival': fmtL(d.get('from')), 'Departure': fmtL(d.get('to')),
+        'Guests': d.get('pax') || '—', 'Services': svcs.join(', ') || '—',
+        'Message': d.get('msg').trim() || '—', 'Language': 'English'
       };
-      const asunto = `Nueva solicitud web — ${datos.Nombre}`;
+      const asunto = es ? `Nueva solicitud web — ${nombre}` : `New website request — ${nombre}`;
       // 1º Web3Forms (si hay clave) · 2º FormSubmit · 3º si todo falla, abrir el correo del visitante con el mensaje redactado
       const envios = [];
       if (CONTACT.web3forms) envios.push(() => fetch('https://api.web3forms.com/submit',{ method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
