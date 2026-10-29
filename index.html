@@ -1191,6 +1191,8 @@ const CONTACT = {
       + (d.get('msg').trim() ? `\n\n${d.get('msg').trim()}` : '');
     const via = (e.submitter && e.submitter.dataset.via) || (WA ? 'wa' : MAIL ? 'mail' : 'ig');
     if(d.get('_honey')) return; // bot
+    limitarFechas();
+    if((fFrom.value && fFrom.value < fFrom.min) || (fTo.value && fTo.value < fTo.min)){ showToast(es?'Revisa las fechas: no pueden ser anteriores a hoy ni la salida antes de la llegada.':'Please check the dates: they cannot be in the past, and departure cannot be before arrival.'); return; }
 
     if(via === 'wa'){ open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank'); return; }
 
@@ -1227,6 +1229,21 @@ const CONTACT = {
     setTimeout(()=>open(`https://ig.me/m/${CONTACT.instagram}`,'_blank'),900);
   });
   document.getElementById('formAgain').addEventListener('click',()=>{ form.reset(); form.classList.remove('sent'); });
+
+  /* --- calendarios: sin días pasados y salida no anterior a llegada --- */
+  const fFrom = form.fFrom, fTo = form.fTo;
+  const hoy = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0,10); };
+  function limitarFechas(){
+    const h0 = hoy();
+    fFrom.min = h0;
+    if (fFrom.value && fFrom.value < h0) fFrom.value = h0;
+    fTo.min = fFrom.value || h0;
+    if (fTo.value && fTo.value < fTo.min) fTo.value = fTo.min;
+  }
+  limitarFechas();
+  fFrom.addEventListener('change', limitarFechas);
+  fTo.addEventListener('change', limitarFechas);
+  [fFrom, fTo].forEach(i => i.addEventListener('focus', limitarFechas));
 
   /* --- venir desde la página de un servicio especial: rellenar el mensaje --- */
   const ESP = { hogares:['Limpieza de hogares','Home cleaning'], organizacion:['Organización del hogar','Home organisation'], turisticos:['Limpieza de lugares turísticos','Cleaning of tourist places'], oficinas:['Limpieza de oficinas','Office cleaning'] };
