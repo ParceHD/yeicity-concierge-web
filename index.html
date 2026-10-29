@@ -242,6 +242,10 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .xc .tx{position:absolute;z-index:2;left:22px;right:22px;bottom:22px;text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .xc .tx > span{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-2)}
 .xc .tx h3{font-family:var(--serif);font-weight:500;font-size:clamp(30px,2.4vw,36px);line-height:1.05;margin:8px 0 10px}
+.xc{color:#fff;-webkit-user-drag:none}
+.xc .more{display:inline-flex;align-items:center;gap:8px;margin-top:12px;font-size:14px;font-weight:600;color:var(--gold-2)}
+.xc .more svg{width:14px;height:14px;transition:transform .4s var(--ease)}
+.xc:hover .more svg{transform:translateX(4px)}
 .xc .tx p{font-size:16.5px;color:rgba(255,255,255,.95);line-height:1.5}
 
 /* ---------- QUIÉNES SOMOS ---------- */
@@ -810,14 +814,14 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
       <div class="arrows"><button id="prev" aria-label="Anterior"><svg width="16" height="16" style="transform:rotate(180deg)"><use href="#i-ar"/></svg></button><button id="next" aria-label="Siguiente"><svg width="16" height="16"><use href="#i-ar"/></svg></button></div>
     </div>
     <div class="rail" id="rail">
-      <article class="xc"><img src="assets/img/atardecer-barco.jpg" alt="Atardecer desde un velero" loading="lazy"><div class="tx"><span class="es">Al atardecer</span><span class="en">At sunset</span><h3><span class="es">Paseo en velero</span><span class="en">Sunset sail</span></h3><p><span class="es">La brisa del mar, una copa en la mano y el sol escondiéndose en el horizonte.</span><span class="en">Sea breeze, a drink in hand and the sun dipping below the horizon.</span></p></div></article>
-      <article class="xc"><img src="assets/img/brunch-terraza.jpg" alt="Brunch en terraza con vistas" loading="lazy"><div class="tx"><span class="es">Con vistas</span><span class="en">With a view</span><h3><span class="es">Cenas especiales</span><span class="en">Special dinners</span></h3><p><span class="es">Terrazas y mesas con Barcelona a tus pies.</span><span class="en">Terraces and tables with Barcelona at your feet.</span></p></div></article>
-      <article class="xc"><img src="assets/img/spa.jpg" alt="Spa con velas" loading="lazy"><div class="tx"><span>Wellness</span><h3><span class="es">Spa y bienestar</span><span class="en">Spa &amp; wellness</span></h3><p><span class="es">Una pausa para ti, reservada a tu medida.</span><span class="en">A pause just for you, booked your way.</span></p></div></article>
-      <article class="xc"><img src="assets/img/jardin-secreto.jpg" alt="Restaurante con jardín secreto en Barcelona" loading="lazy"><div class="tx"><span class="es">Rincón secreto</span><span class="en">Hidden gem</span><h3><span class="es">Un jardín en plena ciudad</span><span class="en">A secret garden</span></h3><p><span class="es">Perfecto para una celebración, una cita especial o desconectar.</span><span class="en">Perfect for a celebration, a special date or to disconnect.</span></p></div></article>
-      <article class="xc"><img src="assets/img/moto.jpg" alt="Ruta en moto por la costa" loading="lazy"><div class="tx"><span class="es">En ruta</span><span class="en">On the road</span><h3><span class="es">Motos y rutas</span><span class="en">Motorbike rides</span></h3><p><span class="es">Experiencias sobre dos ruedas por la costa.</span><span class="en">On-the-road experiences along the coast.</span></p></div></article>
-      <article class="xc"><img src="assets/img/barco-lounge.jpg" alt="Barco preparado para una celebración" loading="lazy"><div class="tx"><span class="es">A bordo</span><span class="en">On board</span><h3><span class="es">Celebraciones en el mar</span><span class="en">Celebrations at sea</span></h3><p><span class="es">Un barco preparado al detalle para tu ocasión.</span><span class="en">A boat set up in every detail for your occasion.</span></p></div></article>
-      <article class="xc"><img src="assets/img/flamenco.jpg" alt="Espectáculo de flamenco" loading="lazy"><div class="tx"><span class="es">Cultura</span><span class="en">Culture</span><h3>Flamenco</h3><p><span class="es">Noches con alma en el corazón de la ciudad.</span><span class="en">Soulful nights in the heart of the city.</span></p></div></article>
-      <article class="xc"><img src="assets/img/atardecer-yate.jpg" alt="Planes exclusivos al atardecer" loading="lazy"><div class="tx"><span>VIP</span><h3><span class="es">Planes exclusivos</span><span class="en">Exclusive plans</span></h3><p><span class="es">Y mucho más. Pídenos lo que imagines.</span><span class="en">And much more. Ask us for anything you can imagine.</span></p></div></article>
+      <a class="xc" href="planes/velero/"><img src="assets/img/atardecer-barco.jpg" alt="Atardecer desde un velero" loading="lazy"><div class="tx"><span class="es">Al atardecer</span><span class="en">At sunset</span><h3><span class="es">Paseo en velero</span><span class="en">Sunset sail</span></h3><p><span class="es">La brisa del mar, una copa en la mano y el sol escondiéndose en el horizonte.</span><span class="en">Sea breeze, a drink in hand and the sun dipping below the horizon.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
+      <a class="xc" href="planes/cenas/"><img src="assets/img/brunch-terraza.jpg" alt="Brunch en terraza con vistas" loading="lazy"><div class="tx"><span class="es">Con vistas</span><span class="en">With a view</span><h3><span class="es">Cenas especiales</span><span class="en">Special dinners</span></h3><p><span class="es">Terrazas y mesas con Barcelona a tus pies.</span><span class="en">Terraces and tables with Barcelona at your feet.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
+      <a class="xc" href="planes/spa/"><img src="assets/img/spa.jpg" alt="Spa con velas" loading="lazy"><div class="tx"><span>Wellness</span><h3><span class="es">Spa y bienestar</span><span class="en">Spa &amp; wellness</span></h3><p><span class="es">Una pausa para ti, reservada a tu medida.</span><span class="en">A pause just for you, booked your way.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
+      <a class="xc" href="planes/jardin/"><img src="assets/img/jardin-secreto.jpg" alt="Restaurante con jardín secreto en Barcelona" loading="lazy"><div class="tx"><span class="es">Rincón secreto</span><span class="en">Hidden gem</span><h3><span class="es">Un jardín en plena ciudad</span><span class="en">A secret garden</span></h3><p><span class="es">Perfecto para una celebración, una cita especial o desconectar.</span><span class="en">Perfect for a celebration, a special date or to disconnect.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
+      <a class="xc" href="planes/motos/"><img src="assets/img/moto.jpg" alt="Ruta en moto por la costa" loading="lazy"><div class="tx"><span class="es">En ruta</span><span class="en">On the road</span><h3><span class="es">Motos y rutas</span><span class="en">Motorbike rides</span></h3><p><span class="es">Experiencias sobre dos ruedas por la costa.</span><span class="en">On-the-road experiences along the coast.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
+      <a class="xc" href="planes/celebraciones/"><img src="assets/img/barco-lounge.jpg" alt="Barco preparado para una celebración" loading="lazy"><div class="tx"><span class="es">A bordo</span><span class="en">On board</span><h3><span class="es">Celebraciones en el mar</span><span class="en">Celebrations at sea</span></h3><p><span class="es">Un barco preparado al detalle para tu ocasión.</span><span class="en">A boat set up in every detail for your occasion.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
+      <a class="xc" href="planes/flamenco/"><img src="assets/img/flamenco.jpg" alt="Espectáculo de flamenco" loading="lazy"><div class="tx"><span class="es">Cultura</span><span class="en">Culture</span><h3>Flamenco</h3><p><span class="es">Noches con alma en el corazón de la ciudad.</span><span class="en">Soulful nights in the heart of the city.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
+      <a class="xc" href="planes/vip/"><img src="assets/img/atardecer-yate.jpg" alt="Planes exclusivos al atardecer" loading="lazy"><div class="tx"><span>VIP</span><h3><span class="es">Planes exclusivos</span><span class="en">Exclusive plans</span></h3><p><span class="es">Y mucho más. Pídenos lo que imagines.</span><span class="en">And much more. Ask us for anything you can imagine.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
     </div>
   </div>
 </section>
@@ -861,8 +865,8 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
       <div>
         <h2 class="h2 rv" style="margin-top:48px"><span class="es">¿Plan perfecto?<br>Te lo diseñamos, <span class="it">tú solo disfrutas.</span></span><span class="en">The perfect plan?<br>We design it, <span class="it">you just enjoy.</span></span></h2>
         <div class="steps">
-          <div class="st rv open">
-            <button class="st-head" type="button" aria-expanded="true" aria-controls="st1">
+          <div class="st rv">
+            <button class="st-head" type="button" aria-expanded="false" aria-controls="st1">
               <span class="n">01</span>
               <span><h3><span class="es">Cuéntanos tu plan</span><span class="en">Tell us your plan</span></h3><p><span class="es">Fechas, número de personas y lo que te apetece vivir.</span><span class="en">Dates, number of guests and what you'd love to do.</span></p></span>
               <span class="st-ic"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span class="st-tg"><svg><use href="#i-plus"/></svg></span></span>
@@ -1170,6 +1174,7 @@ const CONTACT = {
   rail.addEventListener('pointerdown',e=>{ if(e.pointerType!=='mouse') return; down=true; moved=false; sx=e.clientX; sl=rail.scrollLeft; rail.classList.add('drag'); });
   addEventListener('pointermove',e=>{ if(!down) return; const dx=e.clientX-sx; if(Math.abs(dx)>4) moved=true; rail.scrollLeft = sl - dx; });
   addEventListener('pointerup',()=>{ if(!down) return; down=false; rail.classList.remove('drag'); });
+  rail.addEventListener('click',e=>{ if(moved){ e.preventDefault(); moved=false; } },true);
 
   /* --- formulario → WhatsApp / email / DM de Instagram --- */
   const form = document.getElementById('form'), toast = document.getElementById('toast');
@@ -1225,10 +1230,14 @@ const CONTACT = {
 
   /* --- venir desde la página de un servicio especial: rellenar el mensaje --- */
   const ESP = { hogares:['Limpieza de hogares','Home cleaning'], organizacion:['Organización del hogar','Home organisation'], turisticos:['Limpieza de lugares turísticos','Cleaning of tourist places'], oficinas:['Limpieza de oficinas','Office cleaning'] };
-  const pedido = ESP[new URLSearchParams(location.search).get('servicio')];
+  const PLANES = {"velero":["Paseo en velero","Sunset sail"],"cenas":["Cenas especiales","Special dinners"],"spa":["Spa y bienestar","Spa & wellness"],"jardin":["Un jardín en plena ciudad","A secret garden"],"motos":["Motos y rutas","Motorbike rides"],"celebraciones":["Celebraciones en el mar","Celebrations at sea"],"flamenco":["Flamenco","Flamenco"],"vip":["Planes exclusivos","Exclusive plans"]};
+  const qs = new URLSearchParams(location.search);
+  const pedido = ESP[qs.get('servicio')] || PLANES[qs.get('plan')];
   if (pedido){
     const es = root.dataset.lang==='es';
-    form.fMsg.value = (es ? 'Me interesa el servicio: ' : 'I am interested in: ') + pedido[es?0:1] + (es ? '.\nTipo de espacio y tamaño aproximado: \nZona o dirección: \nFechas y frecuencia: \n' : '.\nType of space and approximate size: \nArea or address: \nDates and frequency: \n');
+    form.fMsg.value = ESP[qs.get('servicio')]
+      ? (es ? 'Me interesa el servicio: ' : 'I am interested in: ') + pedido[es?0:1] + (es ? '.\nTipo de espacio y tamaño aproximado: \nZona o dirección: \nFechas y frecuencia: \n' : '.\nType of space and approximate size: \nArea or address: \nDates and frequency: \n')
+      : (es ? 'Me interesa el plan: ' : 'I am interested in the plan: ') + pedido[es?0:1] + (es ? '.\nFechas: \nNúmero de personas: \n¿Alguna ocasión especial?: \n' : '.\nDates: \nNumber of guests: \nAny special occasion?: \n');
   }
 
   /* --- cómo funciona: desplegables --- */
