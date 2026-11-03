@@ -255,14 +255,18 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .about-body .about-strong{font-family:var(--serif);font-size:clamp(25px,2.4vw,34px);line-height:1.25;color:var(--gold-deep);margin-top:14px}
 .about-body p{font-size:16.5px;color:#5b524b}
 .about-body .about-goal{margin-top:22px;padding:22px 24px;border-radius:18px;background:var(--blush);border:1px solid var(--line);font-family:var(--serif);font-style:italic;font-size:20px;line-height:1.4;color:var(--ink)}
-.me{max-width:860px;margin:clamp(56px,7vw,96px) auto}
-.me-ph{position:relative;max-width:400px;width:100%;justify-self:center}
-.me-img{aspect-ratio:4/5;border-radius:999px 999px var(--r) var(--r);overflow:hidden;background:linear-gradient(165deg,#F6EBE2 0%,#EBD5C6 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;color:var(--gold-deep);position:relative;box-shadow:0 40px 70px -45px rgba(46,36,30,.5)}
-.me-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.me-img > svg{width:70px;height:70px;color:var(--gold)}
-.me-img::after{content:"";position:absolute;inset:12px;border:1px solid rgba(193,160,106,.55);border-radius:999px 999px 14px 14px;pointer-events:none}
-.me-ph figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.ph-l{display:inline-block;color:var(--gold-deep);border:1px dashed rgba(156,122,58,.6);padding:2px 10px;border-radius:8px;font-family:var(--mono);font-size:12px;font-style:normal;letter-spacing:0}
+/* foto de Yeila + nota: la nota se apoya sobre el borde de la foto */
+.me{max-width:1100px;margin:clamp(56px,7vw,96px) auto;display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);align-items:center}
+.me-ph{position:relative;margin:0;padding:18px 0 0 18px}
+.me-img{position:relative;aspect-ratio:4/5}
+.me-img::before{content:"";position:absolute;inset:-18px 18px 18px -18px;border:1px solid var(--gold);border-radius:var(--r)}
+.me-img img{position:relative;display:block;width:100%;height:100%;object-fit:cover;object-position:50% 18%;border-radius:var(--r);box-shadow:0 40px 70px -40px rgba(46,36,30,.55)}
+.me-badge{position:absolute;left:-6px;bottom:34px;display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:9px 18px 9px 10px;box-shadow:0 18px 34px -22px rgba(46,36,30,.5)}
+.me-badge b{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--gold);color:var(--night);font-family:var(--serif);font-weight:600;font-size:22px;line-height:1}
+.me-badge span{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;line-height:1.5;color:var(--muted)}
+.me-ph figcaption{display:flex;justify-content:space-between;gap:12px;margin-top:16px;padding-right:60px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.me-ph figcaption b{font-weight:500;color:var(--gold-deep)}
+.me .note{margin-left:-44px;z-index:2}
 /* nota escrita a mano */
 .note{position:relative;background:#FFFDF8;border-radius:6px;padding:46px clamp(26px,4vw,54px) 40px;color:var(--pen);font-family:var(--hand);font-weight:500;font-size:27px;line-height:40px;transform:rotate(-.6deg);box-shadow:0 1px 0 rgba(46,36,30,.06),0 34px 60px -38px rgba(46,36,30,.45);background-image:repeating-linear-gradient(180deg,transparent 0 39px,rgba(193,160,106,.24) 39px 40px);background-position:0 38px}
 .note::before{content:"";position:absolute;top:-14px;left:50%;width:120px;height:28px;transform:translateX(-50%) rotate(1.5deg);background:rgba(235,217,204,.75);border-radius:2px}
@@ -441,7 +445,9 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
   .ac-flight svg.route{width:86%;right:7%;top:7%;height:24%}
   .how{grid-template-columns:1fr}
   .me{grid-template-columns:1fr}
-  .me-ph{max-width:340px}
+  .me-ph{max-width:360px;width:100%;justify-self:center}
+  .me .note{margin:34px 0 0}
+  .me-ph figcaption{padding-right:0}
   .sp-grid{grid-template-columns:1fr 1fr}
   .arch{justify-self:center;max-width:400px}
 }
@@ -595,6 +601,13 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
     </div>
 
     <div class="me">
+      <figure class="me-ph rv">
+        <div class="me-img">
+          <img src="assets/img/yeila.jpg" srcset="assets/img/yeila-560.jpg 560w, assets/img/yeila.jpg 960w" sizes="(max-width:1080px) 360px, 420px" width="960" height="960" alt="Yeila Castillo Castillo, Yei City Concierge" loading="lazy" decoding="async">
+          <div class="me-badge"><b>20</b><span class="es">años de<br>experiencia</span><span class="en">years of<br>experience</span></div>
+        </div>
+        <figcaption><b>Yeila Castillo</b><span class="es">Fundadora · Concierge</span><span class="en">Founder · Concierge</span></figcaption>
+      </figure>
       <div class="note rv d1">
         <p><span class="es">Soy Yeila Castillo Castillo, concierge y asistente personal en Barcelona. Tengo 20 años de experiencia en hospitalidad y atención personalizada, y ayudo a clientes exigentes a disfrutar de la ciudad con comodidad, exclusividad y cero preocupaciones.</span><span class="en">I’m Yeila Castillo Castillo, concierge and personal assistant in Barcelona. I have 20 years of experience in hospitality and personalised service, and I help discerning clients enjoy the city with comfort, exclusivity and zero worries.</span></p>
         <p><span class="es">Me defino como una persona resolutiva, eficiente y proactiva. Me encargo de todo: desde reservas y transporte privado, hasta asistencia diaria y experiencias a medida.</span><span class="en">I’d describe myself as resourceful, efficient and proactive. I take care of everything: from reservations and private transport to daily assistance and tailor-made experiences.</span></p>
