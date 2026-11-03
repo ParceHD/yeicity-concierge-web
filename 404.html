@@ -578,5 +578,7 @@ footer{flex:none}
   document.querySelectorAll('[data-set]').forEach(b=>b.addEventListener('click',()=>{ setLang(b.dataset.set); try{sessionStorage.setItem('ycc-lang',b.dataset.set)}catch(e){} }));
 })();
 </script>
+<a class="wa-float" id="waFloat" href="https://wa.me/34671793458" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="26" height="26"><use href="#i-wa"/></svg></a>
+<script>/* botón flotante de WhatsApp: abre el chat con un mensaje inicial en el idioma de la web */(()=>{const f=document.getElementById("waFloat");if(!f)return;const t={es:"Hola Yei City Concierge, vengo de la web y estoy interesado en: ",en:"Hello Yei City Concierge, I come from your website and I am interested in: "};const set=()=>{f.href="https://wa.me/34671793458?text="+encodeURIComponent(t[document.documentElement.dataset.lang==="es"?"es":"en"])};set();f.addEventListener("click",set);})();</script>
 </body>
 </html>
