@@ -354,6 +354,10 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .dc-clock b{display:block;font-family:var(--sans);font-weight:300;font-size:44px;letter-spacing:-.02em;line-height:1;color:inherit}
 .dc h3{font-family:var(--serif);font-weight:400;font-size:clamp(40px,4.6vw,66px);line-height:.95}
 .dc p{max-width:420px;color:rgba(255,255,255,.8);margin-top:12px;font-size:15px}
+.dc{color:#fff;transition:transform .6s var(--ease)}
+.dc > img{transition:transform 1.4s var(--ease)}
+.dc:hover > img{transform:scale(1.05)}
+.dc .dc-go{margin-top:20px}
 .dc-rd{background:linear-gradient(180deg,#F7EDE4 0%,#F2DCCD 45%,#ECC5AC 78%,#E5B394 100%);color:var(--ink)}
 .dc-rd p{color:#5b524b}
 .dc-rd::after{background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 40%,rgba(251,247,241,.55))}
@@ -957,22 +961,24 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
     <div class="label rv"><span>// <span class="es">Destinos</span><span class="en">Destinations</span></span><span>[ 04 ]</span></div>
     <h2 class="h2 rv" style="margin-top:48px"><span class="es">Barcelona<br><span class="it">y República Dominicana.</span></span><span class="en">Barcelona<br><span class="it">and the Dominican Republic.</span></span></h2>
     <div class="dest">
-      <article class="dc rv">
+      <a class="dc rv" href="destinos/barcelona/">
         <img src="assets/img/sagrada-familia.jpg" alt="La Sagrada Familia de Barcelona al atardecer" loading="lazy" style="object-position:50% 40%">
         <div class="dc-top"><span>01 · España</span><div class="dc-clock"><b class="clk" data-tz="Europe/Madrid">--:--</b><span class="es">hora local</span><span class="en">local time</span></div></div>
         <div>
           <h3>Barcelona</h3>
           <p><span class="es">Tu puerta a Barcelona y sus alrededores: la ciudad, la costa y la Costa Brava, con todo organizado.</span><span class="en">Your gateway to Barcelona and its surroundings: the city, the coast and the Costa Brava, all arranged for you.</span></p>
+          <span class="btn btn-light dc-go"><span class="es">Ver actividades</span><span class="en">See activities</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></span>
         </div>
-      </article>
-      <article class="dc rv d1">
+      </a>
+      <a class="dc rv d1" href="destinos/republica-dominicana/">
         <img src="assets/img/playa-rd.jpg" alt="Playa de arena blanca y agua turquesa en La Altagracia, República Dominicana" loading="lazy" style="object-position:35% 50%">
         <div class="dc-top"><span>02 · Caribe</span><div class="dc-clock"><b class="clk" data-tz="America/Santo_Domingo">--:--</b><span class="es">hora local</span><span class="en">local time</span></div></div>
         <div>
           <h3><span class="es">República<br>Dominicana</span><span class="en">Dominican<br>Republic</span></h3>
           <p><span class="es">El mismo servicio de conserjería privada, también al otro lado del Atlántico.</span><span class="en">The same private concierge service, across the Atlantic too.</span></p>
+          <span class="btn btn-light dc-go"><span class="es">Ver actividades</span><span class="en">See activities</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></span>
         </div>
-      </article>
+      </a>
     </div>
   </div>
 </section>
@@ -1309,6 +1315,20 @@ const CONTACT = {
     form.fMsg.value = ESP[qs.get('servicio')]
       ? (es ? 'Me interesa el servicio: ' : 'I am interested in: ') + pedido[es?0:1] + (es ? '.\nTipo de espacio y tamaño aproximado: \nZona o dirección: \nFechas y frecuencia: \n' : '.\nType of space and approximate size: \nArea or address: \nDates and frequency: \n')
       : (es ? 'Me interesa el plan: ' : 'I am interested in the plan: ') + pedido[es?0:1] + (es ? '.\nFechas: \nNúmero de personas: \n¿Alguna ocasión especial?: \n' : '.\nDates: \nNumber of guests: \nAny special occasion?: \n');
+  }
+
+  /* --- venir desde una página de destino: oficina, destino y actividad --- */
+  const oficina = qs.get('of');
+  if (oficina){
+    const r = form.querySelector(`input[name="dest"][value="${CSS.escape(oficina)}"]`);
+    if (r) r.checked = true;
+    if (qs.get('dest')) form.fDest.value = qs.get('dest');
+    if (qs.get('act')){
+      const es = root.dataset.lang==='es', from = qs.get('from');
+      form.fMsg.value = (es ? 'Me interesa: ' + qs.get('act') : 'I am interested in: ' + (qs.get('act_en') || qs.get('act')))
+        + (from ? (es ? ' (salida desde ' : ' (departing from ') + from + ')' : '')
+        + (es ? '.\nFechas: \nNúmero de personas: \nHotel o zona de recogida: \n' : '.\nDates: \nNumber of guests: \nHotel or pick-up area: \n');
+    }
   }
 
   /* --- cómo funciona: desplegables --- */
