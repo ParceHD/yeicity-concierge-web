@@ -1267,7 +1267,7 @@ const CONTACT = {
         }catch(err){}
       }
       btn.classList.remove('busy'); btn.disabled = false;
-      if (enviado){ form.classList.add('sent'); form.scrollIntoView({behavior:'smooth', block:'center'}); return; }
+      if (enviado){ try{ sessionStorage.removeItem('ycc-sel'); }catch(e){} form.classList.add('sent'); form.scrollIntoView({behavior:'smooth', block:'center'}); return; }
       // envío automático no disponible → abrir Gmail con el mensaje redactado (si el navegador lo bloquea, se ofrece el botón)
       const cuerpo = Object.entries(datos).map(([k,v])=>`${k}: ${v}`).join('\n');
       const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(MAIL)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
@@ -1315,6 +1315,22 @@ const CONTACT = {
     form.fMsg.value = ESP[qs.get('servicio')]
       ? (es ? 'Me interesa el servicio: ' : 'I am interested in: ') + pedido[es?0:1] + (es ? '.\nTipo de espacio y tamaño aproximado: \nZona o dirección: \nFechas y frecuencia: \n' : '.\nType of space and approximate size: \nArea or address: \nDates and frequency: \n')
       : (es ? 'Me interesa el plan: ' : 'I am interested in the plan: ') + pedido[es?0:1] + (es ? '.\nFechas: \nNúmero de personas: \n¿Alguna ocasión especial?: \n' : '.\nDates: \nNumber of guests: \nAny special occasion?: \n');
+  }
+
+  /* --- venir desde una página de destino con varias actividades marcadas --- */
+  if (qs.get('sel')){
+    let sel = [];
+    try{ sel = JSON.parse(sessionStorage.getItem('ycc-sel')) || []; }catch(e){}
+    if (sel.length){
+      const es = root.dataset.lang==='es';
+      const ofs = [...new Set(sel.map(s=>s.of))], dests = [...new Set(sel.map(s=>s.dest))];
+      const r = form.querySelector(`input[name="dest"][value="${CSS.escape(ofs[0])}"]`);
+      if (r) r.checked = true;
+      form.fDest.value = dests.join(', ');
+      form.fMsg.value = (es ? 'Me interesan estas actividades:\n' : 'I am interested in these activities:\n')
+        + sel.map(s=>'- ' + (es ? s.es : s.en) + ' (' + s.dest + (s.from ? (es ? ', salida desde ' : ', departing from ') + s.from : '') + ')').join('\n')
+        + (es ? '\n\nFechas: \nNúmero de personas: \nHotel o zona de recogida: \n' : '\n\nDates: \nNumber of guests: \nHotel or pick-up area: \n');
+    }
   }
 
   /* --- venir desde una página de destino: oficina, destino y actividad --- */
