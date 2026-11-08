@@ -387,6 +387,12 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .f input:focus,.f select:focus,.f textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,164,92,.18)}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chips label{position:relative}
+.acts-link{display:inline-flex;align-items:center;align-self:flex-start;justify-self:start;width:fit-content;gap:10px;margin-top:14px;padding:11px 18px;border-radius:999px;background:var(--gold-soft);border:1px dashed rgba(156,122,58,.5);color:var(--gold-deep);font-weight:600;font-size:14px;transition:background .3s}
+.acts-link:hover{background:var(--sand)}
+.acts-link[hidden]{display:none}
+.acts-link svg{width:18px;height:18px;flex:none}
+.acts-link svg.ar{width:14px;height:14px;transition:transform .4s var(--ease)}
+.acts-link:hover svg.ar{transform:translateX(4px)}
 .chips input{position:absolute;opacity:0;pointer-events:none}
 .chips label > span{display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid var(--line);font-size:14px;cursor:pointer;transition:all .3s;background:#fff}
 .chips input:checked + span{background:var(--night);color:#fff;border-color:var(--night)}
@@ -1047,6 +1053,8 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
             <label><input type="checkbox" name="svc" value="ciudad"><span><span class="es">Tours y rutas</span><span class="en">Tours &amp; rides</span></span></label>
             <label><input type="checkbox" name="svc" value="asistencia"><span><span class="es">Asistencia</span><span class="en">Assistance</span></span></label>
           </div>
+          <a class="acts-link" data-for="Barcelona" href="destinos/barcelona/"><svg aria-hidden="true"><use href="#i-bell"/></svg><span><span class="es">Ver las actividades en Barcelona</span><span class="en">See activities in Barcelona</span></span><svg class="ar" aria-hidden="true"><use href="#i-ar"/></svg></a>
+          <a class="acts-link" data-for="República Dominicana" href="destinos/republica-dominicana/" hidden><svg aria-hidden="true"><use href="#i-bell"/></svg><span><span class="es">Ver las actividades en República Dominicana</span><span class="en">See activities in the Dominican Republic</span></span><svg class="ar" aria-hidden="true"><use href="#i-ar"/></svg></a>
         </div>
         <div class="f full"><label for="fMsg"><span class="es">Cuéntanos más</span><span class="en">Tell us more</span></label><textarea id="fMsg" name="msg"></textarea></div>
         <div class="f full privacy">
@@ -1316,6 +1324,10 @@ const CONTACT = {
       : (es ? 'Me interesa el plan: ' : 'I am interested in the plan: ') + pedido[es?0:1] + (es ? '.\nFechas: \nNúmero de personas: \n¿Alguna ocasión especial?: \n' : '.\nDates: \nNumber of guests: \nAny special occasion?: \n');
   }
 
+  /* --- enlace a las actividades del destino marcado --- */
+  const actsSync = ()=>{ const v = (form.querySelector('input[name="dest"]:checked')||{}).value; document.querySelectorAll('.acts-link').forEach(a=>a.hidden = a.dataset.for !== v); };
+  form.querySelectorAll('input[name="dest"]').forEach(r=>r.addEventListener('change', actsSync));
+
   /* --- venir desde una página de destino con varias actividades marcadas --- */
   if (qs.get('sel')){
     let sel = [];
@@ -1343,6 +1355,8 @@ const CONTACT = {
         + (es ? '.\nFechas: \nNúmero de personas: \nHotel o zona de recogida: \n' : '.\nDates: \nNumber of guests: \nHotel or pick-up area: \n');
     }
   }
+
+  actsSync();
 
   /* --- cómo funciona: desplegables --- */
   document.querySelectorAll('.st-head').forEach(btn=>btn.addEventListener('click',()=>{
