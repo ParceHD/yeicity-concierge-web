@@ -1356,6 +1356,17 @@ const CONTACT = {
     }
   }
 
+  /* --- si se borran del mensaje las actividades, también se quitan de la selección guardada --- */
+  form.fMsg.addEventListener('input', ()=>{
+    const t = form.fMsg.value;
+    let sel = [];
+    try{ sel = JSON.parse(sessionStorage.getItem('ycc-sel')) || []; }catch(e){}
+    const quedan = t.trim() ? sel.filter(s=>t.includes(s.es) || t.includes(s.en)) : [];
+    if (quedan.length !== sel.length){ try{ sessionStorage.setItem('ycc-sel', JSON.stringify(quedan)); }catch(e){} }
+    // sin texto, que al recargar no se vuelva a escribir solo
+    if (!t.trim() && location.search){ history.replaceState(null, '', location.pathname + location.hash); }
+  });
+
   actsSync();
 
   /* --- cómo funciona: desplegables --- */
