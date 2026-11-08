@@ -1030,13 +1030,12 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
         <div class="f"><label for="fFrom"><span class="es">Llegada</span><span class="en">Arrival</span></label><input id="fFrom" name="from" type="date"></div>
         <div class="f"><label for="fTo"><span class="es">Salida</span><span class="en">Departure</span></label><input id="fTo" name="to" type="date"></div>
         <div class="f full">
-          <label><span class="es">Oficina</span><span class="en">Office</span></label>
+          <label><span class="es">Destino</span><span class="en">Destination</span></label>
           <div class="chips">
             <label><input type="radio" name="dest" value="Barcelona" checked><span>Barcelona</span></label>
             <label><input type="radio" name="dest" value="República Dominicana"><span><span class="es">República Dominicana</span><span class="en">Dominican Republic</span></span></label>
           </div>
         </div>
-        <div class="f full"><label for="fDest"><span class="es">Destino</span><span class="en">Destination</span></label><input id="fDest" name="destino" autocomplete="off" placeholder="" data-ph-es="¿A dónde quieres ir? Ciudad, zona, hotel…" data-ph-en="Where would you like to go? City, area, hotel…"></div>
         <div class="f full">
           <label><span class="es">¿Qué necesitas?</span><span class="en">What do you need?</span></label>
           <div class="chips" id="svcChips">
@@ -1218,8 +1217,8 @@ const CONTACT = {
     const svcs = [...form.querySelectorAll('#svcChips input:checked')].map(i=>i.nextElementSibling.querySelector(es?'.es':'.en').textContent);
     const fmt = v => v ? new Date(v+'T12:00').toLocaleDateString(es?'es-ES':'en-GB',{day:'numeric',month:'short',year:'numeric'}) : '—';
     const msg = (es
-      ? `Hola Yei City Concierge 👋\nSoy ${d.get('name')}.\n\n🏢 Oficina: ${d.get('dest')}\n📍 Destino: ${d.get('destino').trim()||'—'}\n📅 Fechas: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Personas: ${d.get('pax')||'—'}\n🛎 Me interesa: ${svcs.join(', ')||'—'}`
-      : `Hi Yei City Concierge 👋\nI'm ${d.get('name')}.\n\n🏢 Office: ${d.get('dest')==='Barcelona'?'Barcelona':'Dominican Republic'}\n📍 Destination: ${d.get('destino').trim()||'—'}\n📅 Dates: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Guests: ${d.get('pax')||'—'}\n🛎 Interested in: ${svcs.join(', ')||'—'}`)
+      ? `Hola Yei City Concierge 👋\nSoy ${d.get('name')}.\n\n📍 Destino: ${d.get('dest')}\n📅 Fechas: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Personas: ${d.get('pax')||'—'}\n🛎 Me interesa: ${svcs.join(', ')||'—'}`
+      : `Hi Yei City Concierge 👋\nI'm ${d.get('name')}.\n\n📍 Destination: ${d.get('dest')==='Barcelona'?'Barcelona':'Dominican Republic'}\n📅 Dates: ${fmt(d.get('from'))} → ${fmt(d.get('to'))}\n👥 Guests: ${d.get('pax')||'—'}\n🛎 Interested in: ${svcs.join(', ')||'—'}`)
       + (d.get('msg').trim() ? `\n\n${d.get('msg').trim()}` : '');
     const via = (e.submitter && e.submitter.dataset.via) || (WA ? 'wa' : MAIL ? 'mail' : 'ig');
     if(d.get('_honey')) return; // bot
@@ -1239,13 +1238,13 @@ const CONTACT = {
       const nombre = d.get('name').trim();
       const datos = es ? {
         'Nombre': nombre, 'Email': mail, 'Teléfono': d.get('tel').trim() || '—',
-        'Oficina': oficina, 'Destino': d.get('destino').trim() || '—',
+        'Destino': oficina,
         'Llegada': fmtL(d.get('from')), 'Salida': fmtL(d.get('to')),
         'Personas': d.get('pax') || '—', 'Servicios': svcs.join(', ') || '—',
         'Mensaje': d.get('msg').trim() || '—', 'Idioma': 'Español'
       } : {
         'Name': nombre, 'Email': mail, 'Phone': d.get('tel').trim() || '—',
-        'Office': oficina, 'Destination': d.get('destino').trim() || '—',
+        'Destination': oficina,
         'Arrival': fmtL(d.get('from')), 'Departure': fmtL(d.get('to')),
         'Guests': d.get('pax') || '—', 'Services': svcs.join(', ') || '—',
         'Message': d.get('msg').trim() || '—', 'Language': 'English'
@@ -1323,10 +1322,9 @@ const CONTACT = {
     try{ sel = JSON.parse(sessionStorage.getItem('ycc-sel')) || []; }catch(e){}
     if (sel.length){
       const es = root.dataset.lang==='es';
-      const ofs = [...new Set(sel.map(s=>s.of))], dests = [...new Set(sel.map(s=>s.dest))];
+      const ofs = [...new Set(sel.map(s=>s.of))];
       const r = form.querySelector(`input[name="dest"][value="${CSS.escape(ofs[0])}"]`);
       if (r) r.checked = true;
-      form.fDest.value = dests.join(', ');
       form.fMsg.value = (es ? 'Me interesan estas actividades:\n' : 'I am interested in these activities:\n')
         + sel.map(s=>'- ' + (es ? s.es : s.en) + ' (' + s.dest + (s.from ? (es ? ', salida desde ' : ', departing from ') + s.from : '') + ')').join('\n')
         + (es ? '\n\nFechas: \nNúmero de personas: \nHotel o zona de recogida: \n' : '\n\nDates: \nNumber of guests: \nHotel or pick-up area: \n');
@@ -1338,11 +1336,10 @@ const CONTACT = {
   if (oficina){
     const r = form.querySelector(`input[name="dest"][value="${CSS.escape(oficina)}"]`);
     if (r) r.checked = true;
-    if (qs.get('dest')) form.fDest.value = qs.get('dest');
     if (qs.get('act')){
       const es = root.dataset.lang==='es', from = qs.get('from');
       form.fMsg.value = (es ? 'Me interesa: ' + qs.get('act') : 'I am interested in: ' + (qs.get('act_en') || qs.get('act')))
-        + (from ? (es ? ' (salida desde ' : ' (departing from ') + from + ')' : '')
+        + (qs.get('dest') ? ' (' + qs.get('dest') + (from ? (es ? ', salida desde ' : ', departing from ') + from : '') + ')' : '')
         + (es ? '.\nFechas: \nNúmero de personas: \nHotel o zona de recogida: \n' : '.\nDates: \nNumber of guests: \nHotel or pick-up area: \n');
     }
   }
