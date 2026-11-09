@@ -84,8 +84,11 @@ html[data-lang="es"] .en, html[data-lang="en"] .es{display:none !important}
 .brand img{width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px rgba(226,200,142,.18)}
 .brand b{font-family:var(--caps);font-weight:500;font-size:22px;letter-spacing:.08em;line-height:1}
 .brand small{display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.28em;color:var(--gold-2);margin-top:3px}
+.brand span{white-space:nowrap}
+@media (max-width:1400px){ .pill a{padding:8px 11px;font-size:13px} .pill{gap:0} }
+@media (min-width:1081px) and (max-width:1260px){ .hdr-r > .btn{display:none} .brand small{display:none} }
 .pill{display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.pill a{padding:8px 16px;border-radius:999px;font-size:13.5px;color:rgba(255,255,255,.85);transition:background .3s,color .3s}
+.pill a{padding:8px 16px;border-radius:999px;font-size:13.5px;white-space:nowrap;color:rgba(255,255,255,.85);transition:background .3s,color .3s}
 .pill a:hover,.pill a.on{background:rgba(255,255,255,.92);color:var(--night)}
 .hdr-r{display:flex;align-items:center;gap:10px}
 .lang{display:flex;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px;font-family:var(--mono);font-size:11px}
@@ -539,6 +542,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
     <a href="#sobre"><span class="es">Quiénes somos</span><span class="en">About us</span></a>
     <a href="#servicios"><span class="es">Servicios</span><span class="en">Services</span></a>
     <a href="#destinos"><span class="es">Destinos</span><span class="en">Destinations</span></a>
+    <a href="republica-dominicana/"><span class="es">República Dominicana</span><span class="en">Dominican Republic</span></a>
     <a href="#especiales"><span class="es">Servicios especiales</span><span class="en">Special services</span></a>
     <a href="#reserva"><span class="es">Contacto</span><span class="en">Contact</span></a>
   </nav>
@@ -554,8 +558,9 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
   <a href="#sobre"><i>01</i><span class="es">Quiénes somos</span><span class="en">About us</span></a>
   <a href="#servicios"><i>02</i><span class="es">Servicios</span><span class="en">Services</span></a>
   <a href="#destinos"><i>03</i><span class="es">Destinos</span><span class="en">Destinations</span></a>
-  <a href="#especiales"><i>04</i><span class="es">Servicios especiales</span><span class="en">Special services</span></a>
-  <a href="#reserva"><i>05</i><span class="es">Contacto</span><span class="en">Contact</span></a>
+  <a href="republica-dominicana/"><i>04</i><span class="es">República Dominicana</span><span class="en">Dominican Republic</span></a>
+  <a href="#especiales"><i>05</i><span class="es">Servicios especiales</span><span class="en">Special services</span></a>
+  <a href="#reserva"><i>06</i><span class="es">Contacto</span><span class="en">Contact</span></a>
 </nav>
 
 <!-- ============ HERO ============ -->
@@ -1209,6 +1214,7 @@ const CONTACT = {
 
   /* --- carrusel de experiencias --- */
   const rail = document.getElementById('rail');
+  if (rail){ // (la página de República Dominicana no tiene carrusel)
   const stepW = ()=> rail.querySelector('.xc').getBoundingClientRect().width + 16;
   document.getElementById('next').onclick = ()=> rail.scrollBy({left: stepW(), behavior:'smooth'});
   document.getElementById('prev').onclick = ()=> rail.scrollBy({left:-stepW(), behavior:'smooth'});
@@ -1217,6 +1223,7 @@ const CONTACT = {
   addEventListener('pointermove',e=>{ if(!down) return; const dx=e.clientX-sx; if(Math.abs(dx)>4) moved=true; rail.scrollLeft = sl - dx; });
   addEventListener('pointerup',()=>{ if(!down) return; down=false; rail.classList.remove('drag'); });
   rail.addEventListener('click',e=>{ if(moved){ e.preventDefault(); moved=false; } },true);
+  }
 
   /* --- formulario → WhatsApp / email / DM de Instagram --- */
   const form = document.getElementById('form'), toast = document.getElementById('toast');
