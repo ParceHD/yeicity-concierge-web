@@ -112,7 +112,7 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .hero-title .sm{font-family:var(--sans);font-weight:300;font-size:.4em;letter-spacing:.01em;color:rgba(255,255,255,.85)}
 .hero-title .city{font-family:var(--caps);font-weight:500;letter-spacing:.01em}
 .hero-title .it{color:var(--gold-2)}
-.hero-title .l-where{font-size:.4em;line-height:1.3;margin-top:.5em}
+.hero-title .l-where{font-size:.6em;line-height:1.15;margin-top:.3em}
 .hero-title .where{font-family:var(--caps);font-weight:500;letter-spacing:.06em;color:#fff}
 .hero-copy .lead{font-size:clamp(16px,1.35vw,19px);max-width:560px;color:rgba(255,255,255,.9);margin-bottom:32px}
 .hero-copy .ctas{justify-content:center}
@@ -566,7 +566,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
       <h1 class="hero-title">
         <span class="l"><span><span class="es">Concierge privado</span><span class="en">Private concierge</span></span></span>
         <span class="l"><span class="it"><span class="es">para experiencias exclusivas</span><span class="en">for exclusive experiences</span></span></span>
-        <span class="l l-where"><span class="where"><span class="es">en Barcelona y República Dominicana</span><span class="en">in Barcelona &amp; the Dominican Republic</span></span></span>
+        <span class="l l-where"><span class="where"><span class="es">en Barcelona<br>y República Dominicana</span><span class="en">in Barcelona<br>&amp; the Dominican Republic</span></span></span>
       </h1>
       <p class="lead"><span class="es">Descubre el lujo y la exclusividad en Barcelona y República Dominicana con Yei City Concierge.</span><span class="en">Discover luxury and exclusivity in Barcelona and the Dominican Republic with Yei City Concierge.</span></p>
       <div class="ctas">
@@ -1115,7 +1115,7 @@ const CONTACT = {
   instagram: 'yeicityconcierge',
   linkedin: 'https://www.linkedin.com/in/yeila-castillo-castillo-a05629356/',   // enlace completo al perfil, p. ej. 'https://www.linkedin.com/in/...'
   tiktok: 'https://www.tiktok.com/@yccmultiservice',
-  web3forms: ''   // clave de acceso de web3forms.com (opcional; si se rellena, el email se envía por ahí primero)      // enlace completo, p. ej. 'https://www.tiktok.com/@...'
+  web3forms: ''   // clave de web3forms.com: con ella el email llega directo a la clienta; sin ella se abre Gmail con el mensaje listo      // enlace completo, p. ej. 'https://www.tiktok.com/@...'
 };
 
 (function(){
@@ -1261,29 +1261,29 @@ const CONTACT = {
         'Message': d.get('msg').trim() || '—', 'Language': 'English'
       };
       const asunto = es ? `Nueva solicitud web — ${nombre}` : `New website request — ${nombre}`;
-      // 1º Web3Forms (si hay clave) · 2º FormSubmit · 3º si todo falla, abrir el correo del visitante con el mensaje redactado
-      const envios = [];
-      if (CONTACT.web3forms) envios.push(() => fetch('https://api.web3forms.com/submit',{ method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body: JSON.stringify({ access_key: CONTACT.web3forms, subject: asunto, from_name: 'Web Yei City Concierge', replyto: mail, ...datos }) }));
-      envios.push(() => fetch(`https://formsubmit.co/ajax/${encodeURIComponent(MAIL)}`,{ method:'POST', headers:{'Content-Type':'application/json','Accept':'application/json'},
-        body: JSON.stringify({ _subject: asunto, _template: 'table', _captcha: 'false', _replyto: mail, ...datos }) }));
-      let enviado = false;
-      for (const enviar of envios){
-        try{
-          const ctl = new AbortController(); const t = setTimeout(()=>ctl.abort(), 12000);
-          const res = await enviar(); clearTimeout(t);
-          const out = await res.json().catch(()=>({}));
-          if (res.ok && String(out.success) === 'true'){ enviado = true; break; }
-        }catch(err){}
-      }
-      btn.classList.remove('busy'); btn.disabled = false;
-      if (enviado){ try{ sessionStorage.removeItem('ycc-sel'); }catch(e){} form.classList.add('sent'); form.scrollIntoView({behavior:'smooth', block:'center'}); return; }
-      // envío automático no disponible → abrir Gmail con el mensaje redactado (si el navegador lo bloquea, se ofrece el botón)
       const cuerpo = Object.entries(datos).map(([k,v])=>`${k}: ${v}`).join('\n');
       const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(MAIL)}&su=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
       const mailto = `mailto:${MAIL}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
       const otro = `<a href="${mailto}">${es?'otro programa de correo':'another email app'}</a>`;
-      const win = open(gmail, '_blank');
+      let win = null;
+      if (CONTACT.web3forms){
+        // envío directo al correo de la clienta (Web3Forms), con 15 s de límite
+        let enviado = false;
+        try{
+          const ctl = new AbortController(); const t = setTimeout(()=>ctl.abort(), 15000);
+          const res = await fetch('https://api.web3forms.com/submit',{ method:'POST', signal: ctl.signal, headers:{'Content-Type':'application/json','Accept':'application/json'},
+            body: JSON.stringify({ access_key: CONTACT.web3forms, subject: asunto, from_name: 'Web Yei City Concierge', replyto: mail, ...datos }) });
+          clearTimeout(t);
+          const out = await res.json().catch(()=>({}));
+          enviado = res.ok && String(out.success) === 'true';
+        }catch(err){}
+        btn.classList.remove('busy'); btn.disabled = false;
+        if (enviado){ try{ sessionStorage.removeItem('ycc-sel'); }catch(e){} form.classList.add('sent'); form.scrollIntoView({behavior:'smooth', block:'center'}); return; }
+      } else {
+        // sin envío directo: Gmail se abre en el mismo clic, antes de cualquier espera, para que el navegador no lo bloquee
+        btn.classList.remove('busy'); btn.disabled = false;
+        win = open(gmail, '_blank');
+      }
       if (!win){
         showToast(es?`<a class="t-btn" href="${gmail}" target="_blank" rel="noopener">Abrir en Gmail</a> para enviar tu solicitud (o usa ${otro}).`:`<a class="t-btn" href="${gmail}" target="_blank" rel="noopener">Open in Gmail</a> to send your request (or use ${otro}).`, true);
       } else {
