@@ -504,6 +504,8 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 .pl-gal{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:12px;padding-bottom:clamp(56px,7vw,90px)}
 .pl-gal figure{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5}
 .pl-gal figure:first-child{aspect-ratio:auto;grid-row:span 1}
+.pl-gal.gal8{grid-template-columns:repeat(4,1fr)}
+.pl-gal.gal8 figure,.pl-gal.gal8 figure:first-child{aspect-ratio:4/3;grid-column:auto}
 .pl-gal img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 .pl-gal figure:hover img{transform:scale(1.05)}
 .pl-cap{grid-column:1/-1;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
@@ -530,6 +532,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
   .pl-intro,.sv-cols{grid-template-columns:1fr}
   .pl-gal{grid-template-columns:1fr 1fr}
   .pl-gal figure:first-child{grid-column:1/-1;aspect-ratio:16/10}
+  .pl-gal.gal8{grid-template-columns:1fr 1fr} .pl-gal.gal8 figure,.pl-gal.gal8 figure:first-child{grid-column:auto;aspect-ratio:4/3}
   .pl-others .grid{grid-template-columns:1fr 1fr}
 }
 @media (max-width:560px){ .back span.t{display:none} .back{padding:10px 12px} .pl-hero{min-height:72svh} }
@@ -577,11 +580,15 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
     <a href="../../?plan=flamenco#reserva" class="btn btn-dark"><span class="es">Reservar este plan</span><span class="en">Book this plan</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
   </section>
 
-  <section class="pl-gal">
-    <figure><img src="../../assets/img/flamenco.jpg" alt="" loading="lazy"></figure>
-    <figure><img src="../../assets/img/planes/flamenco-2.jpg" alt="" loading="lazy"></figure>
-    <figure><img src="../../assets/img/planes/flamenco-3.jpg" alt="" loading="lazy"></figure>
-    <p class="pl-cap"><span class="es">Imágenes de ejemplo</span><span class="en">Example images</span></p>
+  <section class="pl-gal gal8">
+    <figure><img src="../../assets/img/planes/flamenco-1.jpg" alt="Bailaoras con mantones en el escenario" loading="lazy"></figure>
+    <figure><img src="../../assets/img/planes/flamenco-2.jpg" alt="Bailaora con mantón y guitarrista" loading="lazy" style="object-position:45% 40%"></figure>
+    <figure><img src="../../assets/img/planes/flamenco-3.jpg" alt="Bailaoras con castañuelas" loading="lazy" style="object-position:50% 70%"></figure>
+    <figure><img src="../../assets/img/planes/flamenco-4.jpg" alt="Dos bailaoras con mantones" loading="lazy"></figure>
+    <figure><img src="../../assets/img/planes/flamenco-5.jpg" alt="Bailaoras de perfil con bata de cola" loading="lazy"></figure>
+    <figure><img src="../../assets/img/planes/flamenco-6.jpg" alt="Cuadro flamenco con músicos" loading="lazy"></figure>
+    <figure><img src="../../assets/img/planes/flamenco-7.jpg" alt="Bailaoras en el escenario" loading="lazy" style="object-position:55% 60%"></figure>
+    <figure><img src="../../assets/img/planes/flamenco-8.jpg" alt="Silueta de bailaora" loading="lazy" style="object-position:30% 50%"></figure>
   </section>
 
   <section class="sv-cols">

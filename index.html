@@ -242,6 +242,8 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .rail.drag{cursor:grabbing;scroll-snap-type:none}
 .xc{flex:none;width:clamp(280px,26vw,360px);scroll-snap-align:start;border-radius:var(--r);overflow:hidden;position:relative;aspect-ratio:3/4;background:var(--sand);border:1px solid var(--line);user-select:none}
 .xc img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease);pointer-events:none}
+.xc-fade img.fd{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease,transform 1.2s var(--ease)}
+.xc-fade img.fd.on{opacity:1}
 .xc:hover img{transform:scale(1.06)}
 .xc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(46,36,30,0) 30%,rgba(46,36,30,.55) 55%,rgba(46,36,30,.9) 100%)}
 .xc .tx{color:#fff}
@@ -636,50 +638,6 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
         <p class="note-sign">Yeila Castillo Castillo<small>Yei City Concierge</small></p>
       </div>
     </div>
-
-    <div class="bento">
-      <div class="b b-photo b-q rv">
-        <img src="assets/img/viajera-beige.jpg" alt="Viajera con maleta llegando a su destino" loading="lazy" style="object-position:50% 35%">
-        <blockquote>
-          <span class="es">“La tranquilidad de delegar en manos expertas y disfrutar de lo que realmente importa.”</span>
-          <span class="en">“The peace of mind of delegating to expert hands, so you can enjoy what truly matters.”</span>
-          <small>— Yei City Concierge</small>
-        </blockquote>
-      </div>
-
-      <div class="b b-num rv d1">
-        <svg class="bell"><use href="#i-bell"/></svg>
-        <div class="n" data-count="16">0</div>
-        <p><span class="es">servicios a tu disposición: del traslado desde el aeropuerto a la última copa de la noche.</span><span class="en">services at your disposal: from the airport transfer to the last drink of the night.</span></p>
-      </div>
-
-      <div class="b b-photo rv d2"><img src="assets/img/copas-beige.jpg" alt="Copas de cristal sobre fondo dorado" loading="lazy"></div>
-
-      <div class="b b-dest rv d3">
-        <span class="label" style="border:0;padding:0"><span>// <span class="es">Destinos</span><span class="en">Destinations</span></span><span>02</span></span>
-        <div>
-          <h4>Barcelona<br><span class="it"><span class="es">&amp; República Dominicana</span><span class="en">&amp; Dominican Republic</span></span></h4>
-          <div class="row"><span>BCN · GMT+1</span><span>RD · GMT−4</span></div>
-        </div>
-      </div>
-
-      <div class="b b-week rv d2" id="week">
-        <div class="hd">
-          <h4><span class="es">Organizamos tu semana.<br><span class="it">Tú solo descansas.</span></span><span class="en">We organize your week.<br><span class="it">You just relax.</span></span></h4>
-          <span><span class="es">Ejemplo de plan</span><span class="en">Sample plan</span></span>
-        </div>
-        <div class="week">
-          <div class="day"><div class="bar" style="height:46%;transition-delay:.05s" title="Llegada"><svg viewBox="0 0 24 24"><path d="M2 16h20M5 13l4 1 5-7 2 .5-2.5 7 4 1 1.5-2 1.5.4-1 3.6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></div><small><span class="es">L</span><span class="en">M</span></small></div>
-          <div class="day"><div class="bar" style="height:72%;transition-delay:.12s" title="Cena"><svg viewBox="0 0 24 24"><path d="M7 3v8a2 2 0 0 0 2 2v8M7 3v6M11 3v6M17 3c-2 2-2 6 0 8v10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div><small><span class="es">M</span><span class="en">T</span></small></div>
-          <div class="day"><div class="bar" style="height:58%;transition-delay:.19s" title="Spa"><svg viewBox="0 0 24 24"><path d="M12 21c-5 0-8-3-8-7 3 0 6 1 8 4 2-3 5-4 8-4 0 4-3 7-8 7zM12 18c-2-3-2-8 0-12 2 4 2 9 0 12z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><small><span class="es">X</span><span class="en">W</span></small></div>
-          <div class="day"><div class="bar" style="height:84%;transition-delay:.26s" title="Velero"><svg viewBox="0 0 24 24"><path d="M11 3v13H4zM13 6l6 10h-6zM3 19c2 1.5 4 1.5 6 0 2 1.5 4 1.5 6 0 2 1.5 4 1.5 6 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><small><span class="es">J</span><span class="en">T</span></small></div>
-          <div class="day"><div class="bar" style="height:66%;transition-delay:.33s" title="Rooftop"><svg viewBox="0 0 24 24"><path d="M8 3h8l-1 7a3 3 0 0 1-6 0zM12 13v7M8 21h8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><small><span class="es">V</span><span class="en">F</span></small></div>
-          <div class="day"><div class="bar" style="height:96%;transition-delay:.4s" title="Noche"><svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><small><span class="es">S</span><span class="en">S</span></small></div>
-          <div class="day"><div class="bar" style="height:38%;transition-delay:.47s" title="Relax"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><small><span class="es">D</span><span class="en">S</span></small></div>
-        </div>
-        <div class="foot"><span class="es">Llegada · cena · spa · velero · rooftop · noche · relax</span><span class="en">Arrival · dinner · spa · sailing · rooftop · nightlife · relax</span><span>YCC</span></div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -862,7 +820,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
       <a class="xc" href="planes/jardin/"><img src="assets/img/jardin-secreto.jpg" alt="Restaurante con jardín secreto en Barcelona" loading="lazy"><div class="tx"><span class="es">Rincón secreto</span><span class="en">Hidden gem</span><h3><span class="es">Un jardín en plena ciudad</span><span class="en">A secret garden</span></h3><p><span class="es">Perfecto para una celebración, una cita especial o desconectar.</span><span class="en">Perfect for a celebration, a special date or to disconnect.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
       <a class="xc" href="planes/motos/"><img src="assets/img/moto.jpg" alt="Ruta en moto por la costa" loading="lazy"><div class="tx"><span class="es">En ruta</span><span class="en">On the road</span><h3><span class="es">Motos y rutas</span><span class="en">Motorbike rides</span></h3><p><span class="es">Experiencias sobre dos ruedas por la costa.</span><span class="en">On-the-road experiences along the coast.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
       <a class="xc" href="planes/celebraciones/"><img src="assets/img/barco-lounge.jpg" alt="Barco preparado para una celebración" loading="lazy"><div class="tx"><span class="es">A bordo</span><span class="en">On board</span><h3><span class="es">Celebraciones en el mar</span><span class="en">Celebrations at sea</span></h3><p><span class="es">Un barco preparado al detalle para tu ocasión.</span><span class="en">A boat set up in every detail for your occasion.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
-      <a class="xc" href="planes/flamenco/"><img src="assets/img/flamenco.jpg" alt="Espectáculo de flamenco" loading="lazy"><div class="tx"><span class="es">Cultura</span><span class="en">Culture</span><h3>Flamenco</h3><p><span class="es">Noches con alma en el corazón de la ciudad.</span><span class="en">Soulful nights in the heart of the city.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
+      <a class="xc xc-fade" href="planes/flamenco/"><img class="fd on" src="assets/img/planes/flamenco-2.jpg" alt="Espectáculo de flamenco" loading="lazy" style="object-position:45% 40%"><img class="fd" src="assets/img/planes/flamenco-1.jpg" alt="" loading="lazy" style="object-position:50% 50%"><img class="fd" src="assets/img/planes/flamenco-3.jpg" alt="" loading="lazy" style="object-position:50% 70%"><img class="fd" src="assets/img/planes/flamenco-8.jpg" alt="" loading="lazy" style="object-position:30% 50%"><div class="tx"><span class="es">Cultura</span><span class="en">Culture</span><h3>Flamenco</h3><p><span class="es">Noches con alma en el corazón de la ciudad.</span><span class="en">Soulful nights in the heart of the city.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
       <a class="xc" href="planes/vip/"><img src="assets/img/atardecer-yate.jpg" alt="Planes exclusivos al atardecer" loading="lazy"><div class="tx"><span>VIP</span><h3><span class="es">Planes exclusivos</span><span class="en">Exclusive plans</span></h3><p><span class="es">Y mucho más. Pídenos lo que imagines.</span><span class="en">And much more. Ask us for anything you can imagine.</span></p><span class="more"><span class="es">Ver plan</span><span class="en">View plan</span><svg><use href="#i-ar"/></svg></span></div></a>
     </div>
   </div>
@@ -1192,7 +1150,7 @@ const CONTACT = {
 
   /* --- contador --- */
   const cnt = document.querySelector('[data-count]');
-  new IntersectionObserver((es,o)=>es.forEach(e=>{ if(!e.isIntersecting) return; o.disconnect();
+  if (cnt) new IntersectionObserver((es,o)=>es.forEach(e=>{ if(!e.isIntersecting) return; o.disconnect();
     const end=+cnt.dataset.count, t0=performance.now();
     (function step(t){ const p=Math.min(1,(t-t0)/1400); cnt.firstChild.nodeValue = Math.round(end*(1-Math.pow(1-p,3))); if(p<1) requestAnimationFrame(step); })(t0);
   }),{threshold:.5}).observe(cnt);
@@ -1211,6 +1169,13 @@ const CONTACT = {
   document.querySelectorAll('[data-pick]').forEach(b=>b.addEventListener('click',()=>{
     const cb = document.querySelector(`#svcChips input[value="${b.dataset.pick}"]`); if(cb) cb.checked = true;
   }));
+
+  /* --- tarjeta de flamenco: fotos que se van fundiendo --- */
+  document.querySelectorAll('.xc-fade').forEach(card=>{
+    const imgs = [...card.querySelectorAll('img.fd')]; let i = 0;
+    if (imgs.length < 2 || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    setInterval(()=>{ if (document.hidden) return; imgs[i].classList.remove('on'); i = (i + 1) % imgs.length; imgs[i].classList.add('on'); }, 3800);
+  });
 
   /* --- carrusel de experiencias --- */
   const rail = document.getElementById('rail');
