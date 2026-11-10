@@ -77,8 +77,11 @@ html[data-lang="es"] .en, html[data-lang="en"] .es{display:none !important}
 .brand img{width:44px;height:44px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 3px rgba(226,200,142,.18)}
 .brand b{font-family:var(--caps);font-weight:500;font-size:22px;letter-spacing:.08em;line-height:1}
 .brand small{display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.28em;color:var(--gold-2);margin-top:3px}
+.brand span{white-space:nowrap}
+@media (max-width:1400px){ .pill a{padding:8px 11px;font-size:13px} .pill{gap:0} }
+@media (min-width:1081px) and (max-width:1260px){ .hdr-r > .btn{display:none} .brand small{display:none} }
 .pill{display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.pill a{padding:8px 16px;border-radius:999px;font-size:13.5px;color:rgba(255,255,255,.85);transition:background .3s,color .3s}
+.pill a{padding:8px 16px;border-radius:999px;font-size:13.5px;white-space:nowrap;color:rgba(255,255,255,.85);transition:background .3s,color .3s}
 .pill a:hover,.pill a.on{background:rgba(255,255,255,.92);color:var(--night)}
 .hdr-r{display:flex;align-items:center;gap:10px}
 .lang{display:flex;border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:3px;font-family:var(--mono);font-size:11px}
@@ -105,6 +108,8 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .hero-title .sm{font-family:var(--sans);font-weight:300;font-size:.4em;letter-spacing:.01em;color:rgba(255,255,255,.85)}
 .hero-title .city{font-family:var(--caps);font-weight:500;letter-spacing:.01em}
 .hero-title .it{color:var(--gold-2)}
+.hero-title .l-where{font-size:.6em;line-height:1.15;margin-top:.3em}
+.hero-title .where{font-family:var(--caps);font-weight:500;letter-spacing:.06em;color:#fff}
 .hero-copy .lead{font-size:clamp(16px,1.35vw,19px);max-width:560px;color:rgba(255,255,255,.9);margin-bottom:32px}
 .hero-copy .ctas{justify-content:center}
 .door{position:absolute;inset:0;z-index:1}
@@ -380,6 +385,12 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .f input:focus,.f select:focus,.f textarea:focus{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,164,92,.18)}
 .chips{display:flex;gap:8px;flex-wrap:wrap}
 .chips label{position:relative}
+.acts-link{display:inline-flex;align-items:center;align-self:flex-start;justify-self:start;width:fit-content;gap:10px;margin-top:14px;padding:11px 18px;border-radius:999px;background:var(--gold-soft);border:1px dashed rgba(156,122,58,.5);color:var(--gold-deep);font-weight:600;font-size:14px;transition:background .3s}
+.acts-link:hover{background:var(--sand)}
+.acts-link[hidden]{display:none}
+.acts-link svg{width:18px;height:18px;flex:none}
+.acts-link svg.ar{width:14px;height:14px;transition:transform .4s var(--ease)}
+.acts-link:hover svg.ar{transform:translateX(4px)}
 .chips input{position:absolute;opacity:0;pointer-events:none}
 .chips label > span{display:inline-block;padding:10px 16px;border-radius:999px;border:1px solid var(--line);font-size:14px;cursor:pointer;transition:all .3s;background:#fff}
 .chips input:checked + span{background:var(--night);color:#fff;border-color:var(--night)}
@@ -1053,5 +1064,6 @@ body.has-sel .wa-float{bottom:96px}
   set(); f.addEventListener("click", set);
 })();
 </script>
+<script src="../../assets/js/analytics.js" defer></script>
 </body>
 </html>
