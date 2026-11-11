@@ -12,6 +12,12 @@
     app.innerHTML = `<div class="card narrow"><h1>Panel de mi blog</h1><p>El blog todavía no está conectado a su base de datos. Falta rellenar <code>assets/js/blog-config.js</code> con los datos de Supabase.</p></div>`;
     return;
   }
+  // si se llega desde el enlace de "restablecer contraseña", NO se abre el panel hasta crear una contraseña nueva
+  // (se recuerda en la pestaña, así que recargar no se lo salta)
+  const RECUP = 'ycc-recuperar';
+  const recuperando = () => { try { return sessionStorage.getItem(RECUP) === '1'; } catch (e) { return false; } };
+  const marcarRecuperacion = on => { try { on ? sessionStorage.setItem(RECUP, '1') : sessionStorage.removeItem(RECUP); } catch (e) {} };
+  if (/type=recovery/.test(location.hash + location.search)) marcarRecuperacion(true);
   const sb = window.supabase.createClient(C.url, C.anonKey, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
   const B = C.bucket || 'blog';
   let posts = [], filtro = 'todas', editando = null, quill = null, quillEn = null, sucio = false;
@@ -48,28 +54,33 @@
     });
   }
   function nuevaClave(){
-    app.innerHTML = `<form class="card narrow" id="fClave"><h1>Nueva contraseña</h1>
+    sucio = false; $('#who').innerHTML = '';
+    app.innerHTML = `<form class="card narrow" id="fClave"><h1>Crea tu contraseña nueva</h1>
+      <p style="margin:0 0 6px;color:var(--muted)">Para entrar en tu blog tienes que elegir una contraseña nueva.</p>
       <label>Contraseña nueva (mínimo 10 caracteres)<input type="password" name="p1" required minlength="10" autocomplete="new-password"></label>
       <label>Repítela<input type="password" name="p2" required minlength="10" autocomplete="new-password"></label>
-      <button class="btn btn-dark" type="submit">Guardar contraseña</button></form>`;
+      <button class="btn btn-dark" type="submit">Guardar contraseña y entrar</button>
+      <button class="link" type="button" id="cancelarClave">Cancelar y cerrar sesión</button></form>`;
     $('#fClave').addEventListener('submit', async e => {
       e.preventDefault(); const f = e.target;
       if (f.p1.value !== f.p2.value){ aviso('Las contraseñas no coinciden.', true); return; }
       const { error } = await sb.auth.updateUser({ password: f.p1.value });
-      if (error){ aviso('No se ha podido cambiar la contraseña.', true); return; }
-      aviso('Contraseña guardada.'); entrar();
+      if (error){ aviso(/different|same/i.test(error.message || '') ? 'La contraseña nueva tiene que ser distinta de la anterior.' : 'No se ha podido cambiar la contraseña.', true); return; }
+      marcarRecuperacion(false); aviso('Contraseña guardada.'); entrar();
     });
+    $('#cancelarClave').addEventListener('click', async () => { marcarRecuperacion(false); await sb.auth.signOut(); login(); });
   }
   async function entrar(){
     const { data: { session } } = await sb.auth.getSession();
-    if (!session){ login(); return; }
+    if (!session){ marcarRecuperacion(false); login(); return; }
+    if (recuperando()){ nuevaClave(); return; }
     const { data: ok, error } = await sb.rpc('es_admin_blog');
     if (error || !ok){ await sb.auth.signOut(); login('Esta cuenta no tiene permiso para gestionar el blog.'); return; }
     $('#who').innerHTML = `<span>${esc(session.user.email)}</span><button class="link" id="salir">Cerrar sesión</button>`;
     $('#salir').addEventListener('click', async () => { if (sucio && !confirm('Tienes cambios sin guardar. ¿Salir igualmente?')) return; await sb.auth.signOut(); $('#who').innerHTML = ''; login(); });
     panel();
   }
-  sb.auth.onAuthStateChange(ev => { if (ev === 'PASSWORD_RECOVERY') nuevaClave(); });
+  sb.auth.onAuthStateChange(ev => { if (ev === 'PASSWORD_RECOVERY'){ marcarRecuperacion(true); nuevaClave(); } });
 
   // ---------------- listado ----------------
   const ETQ = { publicado: 'Publicada', borrador: 'Borrador', retirado: 'Retirada' };
