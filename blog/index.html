@@ -591,6 +591,16 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 .bp-gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:clamp(30px,4vw,50px) 0}
 .bp-gal figure{aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--sand)}
 .bp-gal img{width:100%;height:100%;object-fit:cover}
+.bp-body .bp-car{position:relative;margin:2em 0;aspect-ratio:3/2;border-radius:18px;overflow:hidden;background:var(--sand);box-shadow:0 30px 60px -40px rgba(46,36,30,.55);touch-action:pan-y;user-select:none}
+.bp-body .bp-car img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;margin:0;border-radius:0;opacity:0;transition:opacity 1s ease}
+.bp-body .bp-car img.on,.bp-body .bp-car-1 img{opacity:1}
+.bp-car-b{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(251,247,241,.88);color:var(--ink);font-size:26px;line-height:1;cursor:pointer;box-shadow:0 8px 20px -8px rgba(0,0,0,.45);transition:background .3s}
+.bp-car-b:hover{background:#fff} .bp-car-b.prev{left:14px} .bp-car-b.next{right:14px}
+.bp-car-n{position:absolute;top:14px;right:14px;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.1em;padding:4px 10px;border-radius:999px;background:rgba(46,36,30,.6);color:#fff}
+.bp-car-d{position:absolute;left:0;right:0;bottom:14px;z-index:2;display:flex;justify-content:center;gap:7px}
+.bp-car-d button{width:8px;height:8px;padding:0;border-radius:50%;border:0;background:rgba(255,255,255,.55);cursor:pointer;transition:background .3s,transform .3s}
+.bp-car-d button.on{background:#fff;transform:scale(1.3)}
+@media (max-width:600px){ .bp-car-b{width:36px;height:36px;font-size:22px} .bp-car-b.prev{left:8px} .bp-car-b.next{right:8px} }
 .bp-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:clamp(36px,5vw,60px);padding-top:26px;border-top:1px solid var(--line)}
 @media (max-width:900px){ .bl-grid{grid-template-columns:1fr 1fr} .bl-first .bl-link{flex-direction:column} .bl-first figure{aspect-ratio:3/2} }
 @media (max-width:600px){ .bl-filtro{flex-wrap:nowrap;overflow-x:auto;margin-left:calc(var(--gut)*-1);margin-right:calc(var(--gut)*-1);padding:0 var(--gut) 4px;scrollbar-width:none} .bl-filtro button{flex:none} .bl-grid{grid-template-columns:1fr} .bp-gal{grid-template-columns:1fr 1fr} .bp-body{font-size:17px} .back span.t{display:none} .back{padding:10px 12px} }

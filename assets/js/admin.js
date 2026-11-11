@@ -14,7 +14,7 @@
   }
   const sb = window.supabase.createClient(C.url, C.anonKey, { auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true } });
   const B = C.bucket || 'blog';
-  let posts = [], filtro = 'todas', editando = null, quill = null, sucio = false;
+  let posts = [], filtro = 'todas', editando = null, quill = null, quillEn = null, sucio = false;
 
   addEventListener('beforeunload', e => { if (sucio){ e.preventDefault(); e.returnValue = ''; } });
 
@@ -82,11 +82,11 @@
     posts = data;
     const vis = posts.filter(p => filtro === 'todas' || p.estado === filtro);
     $('#lista').innerHTML = vis.length ? vis.map(p => `
-      <div class="row">
-        <div class="thumb">${p.portada_url ? `<img src="${esc(p.portada_url)}" alt="">` : ''}</div>
-        <div class="info"><b>${esc(p.titulo)}</b><span class="st st-${p.estado}">${ETQ[p.estado]}</span>
+      <div class="pp-row">
+        <div class="pp-thumb">${p.portada_url ? `<img src="${esc(p.portada_url)}" alt="">` : ''}</div>
+        <div class="pp-info"><b>${esc(p.titulo)}</b><span class="est est-${p.estado}">${ETQ[p.estado]}</span>
           <small>${p.estado === 'publicado' ? 'Publicada el ' + f(p.publicado_en) : 'Última edición: ' + f(p.actualizado)}</small></div>
-        <div class="acc">
+        <div class="pp-acc">
           ${p.estado === 'publicado' ? `<a class="link" href="../blog/articulo/?a=${encodeURIComponent(p.slug)}" target="_blank" rel="noopener">Ver</a>` : ''}
           <button class="link" data-ed="${p.id}">Editar</button>
           <button class="link bad" data-del="${p.id}">Eliminar</button>
@@ -97,6 +97,18 @@
       if (e){ aviso('No se ha podido abrir la publicación.', true); return; } editor(p);
     }));
     app.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => eliminar(posts.find(p => p.id === b.dataset.del))));
+  }
+
+  // tras guardar: borra del almacén las fotos de este artículo que ya no se usan (portada cambiada, fotos quitadas…)
+  async function limpiarFotos(p){
+    try {
+      const carpeta = `posts/${p.id}`;
+      const { data: fs } = await sb.storage.from(B).list(carpeta, { limit: 1000 });
+      if (!fs || !fs.length) return;
+      const usado = [p.portada_url, ...(p.galeria || []).map(g => g.url), p.contenido, p.contenido_en].filter(Boolean).join(' ');
+      const sobran = fs.map(x => x.name).filter(n => !usado.includes(`${carpeta}/${n}`)).map(n => `${carpeta}/${n}`);
+      if (sobran.length) await sb.storage.from(B).remove(sobran);
+    } catch (e){}
   }
 
   async function eliminar(p){
@@ -187,22 +199,37 @@
     p = p || { id: crypto.randomUUID(), titulo: '', subtitulo: '', descripcion: '', portada_url: '', portada_alt: '', contenido: '', galeria: [], estado: 'borrador' };
     editando = { ...p, galeria: Array.isArray(p.galeria) ? p.galeria.slice() : [], nuevo };
     app.innerHTML = `<div class="top"><div><button class="link" id="volver">← Volver al panel</button><h1>${nuevo ? 'Nueva publicación' : 'Editar publicación'}</h1>
-        <p class="muted">Estado: <span class="st st-${p.estado}">${ETQ[p.estado]}</span></p></div></div>
+        <p class="muted">Estado: <span class="est est-${p.estado}">${ETQ[p.estado]}</span></p></div></div>
       <div class="ed">
-        <label>Título del artículo<input id="eTit" maxlength="160" value="${esc(p.titulo)}" placeholder="Por ejemplo: Una tarde en velero frente a Barcelona"></label>
-        <label><span>Subtítulo <span class="opt">(opcional)</span></span><input id="eSub" maxlength="240" value="${esc(p.subtitulo)}"></label>
-        <label><span>Descripción breve <span class="opt">(sale en el listado del blog y en Google)</span></span><textarea id="eDes" maxlength="320" rows="3">${esc(p.descripcion)}</textarea><small class="cnt" id="cDes"></small></label>
-        <label><span>Palabras clave <span class="opt">(separadas por comas; sirven para buscar en el blog. Ej.: velero, Barcelona, aniversario)</span></span><input id="eTags" maxlength="300" value="${esc((p.etiquetas || []).join(', '))}"></label>
-        <div class="fld"><span class="lbl">Imagen de portada</span>
-          <div class="cover" id="eCov">${p.portada_url ? `<img src="${esc(p.portada_url)}" alt="">` : '<span>Sin portada</span>'}</div>
-          <div class="row-b"><button class="btn btn-line" id="bCov" type="button">${p.portada_url ? 'Cambiar portada' : 'Elegir portada'}</button>${p.portada_url ? '<button class="link bad" id="qCov" type="button">Quitar</button>' : ''}</div>
-          <label><span>Descripción de la foto <span class="opt">(para personas con discapacidad visual y para Google)</span></span><input id="eAlt" maxlength="200" value="${esc(p.portada_alt)}"></label></div>
-        <div class="fld"><span class="lbl">Contenido del artículo</span><div id="eCont"></div>
-          <small class="muted">Usa la barra para poner títulos, negritas, cursivas, listas, enlaces o añadir una foto en medio del texto.</small></div>
-        <div class="fld"><span class="lbl">Fotografías adicionales <span class="opt">(galería al final del artículo)</span></span>
+        <section class="idioma">
+          <h2 class="id-h"><span class="flag">ES</span>Textos en español <span class="opt">· obligatorio</span></h2>
+          <label>Título del artículo<input id="eTit" maxlength="160" value="${esc(p.titulo)}" placeholder="Por ejemplo: Una tarde en velero frente a Barcelona"></label>
+          <label><span>Subtítulo <span class="opt">(opcional)</span></span><input id="eSub" maxlength="240" value="${esc(p.subtitulo)}"></label>
+          <label><span>Descripción breve <span class="opt">(sale en el listado del blog y en Google)</span></span><textarea id="eDes" maxlength="320" rows="3">${esc(p.descripcion)}</textarea><small class="cnt" id="cDes"></small></label>
+          <div class="fld"><span class="lbl">Texto del artículo</span><div id="eCont"></div>
+            <small class="muted">Usa la barra para poner títulos, negritas, cursivas, listas, enlaces o añadir una foto en medio del texto.</small></div>
+        </section>
+        <section class="idioma ingles">
+          <h2 class="id-h"><span class="flag">EN</span>Texts in English <span class="opt">· opcional</span><span class="est" id="enEstado"></span></h2>
+          <p class="muted">Escribe aquí la versión en inglés. Quien vea la web en inglés leerá esta versión. <b>Si lo dejas vacío</b>, verá el artículo en español. Si lo rellenas, pon al menos el título y el texto.</p>
+          <label>Title<input id="eTitEn" maxlength="160" value="${esc(p.titulo_en)}" placeholder="E.g.: A sunset sail off Barcelona"></label>
+          <label><span>Subtitle <span class="opt">(opcional)</span></span><input id="eSubEn" maxlength="240" value="${esc(p.subtitulo_en)}"></label>
+          <label><span>Short description <span class="opt">(listado del blog y Google)</span></span><textarea id="eDesEn" maxlength="320" rows="3">${esc(p.descripcion_en)}</textarea><small class="cnt" id="cDesEn"></small></label>
+          <div class="fld"><span class="lbl">Article text</span><div id="eContEn"></div></div>
+        </section>
+        <section class="idioma comun">
+          <h2 class="id-h">Común a los dos idiomas</h2>
+          <label><span>Palabras clave <span class="opt">(separadas por comas; sirven para buscar en el blog. Ej.: velero, Barcelona, aniversario)</span></span><input id="eTags" maxlength="300" value="${esc((p.etiquetas || []).join(', '))}"></label>
+          <div class="fld"><span class="lbl">Imagen de portada</span>
+            <div class="cover" id="eCov">${p.portada_url ? `<img src="${esc(p.portada_url)}" alt="">` : '<span>Sin portada</span>'}</div>
+            <div class="row-b"><button class="btn btn-line" id="bCov" type="button">${p.portada_url ? 'Cambiar portada' : 'Elegir portada'}</button>${p.portada_url ? '<button class="link bad" id="qCov" type="button">Quitar</button>' : ''}</div>
+            <label><span>Descripción de la foto en español <span class="opt">(para personas con discapacidad visual y para Google)</span></span><input id="eAlt" maxlength="200" value="${esc(p.portada_alt)}"></label>
+            <label><span>Photo description in English <span class="opt">(opcional)</span></span><input id="eAltEn" maxlength="200" value="${esc(p.portada_alt_en)}"></label></div>
+        <div class="fld"><span class="lbl">Fotografías adicionales <span class="opt">(se muestran en un carrusel dentro del artículo)</span></span>
           <div class="gal" id="eGal"></div><button class="btn btn-line" id="bGal" type="button">+ Añadir fotografías</button></div>
         <div class="fld"><span class="lbl">Estado</span><div class="estado">
           ${['borrador','publicado'].concat(p.estado === 'retirado' ? ['retirado'] : []).map(k => `<label class="chip"><input type="radio" name="est" value="${k}" ${p.estado === k ? 'checked' : ''}><span>${{ borrador: 'Borrador (solo lo ves tú)', publicado: 'Publicado (visible en la web)', retirado: 'Retirado (oculto, sin borrar)' }[k]}</span></label>`).join('')}</div></div>
+        </section>
       </div>
       <div class="bar">
         <button class="btn btn-line" id="bBor" type="button">Guardar borrador</button>
@@ -210,11 +237,17 @@
         ${p.estado === 'publicado' ? '<button class="btn btn-line" id="bRet" type="button">Retirar de la web</button><button class="btn btn-dark" id="bPub" type="button">Guardar cambios</button>' : '<button class="btn btn-dark" id="bPub" type="button">Publicar</button>'}
       </div>`;
     $('#volver').addEventListener('click', () => { if (!sucio || confirm('Tienes cambios sin guardar. ¿Salir sin guardar?')) panel(); });
-    quill = new Quill('#eCont', { theme: 'snow', placeholder: 'Escribe aquí tu anécdota…', modules: { toolbar: { container: [[{ header: [2, 3, false] }], ['bold', 'italic', 'underline'], ['blockquote', { list: 'ordered' }, { list: 'bullet' }], ['link', 'image'], ['clean']], handlers: { image: fotoEnTexto } } } });
+    const barra = { container: [[{ header: [2, 3, false] }], ['bold', 'italic', 'underline'], ['blockquote', { list: 'ordered' }, { list: 'bullet' }], ['link', 'image'], ['clean']], handlers: { image: function(){ fotoEnTexto(this.quill); } } };
+    quill = new Quill('#eCont', { theme: 'snow', placeholder: 'Escribe aquí tu anécdota…', modules: { toolbar: barra } });
+    quillEn = new Quill('#eContEn', { theme: 'snow', placeholder: 'Write the English version here (optional)…', modules: { toolbar: barra } });
     if (p.contenido) quill.clipboard.dangerouslyPasteHTML(window.BLOG.limpiar(p.contenido));
-    quill.on('text-change', () => sucio = true);
+    if (p.contenido_en) quillEn.clipboard.dangerouslyPasteHTML(window.BLOG.limpiar(p.contenido_en));
+    const estadoEn = () => { const lleno = $('#eTitEn').value.trim() && quillEn.getText().trim(), algo = $('#eTitEn').value.trim() || $('#eSubEn').value.trim() || $('#eDesEn').value.trim() || quillEn.getText().trim();
+      const e = $('#enEstado'); e.className = 'est ' + (lleno ? 'st-publicado' : algo ? 'st-borrador' : 'st-retirado'); e.textContent = lleno ? 'Completo' : algo ? 'A medias' : 'Vacío'; };
+    [quill, quillEn].forEach(q => q.on('text-change', () => { sucio = true; estadoEn(); }));
+    ['#eTitEn', '#eSubEn', '#eDesEn'].forEach(id => $(id).addEventListener('input', estadoEn)); estadoEn();
     app.querySelectorAll('.ed input, .ed textarea').forEach(i => i.addEventListener('input', () => sucio = true));
-    const cuenta = () => $('#cDes').textContent = `${$('#eDes').value.length} / 320`; cuenta(); $('#eDes').addEventListener('input', cuenta);
+    [['#eDes', '#cDes'], ['#eDesEn', '#cDesEn']].forEach(([t, c]) => { const cuenta = () => $(c).textContent = `${$(t).value.length} / 320`; cuenta(); $(t).addEventListener('input', cuenta); });
     pintarGaleria(); sucio = false;
 
     $('#bCov').addEventListener('click', async () => {
@@ -241,9 +274,9 @@
     $('#bPrev').addEventListener('click', vistaPrevia);
     app.querySelectorAll('input[name=est]').forEach(i => i.addEventListener('change', () => sucio = true));
   }
-  async function fotoEnTexto(){
+  async function fotoEnTexto(q){
     const [file] = await elegir(false); if (!file) return;
-    try { aviso('Subiendo foto…'); const url = await subir(file, editando.id); const r = quill.getSelection(true); quill.insertEmbed(r ? r.index : quill.getLength(), 'image', url, 'user'); aviso('Foto añadida.'); }
+    try { aviso('Subiendo foto…'); const url = await subir(file, editando.id); const r = q.getSelection(true); q.insertEmbed(r ? r.index : q.getLength(), 'image', url, 'user'); aviso('Foto añadida.'); }
     catch (e){ aviso(e.message, true); }
   }
   function pintarGaleria(){
@@ -256,6 +289,9 @@
       titulo: $('#eTit').value.trim(), subtitulo: $('#eSub').value.trim() || null, descripcion: $('#eDes').value.trim() || null,
       portada_url: editando.portada_url || null, portada_alt: $('#eAlt').value.trim() || null,
       contenido: window.BLOG.limpiar(quill.root.innerHTML === '<p><br></p>' ? '' : quill.root.innerHTML),
+      titulo_en: $('#eTitEn').value.trim() || null, subtitulo_en: $('#eSubEn').value.trim() || null, descripcion_en: $('#eDesEn').value.trim() || null,
+      portada_alt_en: $('#eAltEn').value.trim() || null,
+      contenido_en: quillEn.getText().trim() ? window.BLOG.limpiar(quillEn.root.innerHTML) : null,
       galeria: editando.galeria.map(g => ({ url: g.url, alt: g.alt || '' })),
       etiquetas: [...new Set($('#eTags').value.split(',').map(s => s.trim().replace(/\s+/g, ' ').slice(0, 30)).filter(Boolean))].slice(0, 12)
     };
@@ -263,6 +299,8 @@
   async function guardar(estado){
     const d = datos();
     if (!d.titulo){ aviso('Escribe un título antes de guardar.', true); $('#eTit').focus(); return; }
+    const algoEn = d.titulo_en || d.subtitulo_en || d.descripcion_en || d.contenido_en;
+    if (estado === 'publicado' && algoEn && !(d.titulo_en && d.contenido_en)){ aviso('Versión en inglés a medias: pon el título y el texto en inglés, o deja vacío el bloque English.', true); return; }
     if (estado === 'publicado' && !d.contenido){ aviso('El artículo está vacío: escribe el contenido antes de publicarlo.', true); return; }
     if (estado === 'publicado' && !d.portada_url && !confirm('El artículo no tiene imagen de portada. ¿Publicarlo igualmente?')) return;
     const fila = { ...d, estado };
@@ -279,18 +317,22 @@
     }
     if (res.error){ aviso('No se ha podido guardar. Revisa tu conexión e inténtalo de nuevo.', true); return; }
     sucio = false;
+    limpiarFotos(res.data);
     aviso({ borrador: 'Borrador guardado.', publicado: '¡Publicado! Ya se ve en la web.', retirado: 'Retirado de la web. Sigue guardado en Retiradas.' }[estado]);
     editor(res.data);
   }
   function vistaPrevia(){
     const d = datos();
-    const ov = document.createElement('div'); ov.className = 'prev';
-    ov.innerHTML = `<div class="prev-bar"><b>Vista previa</b> · así se verá en la web<button class="btn btn-light" type="button">Cerrar</button></div>
-      <article class="bp">${window.BLOG.articuloHTML({ ...d, publicado_en: editando.publicado_en || new Date().toISOString() }, '../')}</article>`;
+    const ov = document.createElement('div'); ov.className = 'pp-preview';
+    const art = { ...d, publicado_en: editando.publicado_en || new Date().toISOString() };
+    ov.innerHTML = `<div class="prev-bar"><b>Vista previa</b> · así se verá en la web
+      <span class="prev-l"><button type="button" data-pl="es" class="on">Español</button><button type="button" data-pl="en">English</button></span>
+      <button class="btn btn-light" type="button" data-cerrar>Cerrar</button></div><article class="bp"></article>`;
+    const pinta = l => { ov.querySelector('.bp').innerHTML = window.BLOG.articuloHTML(art, '../', l); ov.querySelectorAll('[data-pl]').forEach(b => b.classList.toggle('on', b.dataset.pl === l)); ov.querySelectorAll('.bp a').forEach(a => a.addEventListener('click', e => e.preventDefault())); };
+    ov.querySelectorAll('[data-pl]').forEach(b => b.addEventListener('click', () => pinta(b.dataset.pl))); pinta('es');
     document.body.appendChild(ov); document.body.style.overflow = 'hidden';
     const cerrar = () => { ov.remove(); document.body.style.overflow = ''; };
-    ov.querySelector('.prev-bar button').addEventListener('click', cerrar);
-    ov.querySelectorAll('.bp a').forEach(a => a.addEventListener('click', e => e.preventDefault()));
+    ov.querySelector('[data-cerrar]').addEventListener('click', cerrar);
     addEventListener('keydown', function k(e){ if (e.key === 'Escape'){ cerrar(); removeEventListener('keydown', k); } });
   }
 
