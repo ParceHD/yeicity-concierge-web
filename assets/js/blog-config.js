@@ -3,7 +3,7 @@
    La seguridad la dan las políticas de la base de datos (ver _herramientas/blog-supabase.sql).
    NUNCA pongas aquí la clave "service_role". */
 window.BLOG_CONFIG = {
-  url: '',      // p. ej. 'https://abcdefghijkl.supabase.co'
-  anonKey: '',  // clave "anon public"
+  url: 'https://tgxiyfujkabcjcxpkcqw.supabase.co',
+  anonKey: 'sb_publishable_pZLgJwvyF6pZ2_Fu86VJsA_Eo99GH7E',  // clave pública (publishable)
   bucket: 'blog'
 };

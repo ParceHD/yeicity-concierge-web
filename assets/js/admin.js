@@ -143,6 +143,7 @@
         <label>Título del artículo<input id="eTit" maxlength="160" value="${esc(p.titulo)}" placeholder="Por ejemplo: Una tarde en velero frente a Barcelona"></label>
         <label><span>Subtítulo <span class="opt">(opcional)</span></span><input id="eSub" maxlength="240" value="${esc(p.subtitulo)}"></label>
         <label><span>Descripción breve <span class="opt">(sale en el listado del blog y en Google)</span></span><textarea id="eDes" maxlength="320" rows="3">${esc(p.descripcion)}</textarea><small class="cnt" id="cDes"></small></label>
+        <label><span>Palabras clave <span class="opt">(separadas por comas; sirven para buscar en el blog. Ej.: velero, Barcelona, aniversario)</span></span><input id="eTags" maxlength="300" value="${esc((p.etiquetas || []).join(', '))}"></label>
         <div class="fld"><span class="lbl">Imagen de portada</span>
           <div class="cover" id="eCov">${p.portada_url ? `<img src="${esc(p.portada_url)}" alt="">` : '<span>Sin portada</span>'}</div>
           <div class="row-b"><button class="btn btn-line" id="bCov" type="button">${p.portada_url ? 'Cambiar portada' : 'Elegir portada'}</button>${p.portada_url ? '<button class="link bad" id="qCov" type="button">Quitar</button>' : ''}</div>
@@ -203,7 +204,8 @@
       titulo: $('#eTit').value.trim(), subtitulo: $('#eSub').value.trim() || null, descripcion: $('#eDes').value.trim() || null,
       portada_url: editando.portada_url || null, portada_alt: $('#eAlt').value.trim() || null,
       contenido: window.BLOG.limpiar(quill.root.innerHTML === '<p><br></p>' ? '' : quill.root.innerHTML),
-      galeria: editando.galeria.map(g => ({ url: g.url, alt: g.alt || '' }))
+      galeria: editando.galeria.map(g => ({ url: g.url, alt: g.alt || '' })),
+      etiquetas: [...new Set($('#eTags').value.split(',').map(s => s.trim().replace(/\s+/g, ' ').slice(0, 30)).filter(Boolean))].slice(0, 12)
     };
   }
   async function guardar(estado){
