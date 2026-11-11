@@ -21,7 +21,7 @@
   --paper:#FBF7F1; --cream:#F4ECE1; --sand:#EADFCF; --nude:#EBD9CC; --blush:#F3E4DB; --taupe:#8C7B6E;
   --ink:#2E2723; --muted:#7A6E66; --pen:#2F2B3A;
   --line:rgba(58,47,41,.14); --line-l:rgba(58,47,41,.14);
-  --hand:'Caveat', 'Segoe Print', cursive;
+  --hand:'Shadows Into Light', 'Caveat', 'Segoe Print', cursive;
   --serif:'Cormorant Garamond', Georgia, serif;
   --caps:'Cinzel', 'Cormorant Garamond', serif;
   --sans:'Manrope', system-ui, sans-serif;
@@ -79,7 +79,7 @@ html[data-lang="es"] .en, html[data-lang="en"] .es{display:none !important}
 .brand small{display:block;font-family:var(--caps);font-size:9.5px;letter-spacing:.28em;color:var(--gold-2);margin-top:3px}
 .brand span{white-space:nowrap}
 @media (max-width:1400px){ .pill a{padding:8px 11px;font-size:13px} .pill{gap:0} }
-@media (min-width:1081px) and (max-width:1260px){ .hdr-r > .btn{display:none} .brand small{display:none} }
+@media (min-width:1081px) and (max-width:1360px){ .hdr-r > .btn{display:none} .brand small{display:none} }
 .pill{display:flex;gap:4px;padding:5px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
 .pill a{padding:8px 16px;border-radius:999px;font-size:13.5px;white-space:nowrap;color:rgba(255,255,255,.85);transition:background .3s,color .3s}
 .pill a:hover,.pill a.on{background:rgba(255,255,255,.92);color:var(--night)}
@@ -271,11 +271,11 @@ body.menu .burger span:last-child{transform:translateY(-2.75px) rotate(-45deg)}
 .me-ph figcaption b{font-weight:500;color:var(--gold-deep)}
 .me .note{margin-left:-44px;z-index:2}
 /* nota escrita a mano */
-.note{position:relative;background:#FFFDF8;border-radius:6px;padding:46px clamp(26px,4vw,54px) 40px;color:var(--pen);font-family:var(--hand);font-weight:500;font-size:27px;line-height:40px;transform:rotate(-.6deg);box-shadow:0 1px 0 rgba(46,36,30,.06),0 34px 60px -38px rgba(46,36,30,.45);background-image:repeating-linear-gradient(180deg,transparent 0 39px,rgba(193,160,106,.24) 39px 40px);background-position:0 38px}
+.note{position:relative;background:#FFFDF8;border-radius:6px;padding:46px clamp(26px,4vw,54px) 40px;color:var(--pen);font-family:var(--hand);font-weight:400;font-size:28px;line-height:40px;transform:rotate(-.6deg);box-shadow:0 1px 0 rgba(46,36,30,.06),0 34px 60px -38px rgba(46,36,30,.45);background-image:repeating-linear-gradient(180deg,transparent 0 39px,rgba(193,160,106,.24) 39px 40px);background-position:0 38px}
 .note::before{content:"";position:absolute;top:-14px;left:50%;width:120px;height:28px;transform:translateX(-50%) rotate(1.5deg);background:rgba(235,217,204,.75);border-radius:2px}
 .note p{margin:0 0 40px}
 .note .note-end{color:var(--gold-deep);margin-bottom:22px}
-.note .note-sign{margin:0;text-align:right;font-weight:600;font-size:34px}
+.note .note-sign{margin:0;text-align:right;font-weight:400;font-size:36px}
 .note .note-sign small{display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;line-height:1.6;color:var(--muted)}
 
 /* ---------- LISTADO DE SERVICIOS ---------- */
