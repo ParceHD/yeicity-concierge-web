@@ -39,7 +39,12 @@
       const email = $('#fLogin').email.value.trim();
       if (!email){ aviso('Escribe primero tu correo electrónico.', true); return; }
       const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: location.origin + location.pathname });
-      aviso(error ? 'No se ha podido enviar el correo. Inténtalo más tarde.' : 'Te hemos enviado un correo para crear una contraseña nueva.', !!error);
+      if (!error){ aviso('Te hemos enviado un correo para crear una contraseña nueva. Revisa también la carpeta de spam.'); return; }
+      const m = String(error.message || '');
+      aviso(/rate|limit|seconds|security purposes/i.test(m) ? 'Ya se ha pedido hace poco. Espera unos minutos y vuelve a intentarlo.'
+        : /not authorized|authorized/i.test(m) ? 'El servidor de correo no puede escribir a esta dirección todavía. Avisa a TESSEN.'
+        : 'No se ha podido enviar el correo (' + m + '). Avisa a TESSEN.', true);
+      console.warn('Recuperar contraseña:', m);
     });
   }
   function nuevaClave(){
