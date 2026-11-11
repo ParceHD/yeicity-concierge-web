@@ -526,7 +526,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 .bl-card{border-radius:var(--r);overflow:hidden;background:#fff;border:1px solid var(--line);transition:transform .5s var(--ease),box-shadow .5s var(--ease)}
 .bl-card:hover{transform:translateY(-4px);box-shadow:0 30px 60px -40px rgba(46,36,30,.5)}
 .bl-link{display:flex;flex-direction:column;height:100%;color:var(--ink)}
-.bl-card figure{aspect-ratio:16/11;overflow:hidden;background:var(--sand)}
+.bl-card figure{aspect-ratio:3/2;overflow:hidden;background:var(--sand)}
 .bl-card img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
 .bl-card:hover img{transform:scale(1.04)}
 .bl-noimg{display:grid;place-items:center;width:100%;height:100%;color:var(--gold)} .bl-noimg svg{width:54px;height:54px}
@@ -537,7 +537,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 .bl-more{margin-top:auto;padding-top:16px;display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:14.5px;color:var(--gold-deep)}
 .bl-first{grid-column:1/-1}
 .bl-first .bl-link{flex-direction:row}
-.bl-first figure{flex:1.25;aspect-ratio:auto;min-height:380px}
+.bl-first figure{flex:1.25;aspect-ratio:3/2}
 .bl-first .bl-tx{flex:1;padding:clamp(26px,3.5vw,48px);justify-content:center}
 .bl-first h2{font-size:clamp(32px,3.2vw,48px)}
 .bl-first .bl-more{margin-top:18px}
@@ -558,7 +558,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 .vin:nth-child(2n){transform:rotate(1deg)} .vin:nth-child(3n){transform:rotate(-.4deg)}
 .vin:hover{transform:rotate(0) translateY(-6px);box-shadow:0 34px 60px -30px rgba(46,36,30,.55)}
 .vin[hidden]{display:none}
-.vin figure{aspect-ratio:4/3;overflow:hidden;border-radius:3px;background:var(--sand);margin-bottom:14px}
+.vin figure{aspect-ratio:3/2;overflow:hidden;border-radius:3px;background:var(--sand);margin-bottom:14px}
 .vin img{width:100%;height:100%;object-fit:cover}
 .vin .bl-date{padding:0 6px}
 .vin h2{font-family:var(--serif);font-weight:500;font-size:clamp(23px,1.9vw,27px);line-height:1.12;margin:6px 6px 0}
@@ -578,7 +578,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 .bp-head h1{font-family:var(--serif);font-weight:400;font-size:clamp(40px,5.4vw,72px);line-height:1.04;margin:14px 0}
 .bp-sub{font-family:var(--serif);font-style:italic;font-size:clamp(21px,2vw,27px);color:var(--muted)}
 .bp-cover{margin:0 calc(clamp(0px,6vw,90px)*-1) clamp(30px,4vw,50px);border-radius:var(--r);overflow:hidden;box-shadow:0 40px 70px -45px rgba(46,36,30,.55)}
-.bp-cover img{width:100%;max-height:620px;object-fit:cover}
+.bp-cover img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}
 .bp-body{font-size:18px;line-height:1.75;color:#3b332e}
 .bp-body p{margin:0 0 1.15em}
 .bp-body h2{font-family:var(--serif);font-weight:500;font-size:clamp(30px,2.8vw,38px);line-height:1.15;margin:1.6em 0 .5em;color:var(--ink)}
@@ -592,7 +592,7 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
 .bp-gal figure{aspect-ratio:1;border-radius:14px;overflow:hidden;background:var(--sand)}
 .bp-gal img{width:100%;height:100%;object-fit:cover}
 .bp-foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;margin-top:clamp(36px,5vw,60px);padding-top:26px;border-top:1px solid var(--line)}
-@media (max-width:900px){ .bl-grid{grid-template-columns:1fr 1fr} .bl-first .bl-link{flex-direction:column} .bl-first figure{min-height:0;aspect-ratio:16/11} }
+@media (max-width:900px){ .bl-grid{grid-template-columns:1fr 1fr} .bl-first .bl-link{flex-direction:column} .bl-first figure{aspect-ratio:3/2} }
 @media (max-width:600px){ .bl-filtro{flex-wrap:nowrap;overflow-x:auto;margin-left:calc(var(--gut)*-1);margin-right:calc(var(--gut)*-1);padding:0 var(--gut) 4px;scrollbar-width:none} .bl-filtro button{flex:none} .bl-grid{grid-template-columns:1fr} .bp-gal{grid-template-columns:1fr 1fr} .bp-body{font-size:17px} .back span.t{display:none} .back{padding:10px 12px} }
 </style>
 </head>

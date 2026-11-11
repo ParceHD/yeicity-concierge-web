@@ -122,8 +122,57 @@
     if (!blob || blob.size > 5 * 1024 * 1024) throw new Error('No se ha podido preparar la foto.');
     return blob;
   }
+  // portada: la clienta la encuadra en un recuadro 3:2 (la misma forma que en la web) y se guarda a alta calidad
+  function recortar(file){
+    return new Promise((resolve, reject) => {
+      if (!TIPOS.includes(file.type)) return reject(new Error('Solo se admiten fotos JPG, PNG o WEBP.'));
+      if (file.size > 25 * 1024 * 1024) return reject(new Error('La foto pesa demasiado (máximo 25 MB).'));
+      const url = URL.createObjectURL(file), img = new Image();
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('No se ha podido abrir la foto.')); };
+      img.onload = () => {
+        const ov = document.createElement('div'); ov.className = 'crop';
+        ov.innerHTML = `<div class="crop-c"><h2>Encuadra la portada</h2><p class="muted">Arrastra la foto para colocarla y usa la barra para acercarla. Así se verá en la web.</p>
+          <div class="crop-box"><img alt="" draggable="false"></div>
+          <label class="crop-z">Zoom<input type="range" min="1" max="3" step="0.01" value="1"></label>
+          <div class="row-b"><button class="btn btn-line" type="button" data-c="no">Cancelar</button><button class="btn btn-dark" type="button" data-c="si">Usar esta portada</button></div></div>`;
+        document.body.appendChild(ov); document.body.style.overflow = 'hidden';
+        const box = ov.querySelector('.crop-box'), im = box.querySelector('img'), zoom = ov.querySelector('input');
+        im.src = url;
+        const W = () => box.clientWidth, H = () => box.clientHeight;
+        let z = 1, x = 0, y = 0;
+        const base = () => Math.max(W() / img.naturalWidth, H() / img.naturalHeight);
+        const pinta = () => {
+          const s = base() * z, w = img.naturalWidth * s, h = img.naturalHeight * s;
+          x = Math.min(0, Math.max(W() - w, x)); y = Math.min(0, Math.max(H() - h, y));
+          im.style.width = w + 'px'; im.style.height = h + 'px'; im.style.transform = `translate(${x}px,${y}px)`;
+        };
+        const centro = () => { const s = base() * z; x = (W() - img.naturalWidth * s) / 2; y = (H() - img.naturalHeight * s) / 2; pinta(); };
+        centro();
+        zoom.addEventListener('input', () => { // acercar manteniendo el centro del recuadro
+          const s0 = base() * z, cx = (W() / 2 - x) / s0, cy = (H() / 2 - y) / s0;
+          z = +zoom.value; const s1 = base() * z; x = W() / 2 - cx * s1; y = H() / 2 - cy * s1; pinta();
+        });
+        let arr = null;
+        box.addEventListener('pointerdown', e => { arr = { px: e.clientX, py: e.clientY, x, y }; box.setPointerCapture(e.pointerId); });
+        box.addEventListener('pointermove', e => { if (!arr) return; x = arr.x + e.clientX - arr.px; y = arr.y + e.clientY - arr.py; pinta(); });
+        box.addEventListener('pointerup', () => arr = null);
+        const fin = (blob) => { ov.remove(); document.body.style.overflow = ''; URL.revokeObjectURL(url); resolve(blob); };
+        ov.querySelector('[data-c="no"]').addEventListener('click', () => fin(null));
+        ov.querySelector('[data-c="si"]').addEventListener('click', async () => {
+          const s = base() * z, sx = -x / s, sy = -y / s, sw = W() / s, sh = H() / s;
+          const ow = Math.round(Math.min(2000, sw)), oh = Math.round(ow * 2 / 3);  // nunca se amplía más que el original
+          const c = document.createElement('canvas'); c.width = ow; c.height = oh;
+          const g = c.getContext('2d'); g.imageSmoothingQuality = 'high'; g.drawImage(img, sx, sy, sw, sh, 0, 0, ow, oh);
+          let blob = await new Promise(r => c.toBlob(r, 'image/jpeg', .9));
+          if (blob && blob.size > 5 * 1024 * 1024) blob = await new Promise(r => c.toBlob(r, 'image/jpeg', .8));
+          fin(blob);
+        });
+      };
+      img.src = url;
+    });
+  }
   async function subir(file, id){
-    const blob = await comprimir(file);
+    const blob = file.__listo ? file : await comprimir(file);
     const ruta = `posts/${id}/${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`;
     const { error } = await sb.storage.from(B).upload(ruta, blob, { contentType: 'image/jpeg', cacheControl: '31536000', upsert: false });
     if (error) throw new Error('No se ha podido subir la foto.');
@@ -170,7 +219,10 @@
 
     $('#bCov').addEventListener('click', async () => {
       const [file] = await elegir(false); if (!file) return;
-      try { aviso('Subiendo portada…'); editando.portada_url = await subir(file, editando.id); $('#eCov').innerHTML = `<img src="${esc(editando.portada_url)}" alt="">`; sucio = true; aviso('Portada lista.'); }
+      try {
+        const blob = await recortar(file); if (!blob) return;
+        blob.__listo = true;
+        aviso('Subiendo portada…'); editando.portada_url = await subir(blob, editando.id); $('#eCov').innerHTML = `<img src="${esc(editando.portada_url)}" alt="">`; sucio = true; aviso('Portada lista.'); }
       catch (e){ aviso(e.message, true); }
     });
     const q = $('#qCov'); if (q) q.addEventListener('click', () => { editando.portada_url = ''; $('#eCov').innerHTML = '<span>Sin portada</span>'; sucio = true; });
