@@ -81,17 +81,20 @@
     if (error){ $('#lista').innerHTML = '<p class="msg">No se han podido cargar las publicaciones.</p>'; return; }
     posts = data;
     const vis = posts.filter(p => filtro === 'todas' || p.estado === filtro);
-    $('#lista').innerHTML = vis.length ? vis.map(p => `
-      <div class="pp-row">
-        <div class="pp-thumb">${p.portada_url ? `<img src="${esc(p.portada_url)}" alt="">` : ''}</div>
-        <div class="pp-info"><b>${esc(p.titulo)}</b><span class="est est-${p.estado}">${ETQ[p.estado]}</span>
-          <small>${p.estado === 'publicado' ? 'Publicada el ' + f(p.publicado_en) : 'Última edición: ' + f(p.actualizado)}</small></div>
+    $('#lista').innerHTML = vis.length ? '<div class="pp-grid">' + vis.map(p => `
+      <article class="pp-card">
+        <button class="pp-cov" data-ed="${p.id}" aria-label="Editar ${esc(p.titulo)}">${p.portada_url ? `<img src="${esc(p.portada_url)}" alt="" loading="lazy">` : '<svg aria-hidden="true"><use href="#i-bell"/></svg>'}</button>
+        <div class="pp-body">
+          <span class="est est-${p.estado}">${ETQ[p.estado]}</span>
+          <b>${esc(p.titulo)}</b>
+          <small>${p.estado === 'publicado' ? 'Publicada el ' + f(p.publicado_en) : 'Última edición: ' + f(p.actualizado)}</small>
+        </div>
         <div class="pp-acc">
           ${p.estado === 'publicado' ? `<a class="link" href="../blog/articulo/?a=${encodeURIComponent(p.slug)}" target="_blank" rel="noopener">Ver</a>` : ''}
           <button class="link" data-ed="${p.id}">Editar</button>
           <button class="link bad" data-del="${p.id}">Eliminar</button>
         </div>
-      </div>`).join('') : `<div class="empty">${filtro === 'todas' ? 'Todavía no hay publicaciones. Pulsa «Nueva publicación» para escribir la primera.' : 'No hay publicaciones en este apartado.'}</div>`;
+      </article>`).join('') + '</div>' : `<div class="empty">${filtro === 'todas' ? 'Todavía no hay publicaciones. Pulsa «Nueva publicación» para escribir la primera.' : 'No hay publicaciones en este apartado.'}</div>`;
     app.querySelectorAll('[data-ed]').forEach(b => b.addEventListener('click', async () => {
       const { data: p, error: e } = await sb.from('blog_posts').select('*').eq('id', b.dataset.ed).single();
       if (e){ aviso('No se ha podido abrir la publicación.', true); return; } editor(p);
