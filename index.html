@@ -515,6 +515,34 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
   .door-win{clip-path:none}
   .day .bar{transform:none}
 }
+
+/* opiniones (reseñas de Google) */
+.op-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin:clamp(22px,3vw,36px) 0 clamp(24px,3vw,40px)}
+.op-nav{display:flex;gap:10px} .op-nav[hidden]{display:none}
+.op-nav button{width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center;cursor:pointer;transition:background .3s,color .3s}
+.op-nav button:hover{background:var(--night);color:var(--paper)}
+.op-list{display:grid;grid-auto-flow:column;grid-auto-columns:max(280px,calc((100% - 40px)/3));gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding-bottom:4px}
+.op-list::-webkit-scrollbar{display:none}
+#opiniones:not(.con) .op-list{display:none}
+.op-card{scroll-snap-align:start;display:flex;flex-direction:column;gap:16px;background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,2.4vw,30px);box-shadow:0 18px 34px -30px rgba(46,36,30,.45)}
+.op-card blockquote{font-family:var(--serif);font-size:clamp(19px,1.6vw,22px);line-height:1.4;color:var(--ink);flex:1}
+.op-card blockquote::before{content:"“"} .op-card blockquote::after{content:"”"}
+.op-card figcaption{display:flex;align-items:center;gap:12px;padding-top:14px;border-top:1px solid var(--line)}
+.op-card figcaption b{display:block;font-weight:600;font-size:15px} .op-card figcaption small{color:var(--muted);font-size:12.5px}
+.op-av{width:40px;height:40px;border-radius:50%;background:var(--gold);color:var(--night);display:grid;place-items:center;font-family:var(--serif);font-size:20px;flex:none}
+.op-stars{display:inline-flex;gap:3px} .op-stars svg{width:17px;height:17px;fill:none;stroke:var(--gold);stroke-width:1.6} .op-stars svg.on{fill:var(--gold)}
+.op-stars.big svg{width:26px;height:26px}
+.op-cta{display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;margin-top:clamp(26px,3vw,40px);padding:clamp(30px,4vw,52px) clamp(20px,4vw,48px);border:1px dashed rgba(184,148,90,.55);border-radius:var(--r);background:var(--cream)}
+.op-msg{max-width:620px;font-size:clamp(16px,1.3vw,18px);color:var(--ink)}
+.op-msg b{font-weight:600}
+#opiniones.con .op-vacio, #opiniones:not(.con) .op-lleno{display:none}
+#opiniones.con .op-cta{padding:clamp(22px,2.6vw,32px);border-style:solid}
+#opiniones.con .op-stars.big{display:none}
+.op-btns{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 26px}
+.op-g{width:18px;height:18px;background:#fff;border-radius:50%;padding:2px;box-sizing:content-box;margin-left:-8px}
+.op-ver{font-weight:600;font-size:14px;color:var(--gold-deep);border-bottom:1px solid currentColor;padding-bottom:2px}
+@media (max-width:1080px){ .op-list{grid-auto-columns:max(280px,calc((100% - 20px)/2))} }
+@media (max-width:640px){ .op-list{grid-auto-columns:86%} .op-head{align-items:flex-start;flex-direction:column} }
 </style>
 </head>
 <body>
@@ -977,10 +1005,31 @@ footer{background:var(--sand);color:var(--ink);padding:0 0 28px;overflow:hidden;
   </div>
 </section>
 
+<!-- ============ OPINIONES ============ -->
+<section class="sec" id="opiniones" style="padding-top:0">
+  <div class="wrap">
+    <div class="label rv"><span>// <span class="es">Opiniones</span><span class="en">Reviews</span></span><span>[ 06 ]</span></div>
+    <div class="op-head">
+      <h2 class="h2 rv"><span class="es">Lo que dicen <span class="it">nuestros clientes</span></span><span class="en">What our <span class="it">clients say</span></span></h2>
+      <div class="op-nav rv d1" hidden><button type="button" data-op="prev" aria-label="Anterior / Previous"><svg width="16" height="16" style="transform:rotate(180deg)"><use href="#i-ar"/></svg></button><button type="button" data-op="next" aria-label="Siguiente / Next"><svg width="16" height="16"><use href="#i-ar"/></svg></button></div>
+    </div>
+    <div class="op-list" aria-live="polite"></div>
+    <div class="op-cta rv d1">
+      <span class="op-stars big" aria-hidden="true"><svg class="on" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg class="on" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg class="on" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg class="on" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg><svg class="on" viewBox="0 0 24 24"><path d="M12 2.8l2.8 5.9 6.4.8-4.7 4.4 1.2 6.4L12 17.2l-5.7 3.1 1.2-6.4-4.7-4.4 6.4-.8z"/></svg></span>
+      <p class="op-msg op-vacio"><span class="es">Estrenamos nuestra ficha de Google. Si ya has vivido una experiencia con nosotros, <b>sé de los primeros en contarla</b>: nos ayuda muchísimo.</span><span class="en">Our Google profile is brand new. If you have already enjoyed an experience with us, <b>be one of the first to share it</b> — it means the world to us.</span></p>
+      <p class="op-msg op-lleno"><span class="es">¿Has disfrutado de una experiencia con nosotros? Cuéntala en Google.</span><span class="en">Enjoyed an experience with us? Share it on Google.</span></p>
+      <div class="op-btns">
+        <a class="btn btn-dark" href="https://search.google.com/local/writereview?placeid=ChIJJVc_jzINUYQRdqEV_XrRHJI" target="_blank" rel="noopener"><svg class="op-g" viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.1C12.4 13.6 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 7l7.5 5.8c4.4-4 6.8-10 6.8-17.3z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-2.9-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C1 16.6 0 20.2 0 24s.9 7.4 2.6 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.5-5.8c-2.1 1.4-4.8 2.3-8.4 2.3-6.3 0-11.6-4.1-13.5-9.8l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg><span class="es">Escribir una reseña</span><span class="en">Write a review</span><span class="ar"><svg width="14" height="14"><use href="#i-ar"/></svg></span></a>
+        <a class="op-ver" href="https://www.google.com/maps/place/?q=place_id:ChIJJVc_jzINUYQRdqEV_XrRHJI" target="_blank" rel="noopener"><span class="es">Ver nuestra ficha en Google</span><span class="en">See us on Google</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============ RESERVA ============ -->
 <section class="sec dark" id="reserva" style="background:var(--cream)">
   <div class="wrap">
-    <div class="label rv"><span>// <span class="es">Reserva</span><span class="en">Booking</span></span><span>[ 06 ]</span></div>
+    <div class="label rv"><span>// <span class="es">Reserva</span><span class="en">Booking</span></span><span>[ 07 ]</span></div>
     <div class="book">
       <div class="book-info rv">
         <h2 class="h2"><span class="es">Cuéntanos<br>tus <span class="it">deseos...</span></span><span class="en">Tell us<br>your <span class="it">wishes...</span></span></h2>
@@ -1355,6 +1404,8 @@ const CONTACT = {
 })();
 </script>
 <script>/* botón flotante de WhatsApp: abre el chat con un mensaje inicial en el idioma de la web */(()=>{const f=document.getElementById("waFloat");if(!f)return;const t={es:"Hola Yei City Concierge, vengo de la web y estoy interesado en: ",en:"Hello Yei City Concierge, I come from your website and I am interested in: "};const set=()=>{f.href="https://wa.me/34671793458?text="+encodeURIComponent(t[document.documentElement.dataset.lang==="es"?"es":"en"])};set();f.addEventListener("click",set);})();</script>
+<script src="assets/js/blog-config.js" defer></script>
+<script src="assets/js/resenas.js" defer></script>
 <script src="assets/js/analytics.js" defer></script>
 </body>
 </html>

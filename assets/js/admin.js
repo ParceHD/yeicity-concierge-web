@@ -87,11 +87,12 @@
   const f = iso => iso ? new Date(iso).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
   async function panel(){
     sucio = false; editando = null;
-    app.innerHTML = `<div class="top"><div><h1>Panel de mi blog</h1><p class="muted">Escribe, guarda borradores y publica cuando quieras.</p></div>
+    app.innerHTML = `${pestanas('blog')}<div class="top"><div><h1>Panel de mi blog</h1><p class="muted">Escribe, guarda borradores y publica cuando quieras.</p></div>
       <button class="btn btn-dark" id="nueva">+ Nueva publicación</button></div>
       <div class="filtros" role="tablist">${['todas','publicado','borrador','retirado'].map(k => `<button data-f="${k}" class="${filtro === k ? 'on' : ''}">${{ todas: 'Todas', publicado: 'Publicadas', borrador: 'Borradores', retirado: 'Retiradas' }[k]}</button>`).join('')}</div>
       <div id="lista"><p class="muted">Cargando…</p></div>`;
     $('#nueva').addEventListener('click', () => editor(null));
+    enlazarPestanas();
     app.querySelectorAll('[data-f]').forEach(b => b.addEventListener('click', () => { filtro = b.dataset.f; panel(); }));
     const { data, error } = await sb.from('blog_posts').select('id,slug,titulo,descripcion,portada_url,estado,publicado_en,actualizado').order('actualizado', { ascending: false });
     if (error){ $('#lista').innerHTML = '<p class="msg">No se han podido cargar las publicaciones.</p>'; return; }
@@ -116,6 +117,98 @@
       if (e){ aviso('No se ha podido abrir la publicación.', true); return; } editor(p);
     }));
     app.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => eliminar(posts.find(p => p.id === b.dataset.del))));
+  }
+
+  // ---------------- pestañas Blog / Reseñas ----------------
+  const pestanas = act => `<nav class="pp-tabs" aria-label="Secciones del panel"><button data-tab="blog" class="${act === 'blog' ? 'on' : ''}">Blog</button><button data-tab="resenas" class="${act === 'resenas' ? 'on' : ''}">Reseñas de Google</button></nav>`;
+  function enlazarPestanas(){
+    app.querySelectorAll('[data-tab]').forEach(b => b.addEventListener('click', () => {
+      if (b.classList.contains('on')) return;
+      if (sucio && !confirm('Tienes cambios sin guardar. ¿Salir igualmente?')) return;
+      b.dataset.tab === 'blog' ? panel() : resenas();
+    }));
+  }
+
+  // ---------------- reseñas ----------------
+  const PIDE_RESENA = 'https://search.google.com/local/writereview?placeid=ChIJJVc_jzINUYQRdqEV_XrRHJI';
+  const ESTR = n => '★★★★★'.slice(0, n) + '☆☆☆☆☆'.slice(0, 5 - n);
+  const fDia = d => d ? new Date(d + 'T12:00:00').toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' }) : '—';
+  async function resenas(){
+    sucio = false; editando = null;
+    app.innerHTML = `${pestanas('resenas')}<div class="top"><div><h1>Reseñas de Google</h1><p class="muted">Copia aquí las reseñas que te dejen en Google y aparecerán en la web, en «Opiniones», justo antes de Contacto.</p></div>
+      <button class="btn btn-dark" id="nuevaRes">+ Nueva reseña</button></div>
+      <div class="rs-pide"><div><b>Enlace para pedir reseñas</b><p class="muted">Mándaselo a tus clientes por WhatsApp o email al terminar un servicio: les abre directamente la ventana para puntuarte en Google.</p><code>${PIDE_RESENA}</code></div>
+        <button class="btn btn-light" id="copiarPide" type="button">Copiar enlace</button></div>
+      <div id="rsForm"></div>
+      <div id="lista"><p class="muted">Cargando…</p></div>`;
+    enlazarPestanas();
+    $('#nuevaRes').addEventListener('click', () => formResena(null));
+    $('#copiarPide').addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(PIDE_RESENA); aviso('Enlace copiado. Pégalo en WhatsApp o en un email.'); }
+      catch (e){ prompt('Copia el enlace:', PIDE_RESENA); }
+    });
+    const { data, error } = await sb.from('resenas').select('*').order('fecha', { ascending: false });
+    if (error){ $('#lista').innerHTML = '<p class="msg">No se han podido cargar las reseñas. Si es la primera vez, falta crear la tabla «resenas» en Supabase.</p>'; return; }
+    const lst = data || [];
+    $('#lista').innerHTML = lst.length ? '<div class="rs-grid">' + lst.map(r => `
+      <article class="rs-card${r.publicada ? '' : ' oculta'}">
+        <div class="rs-top"><span class="rs-st" aria-label="${r.estrellas} estrellas">${ESTR(r.estrellas)}</span><span class="est ${r.publicada ? 'est-publicado' : 'est-retirado'}">${r.publicada ? 'Visible en la web' : 'Oculta'}</span></div>
+        <p class="rs-txt">${esc(r.texto)}</p>
+        ${r.texto_en ? '<small class="rs-en">Con versión en inglés</small>' : '<small class="rs-en no">Sin versión en inglés (se verá en español)</small>'}
+        <div class="rs-quien"><b>${esc(r.nombre)}</b><small>${fDia(r.fecha)}</small></div>
+        <div class="pp-acc">
+          <button class="link" data-red="${r.id}">Editar</button>
+          <button class="link" data-rvis="${r.id}">${r.publicada ? 'Ocultar' : 'Mostrar en la web'}</button>
+          <button class="link bad" data-rdel="${r.id}">Eliminar</button>
+        </div>
+      </article>`).join('') + '</div>'
+      : `<div class="empty">Todavía no hay reseñas. Mientras tanto, la web invita a los visitantes a dejar la primera en Google.<br>Cuando recibas una, pulsa «Nueva reseña» y cópiala aquí.</div>`;
+    const buscar = id => lst.find(r => r.id === id);
+    app.querySelectorAll('[data-red]').forEach(b => b.addEventListener('click', () => formResena(buscar(b.dataset.red))));
+    app.querySelectorAll('[data-rvis]').forEach(b => b.addEventListener('click', async () => {
+      const r = buscar(b.dataset.rvis);
+      const { error: e } = await sb.from('resenas').update({ publicada: !r.publicada }).eq('id', r.id);
+      if (e){ aviso('No se ha podido cambiar.', true); return; }
+      aviso(r.publicada ? 'Reseña oculta: ya no se ve en la web.' : 'Reseña visible en la web.'); resenas();
+    }));
+    app.querySelectorAll('[data-rdel]').forEach(b => b.addEventListener('click', async () => {
+      const r = buscar(b.dataset.rdel);
+      if (!confirm(`¿Eliminar la reseña de «${r.nombre}» para siempre?\n\nSi solo quieres quitarla de la web, pulsa «Ocultar».`)) return;
+      const { error: e } = await sb.from('resenas').delete().eq('id', r.id);
+      if (e){ aviso('No se ha podido eliminar.', true); return; }
+      aviso('Reseña eliminada.'); resenas();
+    }));
+  }
+  function formResena(r){
+    const hoy = new Date().toISOString().slice(0, 10);
+    const box = $('#rsForm');
+    box.innerHTML = `<form class="card rs-form" id="fRes">
+      <h2>${r ? 'Editar reseña' : 'Nueva reseña'}</h2>
+      <p class="muted">Cópiala tal cual aparece en Google (nombre, estrellas y texto).</p>
+      <div class="rs-fila">
+        <label>Nombre de quien la escribe<input name="nombre" required maxlength="80" value="${esc(r ? r.nombre : '')}" placeholder="Ej.: Laura M."></label>
+        <label>Estrellas<select name="estrellas">${[5,4,3,2,1].map(n => `<option value="${n}"${(r ? r.estrellas : 5) === n ? ' selected' : ''}>${ESTR(n)} (${n})</option>`).join('')}</select></label>
+        <label>Fecha<input type="date" name="fecha" required max="${hoy}" value="${r ? r.fecha : hoy}"></label>
+      </div>
+      <label>Texto de la reseña (español)<textarea name="texto" required maxlength="2000" rows="4">${esc(r ? r.texto : '')}</textarea></label>
+      <label>Texto en inglés <span class="muted">(opcional: si lo dejas vacío, en la web en inglés se verá en español)</span><textarea name="texto_en" maxlength="2000" rows="3">${esc(r && r.texto_en ? r.texto_en : '')}</textarea></label>
+      <label class="rs-chk"><input type="checkbox" name="publicada"${!r || r.publicada ? ' checked' : ''}> Mostrar en la web</label>
+      <div class="rs-btns"><button class="btn btn-dark" type="submit">Guardar reseña</button><button class="link" type="button" id="cancRes">Cancelar</button></div>
+    </form>`;
+    const fm = $('#fRes');
+    fm.querySelectorAll('input,textarea,select').forEach(i => i.addEventListener('input', () => sucio = true));
+    $('#cancRes').addEventListener('click', () => { if (sucio && !confirm('¿Descartar los cambios?')) return; sucio = false; box.innerHTML = ''; });
+    fm.addEventListener('submit', async e => {
+      e.preventDefault();
+      const fila = { nombre: fm.nombre.value.trim(), estrellas: +fm.estrellas.value, fecha: fm.fecha.value, texto: fm.texto.value.trim(), texto_en: fm.texto_en.value.trim() || null, publicada: fm.publicada.checked };
+      if (!fila.nombre || !fila.texto){ aviso('Faltan el nombre o el texto.', true); return; }
+      const b = fm.querySelector('[type=submit]'); b.disabled = true;
+      const { error } = r ? await sb.from('resenas').update(fila).eq('id', r.id) : await sb.from('resenas').insert(fila);
+      b.disabled = false;
+      if (error){ aviso('No se ha podido guardar la reseña.', true); return; }
+      sucio = false; aviso(fila.publicada ? 'Reseña guardada y visible en la web.' : 'Reseña guardada (oculta).'); resenas();
+    });
+    box.scrollIntoView({ behavior: 'smooth', block: 'start' }); fm.nombre.focus({ preventScroll: true });
   }
 
   // tras guardar: borra del almacén las fotos de este artículo que ya no se usan (portada cambiada, fotos quitadas…)
